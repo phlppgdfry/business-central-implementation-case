@@ -12,7 +12,7 @@
 1. [Fit-gap-methode](docs/03-fit-gap/README.md) — hoe een wens een beslissing wordt.
 2. [Fit-gap-register](docs/03-fit-gap/fit-gap.md) — <!--n:req.total-->25<!--/n--> requirements, kijk vooral naar de gaps met meerdere opties onderaan.
 3. [Afstemming](docs/06-migratie/afstemming.md) — waarom de go-live eerst "no-go" was.
-4. [EVIDENCE.md](EVIDENCE.md) — vacature-eis → bewijs.
+4. [EVIDENCE.md](EVIDENCE.md) — eis van de rol → bewijs.
 
 ## 15 minuten (het traject in volgorde)
 

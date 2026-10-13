@@ -148,3 +148,11 @@ tr.clickable:hover td, tr.selected td { background: color-mix(in srgb, var(--acc
 .log { font-family: var(--mono); font-size: 13px; max-height: 160px; overflow: auto; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 10px; margin: 0; list-style: none; }
 .log li { margin: 2px 0; }
 .small { font-size: 14px; color: var(--muted); }
+.wb-toolbar select { max-width: 100%; min-width: 0; }
+.wb-toolbar label { flex: none; }
+.wb-panel { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .wb-toolbar select { flex: 1 1 100%; }
+  .detail dl { grid-template-columns: 1fr; }
+  .detail dt { margin-top: 6px; }
+}

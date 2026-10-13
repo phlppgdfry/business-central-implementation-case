@@ -6,7 +6,7 @@
 
 > *Onafhankelijke portfoliocase over een fictieve organisatie (Kalvaert Technische Groothandel). Bevat geen vertrouwelijke informatie van een echte werkgever of klant. Alle cijfers zijn illustratieve aannames.*
 
-**[Live site](https://phlppgdfry.github.io/business-central-implementation-case/)** · **[Workbench met rondleiding van 2 min](https://phlppgdfry.github.io/business-central-implementation-case/workbench/?tour)** · **[Start hier](START-HERE.md)** · **[Bewijs per vacature-eis](EVIDENCE.md)** · **[Het volledige verhaal](CASE_STUDY.md)**
+**[Live site](https://phlppgdfry.github.io/business-central-implementation-case/)** · **[Workbench met rondleiding van 2 min](https://phlppgdfry.github.io/business-central-implementation-case/workbench/?tour)** · **[Start hier](START-HERE.md)** · **[Bewijs per eis van de rol](EVIDENCE.md)** · **[Het volledige verhaal](CASE_STUDY.md)**
 
 ## Het traject
 
