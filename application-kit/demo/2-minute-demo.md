@@ -14,4 +14,4 @@
 | 8 | Hypercare | "Acht meldingen, één bug. De rest is data, setup of opleiding — elk met een structurele maatregel." |
 | 9 | Beperkingen | "Fictief, niet in Business Central gebouwd. Het toont hoe ik werk; vraag gerust naar een keuze." |
 
-**Als de demo niet laadt:** [screenshots per stap](../docs/screenshots/README.md).
+**Als de demo niet laadt:** [screenshots per stap](../../docs/screenshots/README.md).

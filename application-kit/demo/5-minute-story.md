@@ -1,6 +1,6 @@
 # Verhaal van 5 minuten
 
-> Zonder slides, in spreektaal. Niet voorlezen: onthoud de kernzin per blok. Onafhankelijke portfoliocase over een fictieve organisatie; alle cijfers illustratief. Volledige tekst: [CASE_STUDY.md](../CASE_STUDY.md).
+> Zonder slides, in spreektaal. Niet voorlezen: onthoud de kernzin per blok. Onafhankelijke portfoliocase over een fictieve organisatie; alle cijfers illustratief. Volledige tekst: [CASE_STUDY.md](../../CASE_STUDY.md).
 
 | Tijd | Blok | Kernzin |
 |---|---|---|

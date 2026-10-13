@@ -1,6 +1,6 @@
 # Kalvaert naar Business Central — samenvatting op één pagina
 
-> Onafhankelijke portfoliocase over een fictieve organisatie. Alle cijfers zijn illustratieve aannames. PDF: [exports/one-pager.pdf](exports/one-pager.pdf) · web: [site/one-pager](../site/one-pager/index.html).
+> Onafhankelijke portfoliocase over een fictieve organisatie. Alle cijfers zijn illustratieve aannames. PDF: [exports/one-pager.pdf](../exports/one-pager.pdf) · web: [site/one-pager](../../site/one-pager/index.html).
 
 **Uitdaging.** Kalvaert, een technische groothandel in West-Vlaanderen (62 medewerkers, 1.480 installateurs als klant), moet weg van een 20 jaar oud pakket: de support stopt en Peppol-e-facturatie is sinds 2026 verplicht. Prijsafspraken staan in notities, facturen worden twee keer ingegeven, de artikelstam is vervuild.
 
