@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalvaert naar Business Central — portfoliocase functional consultant</title>
+  <meta name="description" content="Hoe een functional consultant een groothandel naar Microsoft Dynamics 365 Business Central brengt: standaard waar het kan, één extensie waar het moet, en een go-live die pas groen wordt als de cijfers kloppen.">
+  <meta property="og:title" content="Kalvaert naar Business Central — van workshop tot hypercare">
+  <meta property="og:description" content="Fit-gap, inrichting met boekingsgevolg, migratie tot op de cent, go/no-go en hypercare. Onafhankelijke portfoliocase over een fictieve organisatie.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og-image.png">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script>if (new URLSearchParams(location.search).has("shot")) document.documentElement.dataset.theme = "light";</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="./">Kalvaert × Business Central</a>
+      <nav aria-label="Secties">
+        <a href="#uitdaging">Uitdaging</a>
+        <a href="#aanpak">Aanpak</a>
+        <a href="#traject">Traject</a>
+        <a href="#bewijs">Bewijs</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <p class="eyebrow">Onafhankelijke portfoliocase · fictieve organisatie · Philippe Godfroy</p>
+      <h1>Kalvaert naar Business Central — van workshop tot hypercare</h1>
+      <p class="lede">Hoe een functional consultant een groothandel met <!--n:req.total-->25<!--/n--> wensen naar Business Central brengt: standaard waar het kan, één extensie waar het moet, en een go-live die pas groen wordt als de cijfers kloppen.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="workbench/?tour">Workbench met rondleiding (2 min)</a>
+        <a class="btn" href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/CASE_STUDY.md">Het volledige verhaal</a>
+        <a class="btn" href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/03-fit-gap/fit-gap.md">Fit-gap-register</a>
+        <a class="btn" href="https://github.com/phlppgdfry/business-central-implementation-case">Op GitHub</a>
+      </div>
+    </section>
+
+    <section id="uitdaging" class="wrap section">
+      <h2>De uitdaging</h2>
+      <p class="measure">Kalvaert, een technische groothandel in West-Vlaanderen (62 medewerkers, 1.480 installateurs als klant), werkt met een lokaal pakket van twintig jaar oud. De support stopt eind dit jaar, en Peppol-e-facturatie is in België verplicht sinds 2026. De go-live ligt vast.</p>
+      <div class="grid cards-4">
+        <article class="card"><span class="chip warn">Knelpunt</span><h3>Prijzen overtypen</h3><p>420 prijsafspraken staan als vrije tekst in notities.</p></article>
+        <article class="card"><span class="chip warn">Knelpunt</span><h3>Alles twee keer</h3><p>Elke factuur in het pakket én in een Peppol-portaal.</p></article>
+        <article class="card"><span class="chip warn">Knelpunt</span><h3>Vervuilde artikelstam</h3><p>38.000 artikels, 12.400 actief, 1.150 vermoedelijke dubbels.</p></article>
+        <article class="card"><span class="chip warn">Knelpunt</span><h3>Marge in Excel</h3><p>Per vestiging alleen zichtbaar na twee exports.</p></article>
+      </div>
+    </section>
+
+    <section id="rol" class="wrap section">
+      <h2>Mijn rol in deze case: functional consultant bij de implementatiepartner</h2>
+      <ul class="checklist">
+        <li>vijf analyseworkshops leiden met echte documenten, en verslaan</li>
+        <li>de fit-gap opstellen met een classificatie, inschatting en beslisser per regel</li>
+        <li>Business Central inrichten op papier: boekingsgroepen, btw, dimensies, workflow — elke instelling met een reden</li>
+        <li>de enige extensie specificeren voor de developer</li>
+        <li>een change request met opties voorleggen via de projectmanager</li>
+        <li>de migratie plannen en afstemmen, de go/no-go voorbereiden en de hypercare opvolgen</li>
+      </ul>
+      <p class="note">De projectmanager bewaakt planning en budget, de developer bouwt, de klant beslist.</p>
+    </section>
+
+    <section id="aanpak" class="wrap section">
+      <h2>Waarom deze aanpak</h2>
+      <div class="grid cards-3">
+        <article class="card">
+          <h3>Standaard eerst</h3>
+          <p>Elke gap doorloopt standaard → configuratie → app → procesaanpassing → extensie. Resultaat: <!--n:cls.stdconf-->16<!--/n--> keer standaard of configuratie, <!--n:cls.extensie-->1<!--/n--> extensie, <!--n:decided.days-->29,0<!--/n--> dagen in plaats van <!--n:max.days-->40,5<!--/n-->.<br><em>Verworpen:</em> per gap ad hoc beslissen — dan wint maatwerk altijd.</p>
+          <p><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/adr/adr-001-standaard-eerst.md">ADR-001</a></p>
+        </article>
+        <article class="card">
+          <h3>Eén extensie, en niet de luidste wens</h3>
+          <p>Maatwerk alleen voor de verwijderingsbijdrage: wettelijk, honderden regels per maand, vandaag vaak vergeten. De automatische bonus werd een kwartaalrapport.<br><em>Verworpen:</em> rebatemodule in week 7 (+7 dagen, go-live onder druk).</p>
+          <p><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/adr/adr-004-verwijderingsbijdrage-als-extensie.md">ADR-004</a> · <a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/00-project/cr-01-eindejaarsbonus.md">CR-01</a></p>
+        </article>
+        <article class="card">
+          <h3>Migratie tot op de cent</h3>
+          <p>Openstaande posten per document, tegen een overgangsrekening die op nul moet eindigen. Drie keer geoefend. Historiek niet migreren.<br><em>Verworpen:</em> saldi per klant migreren — dan kan niemand in januari nog een betaling afpunten.</p>
+          <p><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/06-migratie/README.md">Migratieplan</a> · <a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/adr/adr-002-historiek-niet-migreren.md">ADR-002</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="traject" class="wrap section">
+      <h2>Het traject</h2>
+      <ol class="journey">
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/01-discovery/workshops.md"><span class="step-no">1</span>Workshops</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/02-processen/order-to-cash.md"><span class="step-no">2</span>Processen</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/03-fit-gap/fit-gap.md"><span class="step-no">3</span>Fit-gap</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/04-oplossingsontwerp/README.md"><span class="step-no">4</span>Inrichting</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/05-specs/uc-vk-10-verwijderingsbijdrage.md"><span class="step-no">5</span>Spec</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/06-migratie/README.md"><span class="step-no">6</span>Migratie</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/07-go-live/README.md"><span class="step-no">7</span>Go-live</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/07-go-live/hypercare.md"><span class="step-no">8</span>Hypercare</a></li>
+      </ol>
+    </section>
+
+    <section id="inrichting" class="wrap section">
+      <h2>Inrichting: elke boeking verklaarbaar</h2>
+      <figure class="diagram">
+        <pre class="mermaid">
+flowchart LR
+  K["Klant K10023<br/>bedrijf BINNENL · btw BINNENL"] --> F((Verkoopfactuur))
+  A["Artikel A-220318 boiler<br/>HANDELSGOED · btw 21"] --> F
+  F --> O["700000 omzet binnenland"]
+  F --> B["700900 verwijderingsbijdrage"]
+  F --> V["451000 btw 21% · rooster 03/54"]
+  F --> D["400000 handelsdebiteuren"]
+  F --> C["609000 kostprijs / 340000 voorraad"]
+        </pre>
+        <figcaption>Wie een factuur maakt, kiest geen rekening. Klant en artikel bepalen via hun boekingsgroepen waar alles landt. Bij een Franse klant: btw verlegd (rooster 46), geen bijdrage. Probeer het in de <a href="workbench/#wb-posting">workbench</a>. Rekeningnummers illustratief.</figcaption>
+      </figure>
+    </section>
+
+    <section id="golive" class="wrap section">
+      <h2>Migratie, go-live en hypercare</h2>
+      <div class="grid cards-3">
+        <article class="card kpi"><p class="kpi-value"><!--n:mig.diff.v1-->€1.586,40<!--/n--></p><p>verschil in de generale repetitie — een creditnota na de export. Cutoverplan aangepast; daarna €0,00.</p></article>
+        <article class="card kpi"><p class="kpi-value"><!--n:gng.total-->8<!--/n--> criteria</p><p>voor de go/no-go, vooraf vastgelegd. Met de eerste export: no-go.</p></article>
+        <article class="card kpi"><p class="kpi-value"><!--n:hc.bug-->1<!--/n--> van <!--n:hc.total-->8<!--/n--></p><p>hypercare-meldingen was een bug. De rest: data, setup of opleiding — elk met een structurele maatregel.</p></article>
+      </div>
+      <p class="note">Gesimuleerde resultaten met illustratieve aannames — geen echte bedrijfsdata.</p>
+    </section>
+
+    <section id="bewijs" class="wrap section">
+      <h2>Bewijs per eis van de rol</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Eis</th><th>Bewijs</th><th>Waar</th></tr></thead>
+          <tbody>
+            <tr><td>Fit-gap-documenten, klantbehoeften → BC</td><td>register met <!--n:req.total-->25<!--/n--> requirements, zes klassen, beslisser per regel</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/03-fit-gap/fit-gap.md">Openen</a></td></tr>
+            <tr><td>Bedrijfsprocessen analyseren, challengen</td><td>workshopplan, 5 verslagen, as-is/to-be, 6 ADR's</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/01-discovery/workshops.md">Openen</a></td></tr>
+            <tr><td>Kennis van Business Central</td><td>boekingsgroepen, btw-matrix met Belgische roosters, dimensies, workflow</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/04-oplossingsontwerp/boekingsmatrix.md">Openen</a></td></tr>
+            <tr><td>Specificaties in een use case</td><td>use case met 8 uitzonderingen en 8 testgevallen</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/05-specs/uc-vk-10-verwijderingsbijdrage.md">Openen</a></td></tr>
+            <tr><td>Implementatie en uitrol</td><td>migratieplan, afstemming, cutover, go/no-go, <!--n:uat.total-->17<!--/n--> UAT-scenario's</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/07-go-live/README.md">Openen</a></td></tr>
+            <tr><td>Eerste nazorg</td><td>hypercare-log naar oorzaak</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/07-go-live/hypercare.md">Openen</a></td></tr>
+            <tr><td>Schakel klant – AM – PM – developer</td><td>RACI, change request, statusrapport</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/00-project/raci.md">Openen</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/EVIDENCE.md">Volledige mapping met "getoond / niet geclaimd"</a></p>
+    </section>
+
+    <section id="beperkingen" class="wrap section">
+      <h2>Beperkingen</h2>
+      <ul>
+        <li>Fictieve klant, fictief oud pakket, fictieve workshops; alle cijfers illustratief.</li>
+        <li>Niet in Business Central gebouwd: de standaard komt uit de Microsoft-documentatie, niet uit een sandbox.</li>
+        <li>Geen AL-code: de extensie is gespecificeerd, niet gebouwd.</li>
+        <li>Geen klantervaring geclaimd: dit toont hoe ik als functional consultant zou werken.</li>
+        <li>Elk getal op deze site komt uit één bron (<code>data/case.json</code>) en wordt bij elke wijziging automatisch gecontroleerd.</li>
+      </ul>
+      <p>Demo laadt niet? <a href="https://github.com/phlppgdfry/business-central-implementation-case/tree/main/docs/screenshots">Bekijk de schermafbeeldingen</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Onafhankelijke portfoliocase over een fictieve organisatie. Bevat geen vertrouwelijke informatie van een echte werkgever of klant.</p>
+      <p>Philippe Godfroy · <a href="https://github.com/phlppgdfry">GitHub</a> · bijgewerkt 2026-10-13</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
+    const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+    mermaid.initialize({ startOnLoad: true, theme: dark ? "dark" : "neutral" });
+  </script>
+</body>
+</html>

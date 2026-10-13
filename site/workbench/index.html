@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fit-Gap Workbench — Kalvaert naar Business Central</title>
+  <meta name="description" content="Interactieve walkthrough van een Business Central-implementatie: van workshop via fit-gap en boekingsgevolg naar migratie, go/no-go en hypercare.">
+  <meta property="og:title" content="Fit-Gap Workbench — Kalvaert naar Business Central">
+  <meta property="og:description" content="Van workshop tot hypercare in 2 minuten. Onafhankelijke portfoliocase over een fictieve organisatie.">
+  <meta property="og:image" content="../assets/og-image.png">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../">Kalvaert × Business Central</a>
+      <nav aria-label="Workbench">
+        <a href="#wb-register">Fit-gap</a>
+        <a href="#wb-posting">Boekingsgevolg</a>
+        <a href="#wb-migration">Migratie</a>
+        <a href="#wb-hypercare">Hypercare</a>
+        <button type="button" class="btn primary" id="btn-tour">Rondleiding (2 min)</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap wb-main">
+    <p class="eyebrow" style="margin-top:24px">Fit-Gap Workbench · onafhankelijke portfoliocase over een fictieve organisatie · alle cijfers illustratief</p>
+
+    <section class="wb-panel" id="wb-overview" aria-labelledby="h-overview">
+      <h2 id="h-overview">Kalvaert: waarom nu</h2>
+      <p class="why" id="ov-why"></p>
+      <div class="stats" id="ov-stats"></div>
+    </section>
+
+    <section class="wb-panel" id="wb-workshop" aria-labelledby="h-workshop">
+      <h2 id="h-workshop">Van workshop naar requirement</h2>
+      <p class="why">Observatie, wens en open vraag apart — de requirement komt uit wat we zagen, niet alleen uit wat gevraagd werd.</p>
+      <div id="ws-body"></div>
+    </section>
+
+    <section class="wb-panel" id="wb-register" aria-labelledby="h-register">
+      <h2 id="h-register">Fit-gap-register</h2>
+      <p class="why">Elke requirement: wat BC standaard doet, de classificatie, de oplossing en wie bij de klant beslist. Klik op een regel.</p>
+      <div class="wb-toolbar" id="reg-filters" role="group" aria-label="Filter op classificatie"></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Requirement</th><th>Classificatie</th><th class="num">Dagen</th><th>Beslist door</th></tr></thead>
+          <tbody id="reg-rows"></tbody>
+        </table>
+      </div>
+      <div class="detail" id="reg-detail" aria-live="polite"></div>
+    </section>
+
+    <section class="wb-panel" id="wb-scenario" aria-labelledby="h-scenario">
+      <h2 id="h-scenario">Beslissen: wat als de klant anders kiest?</h2>
+      <p class="why">Vier gaps hebben meer dan één oplossing. Kies anders en zie wat het kost — in dagen en in extensies die bij elke update opnieuw getest moeten worden.</p>
+      <div class="wb-toolbar">
+        <button type="button" id="sc-decided">Zoals beslist</button>
+        <button type="button" id="sc-max">Alles maatwerk</button>
+      </div>
+      <div class="options" id="sc-options"></div>
+      <div class="stats" id="sc-totals" style="margin-top:14px" aria-live="polite"></div>
+    </section>
+
+    <section class="wb-panel" id="wb-posting" aria-labelledby="h-posting">
+      <h2 id="h-posting">Boekingsgevolg</h2>
+      <p class="why">Wie een factuur maakt, kiest geen rekening: klant en artikel bepalen via hun boekingsgroepen waar alles landt. Zo ziet de journaalpost eruit.</p>
+      <div class="wb-toolbar">
+        <label class="small" for="pp-customer">Klant</label> <select id="pp-customer"></select>
+        <label class="small" for="pp-item">Artikel</label> <select id="pp-item"></select>
+        <label class="small" for="pp-qty">Aantal</label> <select id="pp-qty"><option>1</option><option>2</option><option>5</option></select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Rekening</th><th class="num">Debet</th><th class="num">Credit</th><th>Waarom</th></tr></thead>
+          <tbody id="pp-rows"></tbody>
+        </table>
+      </div>
+      <p class="small" id="pp-meta" aria-live="polite"></p>
+    </section>
+
+    <section class="wb-panel" id="wb-migration" aria-labelledby="h-migration">
+      <h2 id="h-migration">Migratie: afstemming openstaande klantposten</h2>
+      <p class="why">De som van de gemigreerde posten moet tot op de cent gelijk zijn aan het saldo in WinBooks. Generale repetitie in week 14.</p>
+      <div class="wb-toolbar" role="group" aria-label="Export">
+        <button type="button" data-export="v1" aria-pressed="true">Export v1 (16:00)</button>
+        <button type="button" data-export="v2" aria-pressed="false">Export v2 (na bevriezing)</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Rekening</th><th class="num">Saldo WinBooks</th><th class="num">Gemigreerd</th><th class="num">Verschil</th><th>Status</th></tr></thead>
+          <tbody id="mig-rows"></tbody>
+        </table>
+      </div>
+      <p class="small" id="mig-cause" aria-live="polite"></p>
+    </section>
+
+    <section class="wb-panel" id="wb-gonogo" aria-labelledby="h-gonogo">
+      <h2 id="h-gonogo">Go/no-go — zondag 18:00</h2>
+      <p class="why">De zaakvoerder beslist. De criteria liggen vooraf vast, zodat het geen gevoelskwestie wordt.</p>
+      <p id="gng-verdict" aria-live="polite"></p>
+      <ul class="checklist" id="gng-list"></ul>
+    </section>
+
+    <section class="wb-panel" id="wb-hypercare" aria-labelledby="h-hypercare">
+      <h2 id="h-hypercare">Hypercare: meldingen naar oorzaak</h2>
+      <p class="why">De meeste meldingen na een go-live zijn geen bug. Wie dat onderscheidt, lost de oorzaak op in plaats van het symptoom.</p>
+      <div class="bar" id="hc-bar" aria-hidden="true"></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Dag</th><th>Symptoom</th><th>Oorzaak</th><th>Categorie</th><th>Structureel</th></tr></thead>
+          <tbody id="hc-rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="wb-panel" id="wb-limits" aria-labelledby="h-limits">
+      <h2 id="h-limits">Wat dit is — en wat niet</h2>
+      <ul>
+        <li>Fictieve klant (Kalvaert), fictief oud pakket (TradeDesk), fictieve workshops. Alle cijfers zijn illustratieve aannames.</li>
+        <li>Niet in Business Central gebouwd. De standaardfunctionaliteit komt uit de Microsoft-documentatie; de boekingssimulatie is vereenvoudigd (één regel, geen kortingen).</li>
+        <li>Geen AL-code: de enige extensie is gespecificeerd, niet gebouwd.</li>
+        <li>Geen klantervaring geclaimd: dit toont hoe ik als functional consultant zou werken.</li>
+      </ul>
+      <p><a href="https://github.com/phlppgdfry/business-central-implementation-case">Alle documenten op GitHub</a> · elk getal op deze pagina komt uit <code>data/case.json</code> en wordt in CI gecontroleerd.</p>
+    </section>
+
+    <section class="wb-panel" aria-labelledby="h-log">
+      <h2 id="h-log">Wat er achter de schermen gebeurt</h2>
+      <ol class="log" id="log"></ol>
+      <p><button type="button" class="btn" id="btn-reset">Demo resetten</button></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Onafhankelijke portfoliocase over een fictieve organisatie. Bevat geen vertrouwelijke informatie van een echte werkgever of klant.</p>
+      <p>Philippe Godfroy · <a href="https://github.com/phlppgdfry/business-central-implementation-case">GitHub</a> · bijgewerkt 2026-10-13</p>
+    </div>
+  </footer>
+
+  <script type="module" src="../assets/workbench.mjs"></script>
+</body>
+</html>

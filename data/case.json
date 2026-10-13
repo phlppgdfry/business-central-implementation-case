@@ -1,0 +1,1752 @@
+{
+  "meta": {
+    "title": "Kalvaert naar Business Central",
+    "disclaimer": "Onafhankelijke portfoliocase over een fictieve organisatie. Bevat geen vertrouwelijke informatie van een echte werkgever of klant. Alle cijfers zijn illustratieve aannames.",
+    "dayRateEur": 900,
+    "note": "Inschattingen in consultant- of developerdagen. Dagtarief, bedragen en aantallen zijn illustratieve aannames, geen echte bedrijfsdata."
+  },
+  "org": {
+    "name": "Kalvaert Technische Groothandel NV",
+    "short": "Kalvaert",
+    "activity": "Groothandel in sanitair, verwarming en elektro-installatiemateriaal voor installateurs (B2B)",
+    "region": "West-Vlaanderen: hoofdmagazijn (HQ) en een filiaal met toonbank (balie)",
+    "employees": 62,
+    "bcUsers": 28,
+    "activeCustomers": 1480,
+    "vendors": 310,
+    "itemsLegacy": 38000,
+    "itemsActive": 12400,
+    "legacySystems": [
+      "TradeDesk 7 (fictief): 20 jaar oud lokaal groothandelspakket voor orders en voorraad, on-prem, support stopt eind dit jaar",
+      "WinBooks bij het externe boekhoudkantoor",
+      "Excel voor prijsafspraken, eindejaarsbonus en routeplanning",
+      "Peppol-portaal als tijdelijke workaround: facturen worden twee keer ingegeven"
+    ],
+    "why": [
+      "De leverancier van TradeDesk stopt de support eind dit jaar.",
+      "E-facturatie via Peppol is in België verplicht voor B2B sinds 1 januari 2026; TradeDesk kan het niet."
+    ]
+  },
+  "domains": [
+    {
+      "id": "VK",
+      "name": "Verkoop (order-to-cash)"
+    },
+    {
+      "id": "AK",
+      "name": "Aankoop (procure-to-pay)"
+    },
+    {
+      "id": "VR",
+      "name": "Voorraad en magazijn"
+    },
+    {
+      "id": "FIN",
+      "name": "Financiën en Belgische lokalisatie"
+    },
+    {
+      "id": "EF",
+      "name": "E-facturatie (Peppol)"
+    }
+  ],
+  "classifications": [
+    {
+      "id": "standaard",
+      "label": "Standaard",
+      "order": 1,
+      "description": "BC doet het zonder extra instellingen dan de basisopzet."
+    },
+    {
+      "id": "configuratie",
+      "label": "Configuratie",
+      "order": 2,
+      "description": "Standaardfunctie, maar met instellingen, stamdata of lay-out op maat van de klant."
+    },
+    {
+      "id": "app",
+      "label": "AppSource-app",
+      "order": 3,
+      "description": "Kant-en-klare uitbreiding van een softwarehuis, met licentie en eigen onderhoud."
+    },
+    {
+      "id": "procesaanpassing",
+      "label": "Procesaanpassing",
+      "order": 4,
+      "description": "De klant past de werkwijze aan zodat de standaard volstaat."
+    },
+    {
+      "id": "extensie",
+      "label": "Extensie (maatwerk)",
+      "order": 5,
+      "description": "AL-maatwerk door de developer; kost bij bouw én bij elke update."
+    },
+    {
+      "id": "buiten-scope",
+      "label": "Buiten scope",
+      "order": 6,
+      "description": "Bewust niet in dit project; reden en later moment vastgelegd."
+    }
+  ],
+  "workshops": [
+    {
+      "id": "W-VK",
+      "title": "Verkoop: van offerte tot betaling",
+      "week": 2,
+      "attendees": [
+        "zaakvoerder",
+        "binnendienst verkoop (2)",
+        "balie filiaal",
+        "functional consultant"
+      ],
+      "method": "Voordoen met vijf echte orders van vorige week; geen BC-demo vooraf.",
+      "observations": [
+        "Prijsafspraken staan als vrije tekst in het notitieveld van de klant, bv. \"-12% op merk A behalve thermostatisch\". De binnendienst typt de prijs met de hand over.",
+        "Een order wordt in schijven geleverd; de rest blijft als backorder op papier.",
+        "Aan de balie wordt een papieren bon geschreven; de kassa staat los van TradeDesk.",
+        "De eindejaarsbonus wordt in januari in Excel berekend uit een omzetexport."
+      ],
+      "wishes": [
+        "Prijzen moeten automatisch kloppen zonder dat iemand ze moet onthouden.",
+        "De zaakvoerder wil de bonus per kwartaal zien, niet pas in januari."
+      ],
+      "openQuestions": [
+        {
+          "q": "Welke prijsafspraken zijn nog geldig? Er zijn er 420.",
+          "owner": "commercieel verantwoordelijke"
+        },
+        {
+          "q": "Hoeveel balietickets per dag? Schatting 40.",
+          "owner": "verantwoordelijke filiaal"
+        }
+      ],
+      "quote": "In TradeDesk typ ik gewoon de prijs over. Ik ken mijn klanten."
+    },
+    {
+      "id": "W-AK",
+      "title": "Aankoop: van bestelling tot leveranciersfactuur",
+      "week": 2,
+      "attendees": [
+        "aankoopverantwoordelijke",
+        "magazijnverantwoordelijke",
+        "boekhouding",
+        "functional consultant"
+      ],
+      "method": "Voordoen met een bestelling, een onvolledige levering en de bijhorende factuur.",
+      "observations": [
+        "Bestellingen boven €5.000 worden per mail aan de zaakvoerder voorgelegd; niemand ziet welke nog wachten.",
+        "Drie grote leveranciers sturen maandelijks een prijslijst in Excel (samen ±38.000 regels).",
+        "Onvolledige leveringen worden op de leveringsbon aangeduid, niet in het systeem."
+      ],
+      "wishes": [
+        "Zien welke bestellingen op goedkeuring wachten.",
+        "Prijslijsten inlezen zonder ze regel per regel over te typen."
+      ],
+      "openQuestions": [
+        {
+          "q": "Welke leveranciers leveren hun prijslijst in een vast formaat?",
+          "owner": "aankoopverantwoordelijke"
+        }
+      ],
+      "quote": "De prijslijst van de grootste leverancier is elke maand anders opgemaakt."
+    },
+    {
+      "id": "W-VR",
+      "title": "Voorraad en magazijn",
+      "week": 3,
+      "attendees": [
+        "magazijnverantwoordelijke",
+        "verantwoordelijke filiaal",
+        "functional consultant"
+      ],
+      "method": "Rondgang in het magazijn en het filiaal; telling en transfer laten voordoen.",
+      "observations": [
+        "Het filiaal haalt twee keer per week goederen uit het hoofdmagazijn; dat wordt niet geregistreerd als transfer.",
+        "Er zijn 38.000 artikels in TradeDesk, waarvan 12.400 in de laatste 24 maanden bewogen.",
+        "Er wordt geplukt van een afgedrukte paklijst; de magazijnier vraagt al jaren om scanners."
+      ],
+      "wishes": [
+        "Weten wat er in het filiaal ligt zonder te bellen.",
+        "Scanners voor het picken."
+      ],
+      "openQuestions": [
+        {
+          "q": "Wie beslist welke vermoedelijke dubbels (1.150) samengevoegd of geblokkeerd worden?",
+          "owner": "aankoopverantwoordelijke"
+        }
+      ],
+      "quote": "Als het filiaal belt, loop ik zelf kijken."
+    },
+    {
+      "id": "W-FIN",
+      "title": "Financiën, BTW en afsluiting",
+      "week": 3,
+      "attendees": [
+        "financieel verantwoordelijke",
+        "extern boekhoudkantoor",
+        "functional consultant"
+      ],
+      "method": "Doorlopen van de maandafsluiting en de laatste BTW-aangifte.",
+      "observations": [
+        "Het boekhoudkantoor boekt in WinBooks en wil het eigen rekeningschema behouden.",
+        "Bankafschriften komen als CODA-bestand; afpunten gebeurt bij het kantoor.",
+        "Marge per vestiging wordt in Excel berekend uit twee exports."
+      ],
+      "wishes": [
+        "Marge per vestiging en per afdeling zonder Excel.",
+        "De BTW-aangifte moet blijven kloppen met wat het kantoor indient."
+      ],
+      "openQuestions": [
+        {
+          "q": "Kostprijs verkopen op 604 of op 609? Keuze van het boekhoudkantoor.",
+          "owner": "extern boekhoudkantoor"
+        }
+      ],
+      "quote": "Het rekeningschema is van ons; daar wordt niet aan gemorreld."
+    },
+    {
+      "id": "W-EF",
+      "title": "E-facturatie en Belgische verplichtingen",
+      "week": 4,
+      "attendees": [
+        "financieel verantwoordelijke",
+        "binnendienst verkoop",
+        "functional consultant"
+      ],
+      "method": "Huidige Peppol-workaround laten voordoen; lijst van klanten zonder ondernemingsnummer opvragen.",
+      "observations": [
+        "Facturen worden in TradeDesk gemaakt en daarna nog eens in een Peppol-portaal ingegeven.",
+        "Inkomende Peppol-facturen worden afgedrukt en manueel ingeboekt.",
+        "Bij een steekproef van 50 klanten ontbrak bij 6 het ondernemingsnummer."
+      ],
+      "wishes": [
+        "Facturen rechtstreeks vanuit het ERP via Peppol.",
+        "Inkomende facturen niet meer overtypen."
+      ],
+      "openQuestions": [
+        {
+          "q": "Welke Peppol-connector (access point)? Keuze tussen twee aanbieders.",
+          "owner": "financieel verantwoordelijke"
+        }
+      ],
+      "quote": "We doen alles nu twee keer."
+    }
+  ],
+  "requirements": [
+    {
+      "id": "VK-01",
+      "domain": "VK",
+      "priority": "must",
+      "title": "Klantspecifieke prijsafspraken automatisch toepassen",
+      "need": "Prijsafspraken per installateur moeten automatisch op de order komen, zonder dat de binnendienst ze onthoudt.",
+      "source": "W-VK",
+      "bcStandard": "Verkoopprijslijsten met prijzen en regelkortingen per klant, klantprijsgroep of klantkortingsgroep.",
+      "fit": "fit",
+      "classification": "configuratie",
+      "solution": "Prijslijsten per klantkortingsgroep + uitzonderingen per klant. De 420 vrije-tekstafspraken worden met de binnendienst omgezet in een opschoonsjabloon (MIG-05).",
+      "estimateDays": 3,
+      "upgradeRisk": "laag",
+      "decider": "commercieel verantwoordelijke",
+      "decision": "beslist",
+      "setupRefs": [
+        "SET-PRIJS"
+      ]
+    },
+    {
+      "id": "VK-02",
+      "domain": "VK",
+      "priority": "should",
+      "title": "Artikelcode van de klant op order en factuur",
+      "need": "Grote installateurs bestellen met hun eigen catalogusnummers.",
+      "source": "W-VK",
+      "bcStandard": "Artikelreferenties (item references) per klant.",
+      "fit": "fit",
+      "classification": "configuratie",
+      "solution": "Artikelreferenties voor de 15 grootste klanten; factuurlay-out toont de klantcode.",
+      "estimateDays": 1,
+      "upgradeRisk": "laag",
+      "decider": "commercieel verantwoordelijke",
+      "decision": "beslist",
+      "setupRefs": []
+    },
+    {
+      "id": "VK-03",
+      "domain": "VK",
+      "priority": "must",
+      "title": "Balieverkoop met directe betaling in het filiaal",
+      "need": "Installateurs halen aan de balie af en betalen meteen of op rekening.",
+      "source": "W-VK",
+      "bcStandard": "Geen kassasysteem in de standaard. Wel: verkoopfactuur met betalingswijze die de betaling direct mee boekt (balansrekening kas of bank).",
+      "fit": "gap",
+      "classification": "procesaanpassing",
+      "solution": "Verkoopfactuur op een balieklant of de eigen klant, betalingswijze CONTANT of KAART boekt de betaling direct. Kaartterminal blijft los. Herbekijken boven 80 tickets per dag.",
+      "estimateDays": 2,
+      "upgradeRisk": "laag",
+      "decider": "zaakvoerder",
+      "decision": "beslist",
+      "adr": "ADR-003",
+      "options": [
+        {
+          "id": "a",
+          "label": "Procesaanpassing: verkoopfactuur + betalingswijze",
+          "classification": "procesaanpassing",
+          "estimateDays": 2,
+          "upgradeRisk": "laag",
+          "licence": "geen",
+          "chosen": true
+        },
+        {
+          "id": "b",
+          "label": "Kassa-app (AppSource)",
+          "classification": "app",
+          "estimateDays": 6,
+          "upgradeRisk": "middel",
+          "licence": "per kassa per maand"
+        }
+      ],
+      "setupRefs": [
+        "SET-BETWIJZE"
+      ]
+    },
+    {
+      "id": "VK-04",
+      "domain": "VK",
+      "priority": "must",
+      "title": "Deelleveringen en backorders",
+      "need": "Een order wordt in schijven geleverd; de rest moet zichtbaar blijven.",
+      "source": "W-VK",
+      "bcStandard": "Verkooporder met deelverzending; openstaand saldo blijft op de order.",
+      "fit": "fit",
+      "classification": "standaard",
+      "solution": "Standaard verkooporder; lijst \"te verzenden\" per klant als dagelijkse werklijst.",
+      "estimateDays": 0.5,
+      "upgradeRisk": "laag",
+      "decider": "binnendienst verkoop",
+      "decision": "beslist",
+      "setupRefs": []
+    },
+    {
+      "id": "VK-05",
+      "domain": "VK",
+      "priority": "must",
+      "title": "Nieuwe klanten blokkeren boven kredietlimiet",
+      "need": "Nieuwe klanten leveren pas na betaling; bestaande klanten waarschuwen bij overschrijding.",
+      "source": "W-VK",
+      "bcStandard": "Kredietlimiet per klant, kredietwaarschuwingen in de verkoopinstellingen, blokkering per klant, betalingsvoorwaarden.",
+      "fit": "fit",
+      "classification": "configuratie",
+      "solution": "Klantsjabloon NIEUW met kredietlimiet 0 en betalingsvoorwaarde VOORAF; waarschuwing op kredietlimiet voor alle klanten.",
+      "estimateDays": 0.5,
+      "upgradeRisk": "laag",
+      "decider": "financieel verantwoordelijke",
+      "decision": "beslist",
+      "setupRefs": [
+        "SET-KLANTSJABLOON"
+      ]
+    },
+    {
+      "id": "VK-06",
+      "domain": "VK",
+      "priority": "should",
+      "title": "Eindejaarsbonus (rebate) voor installateurs op jaaromzet",
+      "need": "Installateurs krijgen een bonus volgens omzetstaffels; de zaakvoerder wil de stand per kwartaal zien.",
+      "source": "W-VK",
+      "bcStandard": "Geen rebatebeheer in de standaard. Wel: omzet per klant via standaardrapporten of analyseweergaven, en creditnota's.",
+      "fit": "gap",
+      "classification": "procesaanpassing",
+      "solution": "Bij go-live: per kwartaal een standaard omzetrapport per klant + bonusstaffel in een vaste Excel-sjabloon; jaarlijks een creditnota per klant. Evaluatie na 6 maanden (CR-01).",
+      "estimateDays": 1,
+      "upgradeRisk": "laag",
+      "decider": "zaakvoerder",
+      "decision": "beslist",
+      "adr": "ADR-005",
+      "changeRequest": "CR-01",
+      "options": [
+        {
+          "id": "a",
+          "label": "Extensie: rebatemodule met staffels en automatische creditnota",
+          "classification": "extensie",
+          "estimateDays": 8,
+          "upgradeRisk": "middel",
+          "licence": "geen"
+        },
+        {
+          "id": "b",
+          "label": "Procesaanpassing: kwartaalrapport + jaarlijkse creditnota",
+          "classification": "procesaanpassing",
+          "estimateDays": 1,
+          "upgradeRisk": "laag",
+          "licence": "geen",
+          "chosen": true
+        },
+        {
+          "id": "c",
+          "label": "Rebate-app (AppSource), te evalueren",
+          "classification": "app",
+          "estimateDays": 3,
+          "upgradeRisk": "laag",
+          "licence": "per gebruiker per maand"
+        }
+      ],
+      "setupRefs": []
+    },
+    {
+      "id": "VK-07",
+      "domain": "VK",
+      "priority": "should",
+      "title": "Retouren met terugnamekost",
+      "need": "Retouren van ongebruikte artikels worden aanvaard met 15% terugnamekost.",
+      "source": "W-VK",
+      "bcStandard": "Verkoopretourorder en creditnota; extra regel voor kosten.",
+      "fit": "fit",
+      "classification": "configuratie",
+      "solution": "Retourorder + standaardverkoopcode TERUGNAME (regel op grootboekrekening, 15% berekend door de binnendienst). Retourredenen ingesteld.",
+      "estimateDays": 1,
+      "upgradeRisk": "laag",
+      "decider": "commercieel verantwoordelijke",
+      "decision": "beslist",
+      "setupRefs": []
+    },
+    {
+      "id": "VK-08",
+      "domain": "VK",
+      "priority": "could",
+      "title": "Leveringsroutes per dag plannen",
+      "need": "De vrachtwagen rijdt vaste routes; nu gepland in Excel.",
+      "source": "W-VK",
+      "bcStandard": "Verzendmethodes en verzendagenten; geen routeplanning.",
+      "fit": "gap",
+      "classification": "buiten-scope",
+      "solution": "Niet in fase 1. Tijdelijk: lijst \"te verzenden\" gefilterd op verzendmethode per route, export naar Excel. Transportplanning bekijken na hypercare.",
+      "estimateDays": 0.5,
+      "upgradeRisk": "laag",
+      "decider": "zaakvoerder",
+      "decision": "beslist",
+      "noTestReason": "Buiten scope fase 1; de tijdelijke lijst is een standaardweergave.",
+      "setupRefs": []
+    },
+    {
+      "id": "VK-09",
+      "domain": "VK",
+      "priority": "should",
+      "title": "Herinneringen en aanmaningen",
+      "need": "Te late betalers krijgen nu een telefoon; geen vaste opvolging.",
+      "source": "W-FIN",
+      "bcStandard": "Aanmaningsvoorwaarden met niveaus, kosten en teksten.",
+      "fit": "fit",
+      "classification": "configuratie",
+      "solution": "Drie niveaus (herinnering, aanmaning, laatste aanmaning met kosten); posten met lopende creditnota uitsluiten.",
+      "estimateDays": 0.5,
+      "upgradeRisk": "laag",
+      "decider": "financieel verantwoordelijke",
+      "decision": "beslist",
+      "setupRefs": []
+    },
+    {
+      "id": "VK-10",
+      "domain": "VK",
+      "priority": "must",
+      "title": "Verwijderingsbijdrage op elektro-artikels automatisch op de order",
+      "need": "Op elektrische en elektronische toestellen moet de verwijderingsbijdrage apart op de factuur staan; nu wordt ze vaak vergeten.",
+      "source": "W-VK",
+      "bcStandard": "Geen automatische bijkomende regel per artikel. Manueel een regel toevoegen kan, maar wordt vergeten.",
+      "fit": "gap",
+      "classification": "extensie",
+      "solution": "Kleine extensie: bijdrage per artikel (veld) en automatisch een regel BIJDRAGE onder de artikelregel bij Belgische leveringen. Use case en spec: UC-VK-10.",
+      "estimateDays": 3,
+      "upgradeRisk": "laag",
+      "decider": "zaakvoerder",
+      "decision": "beslist",
+      "adr": "ADR-004",
+      "spec": "docs/05-specs/uc-vk-10-verwijderingsbijdrage.md",
+      "options": [
+        {
+          "id": "a",
+          "label": "Extensie: automatische bijdrageregel",
+          "classification": "extensie",
+          "estimateDays": 3,
+          "upgradeRisk": "laag",
+          "licence": "geen",
+          "chosen": true
+        },
+        {
+          "id": "b",
+          "label": "Procesaanpassing: binnendienst voegt de regel zelf toe",
+          "classification": "procesaanpassing",
+          "estimateDays": 0.5,
+          "upgradeRisk": "laag",
+          "licence": "geen"
+        }
+      ],
+      "setupRefs": [
+        "SET-GENPROD"
+      ]
+    },
+    {
+      "id": "AK-01",
+      "domain": "AK",
+      "priority": "must",
+      "title": "Goedkeuring van bestellingen boven €5.000",
+      "need": "De zaakvoerder keurt grote bestellingen goed; iedereen moet zien wat nog wacht.",
+      "source": "W-AK",
+      "bcStandard": "Goedkeuringsworkflow voor aankooporders met goedkeuringsgebruikers en limieten.",
+      "fit": "fit",
+      "classification": "configuratie",
+      "solution": "Workflow \"goedkeuring aankooporder\" met limiet €5.000 voor de aankoper; boven de limiet naar de zaakvoerder; melding in Teams/e-mail.",
+      "estimateDays": 1,
+      "upgradeRisk": "laag",
+      "decider": "zaakvoerder",
+      "decision": "beslist",
+      "setupRefs": [
+        "SET-WORKFLOW"
+      ]
+    },
+    {
+      "id": "AK-02",
+      "domain": "AK",
+      "priority": "must",
+      "title": "Prijslijsten van leveranciers inlezen",
+      "need": "Drie grote leveranciers sturen maandelijks ±38.000 prijsregels in Excel.",
+      "source": "W-AK",
+      "bcStandard": "Aankoopprijslijsten; import via configuratiepakket of \"Bewerken in Excel\". Geen import per leveranciersformaat.",
+      "fit": "gap",
+      "classification": "procesaanpassing",
+      "solution": "Bij go-live: vast Excel-sjabloon per leverancier, inlezen via configuratiepakket door de aankoper (taakkaart). Herbekijken als een leverancier zijn formaat blijft wijzigen.",
+      "estimateDays": 1.5,
+      "upgradeRisk": "laag",
+      "decider": "aankoopverantwoordelijke",
+      "decision": "beslist",
+      "adr": "ADR-006",
+      "options": [
+        {
+          "id": "a",
+          "label": "Extensie: importtool per leveranciersformaat",
+          "classification": "extensie",
+          "estimateDays": 6,
+          "upgradeRisk": "middel",
+          "licence": "geen"
+        },
+        {
+          "id": "b",
+          "label": "Procesaanpassing: sjabloon + configuratiepakket",
+          "classification": "procesaanpassing",
+          "estimateDays": 1.5,
+          "upgradeRisk": "laag",
+          "licence": "geen",
+          "chosen": true
+        }
+      ],
+      "setupRefs": [
+        "SET-CONFIGPAKKET"
+      ]
+    },
+    {
+      "id": "AK-03",
+      "domain": "AK",
+      "priority": "must",
+      "title": "Onvolledige leveringen registreren",
+      "need": "Te weinig geleverd moet zichtbaar zijn voor aankoop en boekhouding.",
+      "source": "W-AK",
+      "bcStandard": "Gedeeltelijke ontvangst op de aankooporder; rest blijft openstaan.",
+      "fit": "fit",
+      "classification": "standaard",
+      "solution": "Magazijn boekt ontvangst per regel met de werkelijke hoeveelheid.",
+      "estimateDays": 0.5,
+      "upgradeRisk": "laag",
+      "decider": "magazijnverantwoordelijke",
+      "decision": "beslist",
+      "setupRefs": []
+    },
+    {
+      "id": "AK-04",
+      "domain": "AK",
+      "priority": "should",
+      "title": "Factuur controleren tegen bestelling en ontvangst",
+      "need": "Alleen betalen wat besteld én ontvangen is.",
+      "source": "W-AK",
+      "bcStandard": "Aankoopfactuur opbouwen uit ontvangstregels (\"ontvangstregels ophalen\").",
+      "fit": "fit",
+      "classification": "standaard",
+      "solution": "Boekhouding maakt de factuur uit ontvangstregels; verschil met de leveranciersfactuur wordt een vraag aan aankoop.",
+      "estimateDays": 0.5,
+      "upgradeRisk": "laag",
+      "decider": "financieel verantwoordelijke",
+      "decision": "beslist",
+      "setupRefs": []
+    },
+    {
+      "id": "VR-01",
+      "domain": "VR",
+      "priority": "must",
+      "title": "Twee locaties en transfers naar het filiaal",
+      "need": "Weten wat in het filiaal ligt; aanvullingen registreren.",
+      "source": "W-VR",
+      "bcStandard": "Locaties en transferorders (verzenden en ontvangen).",
+      "fit": "fit",
+      "classification": "configuratie",
+      "solution": "Locaties HQ en FILIAAL, transferroute met een in-transitlocatie; transfer twee keer per week.",
+      "estimateDays": 1,
+      "upgradeRisk": "laag",
+      "decider": "magazijnverantwoordelijke",
+      "decision": "beslist",
+      "setupRefs": [
+        "SET-LOCATIES"
+      ]
+    },
+    {
+      "id": "VR-02",
+      "domain": "VR",
+      "priority": "should",
+      "title": "Jaarlijkse en cyclische telling",
+      "need": "Snelle artikels vaker tellen dan trage.",
+      "source": "W-VR",
+      "bcStandard": "Fysieke voorraadorders en telperiodes per artikel.",
+      "fit": "fit",
+      "classification": "standaard",
+      "solution": "Telperiodes A (maandelijks) en C (jaarlijks) op de artikelkaart.",
+      "estimateDays": 0.5,
+      "upgradeRisk": "laag",
+      "decider": "magazijnverantwoordelijke",
+      "decision": "beslist",
+      "setupRefs": []
+    },
+    {
+      "id": "VR-03",
+      "domain": "VR",
+      "priority": "could",
+      "title": "Scanners voor orderpicking",
+      "need": "De magazijnier wil met een scanner picken.",
+      "source": "W-VR",
+      "bcStandard": "Geen scanneroplossing in de standaard; apps beschikbaar.",
+      "fit": "gap",
+      "classification": "buiten-scope",
+      "solution": "Fase 2, na hypercare: eerst moet de artikelstam proper zijn (VR-04). Tot dan picken van de afgedrukte paklijst.",
+      "estimateDays": 0,
+      "upgradeRisk": "laag",
+      "decider": "zaakvoerder",
+      "decision": "beslist",
+      "noTestReason": "Buiten scope fase 1.",
+      "setupRefs": []
+    },
+    {
+      "id": "VR-04",
+      "domain": "VR",
+      "priority": "must",
+      "title": "Alleen een propere artikelstam overnemen",
+      "need": "38.000 artikels, waarvan 12.400 actief en ±1.150 vermoedelijke dubbels.",
+      "source": "W-VR",
+      "bcStandard": "Configuratiepakketten en artikelsjablonen; opschonen gebeurt vóór de migratie.",
+      "fit": "gap",
+      "classification": "procesaanpassing",
+      "solution": "Aankoop beslist over de dubbels vóór testmigratie 1; alleen artikels met beweging in 24 maanden worden gemigreerd; de rest blijft opvraagbaar in het archief van TradeDesk.",
+      "estimateDays": 2,
+      "upgradeRisk": "laag",
+      "decider": "aankoopverantwoordelijke",
+      "decision": "beslist",
+      "migrationRefs": [
+        "MIG-04"
+      ],
+      "setupRefs": []
+    },
+    {
+      "id": "FIN-01",
+      "domain": "FIN",
+      "priority": "must",
+      "title": "Rekeningschema van het boekhoudkantoor behouden",
+      "need": "Het externe kantoor wil zijn schema behouden.",
+      "source": "W-FIN",
+      "bcStandard": "Rekeningschema is vrij in te richten; boekingsgroepen koppelen naar de rekeningen.",
+      "fit": "fit",
+      "classification": "configuratie",
+      "solution": "Mapping van 212 WinBooks-rekeningen naar 168 BC-rekeningen, afgetekend door het kantoor; boekingsgroepen verwijzen naar dat schema.",
+      "estimateDays": 2,
+      "upgradeRisk": "laag",
+      "decider": "extern boekhoudkantoor",
+      "decision": "beslist",
+      "migrationRefs": [
+        "MIG-01",
+        "MIG-08"
+      ],
+      "setupRefs": [
+        "SET-REKENINGEN",
+        "SET-GENPOST"
+      ]
+    },
+    {
+      "id": "FIN-02",
+      "domain": "FIN",
+      "priority": "must",
+      "title": "BTW-aangifte en jaarlijkse klantenlisting",
+      "need": "De aangifte moet kloppen met wat het kantoor indient.",
+      "source": "W-FIN",
+      "bcStandard": "Belgische lokalisatie: BTW-aangifte met roosters en klantenlisting.",
+      "fit": "fit",
+      "classification": "standaard",
+      "solution": "BTW-boekingsinstellingen per bedrijfs- en productgroep met de juiste roosters; testaangifte in UAT naast de aangifte uit WinBooks.",
+      "estimateDays": 1,
+      "upgradeRisk": "laag",
+      "decider": "extern boekhoudkantoor",
+      "decision": "beslist",
+      "setupRefs": [
+        "SET-BTW"
+      ]
+    },
+    {
+      "id": "FIN-03",
+      "domain": "FIN",
+      "priority": "must",
+      "title": "CODA-bankafschriften inlezen en afpunten",
+      "need": "Betalingen moeten automatisch op de juiste factuur komen.",
+      "source": "W-FIN",
+      "bcStandard": "Belgische lokalisatie: CODA-import; betalingsafstemming met afpuntregels.",
+      "fit": "fit",
+      "classification": "standaard",
+      "solution": "CODA-import per bankrekening; afpunten op gestructureerde mededeling.",
+      "estimateDays": 1,
+      "upgradeRisk": "laag",
+      "decider": "financieel verantwoordelijke",
+      "decision": "beslist",
+      "setupRefs": []
+    },
+    {
+      "id": "FIN-04",
+      "domain": "FIN",
+      "priority": "must",
+      "title": "Marge per vestiging en per afdeling",
+      "need": "Marge zien per vestiging (HQ, filiaal) en per afdeling zonder Excel.",
+      "source": "W-FIN",
+      "bcStandard": "Dimensies (globale en snelkoppelingsdimensies), standaarddimensies, analyseweergaven.",
+      "fit": "fit",
+      "classification": "configuratie",
+      "solution": "Globale dimensies VESTIGING en AFDELING; standaarddimensie op verkoper en locatie; regel \"code verplicht\" op omzet- en kostprijsrekeningen.",
+      "estimateDays": 1,
+      "upgradeRisk": "laag",
+      "decider": "financieel verantwoordelijke",
+      "decision": "beslist",
+      "setupRefs": [
+        "SET-DIM"
+      ]
+    },
+    {
+      "id": "EF-01",
+      "domain": "EF",
+      "priority": "must",
+      "title": "Uitgaande facturen via Peppol",
+      "need": "Facturen rechtstreeks vanuit het ERP via Peppol, zonder portaal.",
+      "source": "W-EF",
+      "bcStandard": "E-documenten met het Peppol BIS 3-formaat; voor verzending is een connector naar een access point nodig.",
+      "fit": "fit",
+      "classification": "app",
+      "solution": "E-documentdienst Peppol + connector-app van een access point (keuze uit twee aanbieders, beslist door financiën).",
+      "estimateDays": 2,
+      "upgradeRisk": "laag",
+      "decider": "financieel verantwoordelijke",
+      "decision": "beslist",
+      "setupRefs": [
+        "SET-EDOC"
+      ],
+      "licence": "connector: abonnement van de access point-aanbieder"
+    },
+    {
+      "id": "EF-02",
+      "domain": "EF",
+      "priority": "must",
+      "title": "Inkomende facturen via Peppol",
+      "need": "Leveranciersfacturen niet meer overtypen.",
+      "source": "W-EF",
+      "bcStandard": "E-documenten ontvangen via dezelfde connector en omzetten naar een aankoopfactuur.",
+      "fit": "fit",
+      "classification": "app",
+      "solution": "Zelfde connector; ontvangen documenten komen in een werklijst en worden gekoppeld aan de aankooporder.",
+      "estimateDays": 1.5,
+      "upgradeRisk": "laag",
+      "decider": "financieel verantwoordelijke",
+      "decision": "beslist",
+      "setupRefs": [
+        "SET-EDOC"
+      ],
+      "licence": "zelfde connector als EF-01"
+    },
+    {
+      "id": "EF-03",
+      "domain": "EF",
+      "priority": "must",
+      "title": "Ondernemingsnummer verplicht voor Belgische klanten",
+      "need": "Zonder ondernemingsnummer kan een Peppol-factuur niet aankomen.",
+      "source": "W-EF",
+      "bcStandard": "Ondernemingsnummer op de klantkaart; klantsjabloon; controle van e-documenten vóór verzending.",
+      "fit": "fit",
+      "classification": "configuratie",
+      "solution": "Ondernemingsnummer in het klantsjabloon BINNENL; opschoonlijst bij de migratie (MIG-02); wekelijkse lijst \"klanten zonder ondernemingsnummer\".",
+      "estimateDays": 1,
+      "upgradeRisk": "laag",
+      "decider": "financieel verantwoordelijke",
+      "decision": "beslist",
+      "migrationRefs": [
+        "MIG-02"
+      ],
+      "setupRefs": [
+        "SET-KLANTSJABLOON"
+      ]
+    }
+  ],
+  "setup": {
+    "accounts": [
+      {
+        "no": "340000",
+        "name": "Handelsgoederen (voorraad)"
+      },
+      {
+        "no": "400000",
+        "name": "Handelsdebiteuren binnenland"
+      },
+      {
+        "no": "400100",
+        "name": "Handelsdebiteuren buitenland"
+      },
+      {
+        "no": "411000",
+        "name": "Terug te vorderen btw"
+      },
+      {
+        "no": "411100",
+        "name": "Terug te vorderen btw (verlegd)"
+      },
+      {
+        "no": "440000",
+        "name": "Leveranciers binnenland"
+      },
+      {
+        "no": "440100",
+        "name": "Leveranciers buitenland"
+      },
+      {
+        "no": "451000",
+        "name": "Te betalen btw"
+      },
+      {
+        "no": "451100",
+        "name": "Te betalen btw (verlegd)"
+      },
+      {
+        "no": "499000",
+        "name": "Overgangsrekening migratie"
+      },
+      {
+        "no": "550000",
+        "name": "Bank"
+      },
+      {
+        "no": "570000",
+        "name": "Kas balie"
+      },
+      {
+        "no": "604000",
+        "name": "Aankopen handelsgoederen binnenland"
+      },
+      {
+        "no": "604100",
+        "name": "Aankopen handelsgoederen EU"
+      },
+      {
+        "no": "604900",
+        "name": "Aankopen verwijderingsbijdragen"
+      },
+      {
+        "no": "609000",
+        "name": "Voorraadwijziging handelsgoederen (kostprijs verkopen)"
+      },
+      {
+        "no": "613000",
+        "name": "Transport en diensten"
+      },
+      {
+        "no": "700000",
+        "name": "Verkopen handelsgoederen binnenland"
+      },
+      {
+        "no": "700100",
+        "name": "Verkopen handelsgoederen EU (ICL)"
+      },
+      {
+        "no": "700200",
+        "name": "Verkopen handelsgoederen export"
+      },
+      {
+        "no": "700900",
+        "name": "Doorgerekende verwijderingsbijdragen"
+      },
+      {
+        "no": "706000",
+        "name": "Verkopen diensten (leveringskosten)"
+      }
+    ],
+    "genBusPostingGroups": [
+      {
+        "code": "BINNENL",
+        "description": "Klanten en leveranciers in België"
+      },
+      {
+        "code": "EU",
+        "description": "Btw-plichtigen in een andere EU-lidstaat"
+      },
+      {
+        "code": "EXPORT",
+        "description": "Buiten de EU"
+      }
+    ],
+    "genProdPostingGroups": [
+      {
+        "code": "HANDELSGOED",
+        "description": "Artikels op voorraad"
+      },
+      {
+        "code": "DIENST",
+        "description": "Leveringskosten en diensten"
+      },
+      {
+        "code": "BIJDRAGE",
+        "description": "Verwijderingsbijdrage (alleen bij leveringen in België, zie VK-10)"
+      }
+    ],
+    "generalPostingSetup": [
+      {
+        "bus": "BINNENL",
+        "prod": "HANDELSGOED",
+        "sales": "700000",
+        "purchase": "604000",
+        "cogs": "609000"
+      },
+      {
+        "bus": "EU",
+        "prod": "HANDELSGOED",
+        "sales": "700100",
+        "purchase": "604100",
+        "cogs": "609000"
+      },
+      {
+        "bus": "EXPORT",
+        "prod": "HANDELSGOED",
+        "sales": "700200",
+        "purchase": "604100",
+        "cogs": "609000"
+      },
+      {
+        "bus": "BINNENL",
+        "prod": "DIENST",
+        "sales": "706000",
+        "purchase": "613000",
+        "cogs": null
+      },
+      {
+        "bus": "EU",
+        "prod": "DIENST",
+        "sales": "706000",
+        "purchase": "613000",
+        "cogs": null
+      },
+      {
+        "bus": "EXPORT",
+        "prod": "DIENST",
+        "sales": "706000",
+        "purchase": "613000",
+        "cogs": null
+      },
+      {
+        "bus": "BINNENL",
+        "prod": "BIJDRAGE",
+        "sales": "700900",
+        "purchase": "604900",
+        "cogs": null
+      }
+    ],
+    "vatBusPostingGroups": [
+      {
+        "code": "BINNENL",
+        "description": "Belgische btw"
+      },
+      {
+        "code": "EU",
+        "description": "Intracommunautair"
+      },
+      {
+        "code": "EXPORT",
+        "description": "Uitvoer"
+      }
+    ],
+    "vatProdPostingGroups": [
+      {
+        "code": "21",
+        "description": "Normaal tarief 21%"
+      }
+    ],
+    "vatPostingSetup": [
+      {
+        "bus": "BINNENL",
+        "prod": "21",
+        "calc": "Normale btw",
+        "pct": 21,
+        "salesVat": "451000",
+        "purchVat": "411000",
+        "reverseChrg": null,
+        "salesGrids": {
+          "base": "03",
+          "vat": "54"
+        },
+        "purchGrids": {
+          "base": "81",
+          "vat": "59"
+        },
+        "clause": null
+      },
+      {
+        "bus": "EU",
+        "prod": "21",
+        "calc": "Btw verleggen",
+        "pct": 21,
+        "salesVat": "451100",
+        "purchVat": "411100",
+        "reverseChrg": "451100",
+        "salesGrids": {
+          "base": "46",
+          "vat": null
+        },
+        "purchGrids": {
+          "base": "86",
+          "vat": "55 en 59"
+        },
+        "clause": "Intracommunautaire levering vrijgesteld, art. 39bis W.btw"
+      },
+      {
+        "bus": "EXPORT",
+        "prod": "21",
+        "calc": "Normale btw",
+        "pct": 0,
+        "salesVat": "451000",
+        "purchVat": "411000",
+        "reverseChrg": null,
+        "salesGrids": {
+          "base": "47",
+          "vat": null
+        },
+        "purchGrids": {
+          "base": null,
+          "vat": null
+        },
+        "clause": "Vrijgesteld, uitvoer art. 39 W.btw",
+        "purchNote": "Invoer van buiten de EU: btw via de douane, buiten deze case."
+      }
+    ],
+    "customerPostingGroups": [
+      {
+        "code": "BINNENL",
+        "receivables": "400000"
+      },
+      {
+        "code": "BUITENL",
+        "receivables": "400100"
+      }
+    ],
+    "vendorPostingGroups": [
+      {
+        "code": "BINNENL",
+        "payables": "440000"
+      },
+      {
+        "code": "BUITENL",
+        "payables": "440100"
+      }
+    ],
+    "inventoryPostingSetup": [
+      {
+        "location": "HQ",
+        "group": "HANDELSGOED",
+        "inventory": "340000"
+      },
+      {
+        "location": "FILIAAL",
+        "group": "HANDELSGOED",
+        "inventory": "340000"
+      }
+    ],
+    "paymentMethods": [
+      {
+        "code": "OVERSCHR",
+        "description": "Overschrijving",
+        "balancingAccount": null
+      },
+      {
+        "code": "CONTANT",
+        "description": "Contant aan de balie",
+        "balancingAccount": "570000"
+      },
+      {
+        "code": "KAART",
+        "description": "Kaartbetaling aan de balie",
+        "balancingAccount": "550000"
+      }
+    ],
+    "dimensions": [
+      {
+        "code": "VESTIGING",
+        "global": 1,
+        "values": [
+          "HQ",
+          "FILIAAL"
+        ],
+        "defaultFrom": "locatie en verkoper",
+        "rule": "code verplicht op 700000–706000 en 609000"
+      },
+      {
+        "code": "AFDELING",
+        "global": 2,
+        "values": [
+          "BINNENDIENST",
+          "BALIE",
+          "PROJECTEN"
+        ],
+        "defaultFrom": "verkoper",
+        "rule": "code verplicht op 700000–706000"
+      }
+    ],
+    "items": [
+      {
+        "no": "A-114502",
+        "description": "Thermostatische douchekraan",
+        "genProd": "HANDELSGOED",
+        "vatProd": "21",
+        "unitPrice": 186.0,
+        "unitCost": 121.5,
+        "contribution": null
+      },
+      {
+        "no": "A-220318",
+        "description": "Elektrische boiler 80 l",
+        "genProd": "HANDELSGOED",
+        "vatProd": "21",
+        "unitPrice": 420.0,
+        "unitCost": 290.0,
+        "contribution": 3.5
+      },
+      {
+        "no": "S-LEVERING",
+        "description": "Leveringskost",
+        "genProd": "DIENST",
+        "vatProd": "21",
+        "unitPrice": 25.0,
+        "unitCost": null,
+        "contribution": null
+      }
+    ],
+    "customers": [
+      {
+        "no": "K10023",
+        "description": "Installateur, regio Brugge",
+        "genBus": "BINNENL",
+        "vatBus": "BINNENL",
+        "postingGroup": "BINNENL",
+        "paymentMethod": "OVERSCHR",
+        "location": "HQ",
+        "afdeling": "BINNENDIENST"
+      },
+      {
+        "no": "K99901",
+        "description": "Balieklant contant (filiaal)",
+        "genBus": "BINNENL",
+        "vatBus": "BINNENL",
+        "postingGroup": "BINNENL",
+        "paymentMethod": "CONTANT",
+        "location": "FILIAAL",
+        "afdeling": "BALIE"
+      },
+      {
+        "no": "K20411",
+        "description": "Installateur, Noord-Frankrijk",
+        "genBus": "EU",
+        "vatBus": "EU",
+        "postingGroup": "BUITENL",
+        "paymentMethod": "OVERSCHR",
+        "location": "HQ",
+        "afdeling": "BINNENDIENST"
+      },
+      {
+        "no": "K30007",
+        "description": "Aannemer, Zwitserland",
+        "genBus": "EXPORT",
+        "vatBus": "EXPORT",
+        "postingGroup": "BUITENL",
+        "paymentMethod": "OVERSCHR",
+        "location": "HQ",
+        "afdeling": "PROJECTEN"
+      }
+    ],
+    "settings": [
+      {
+        "id": "SET-REKENINGEN",
+        "area": "Financiën",
+        "what": "Rekeningschema (uittreksel van 168 rekeningen)",
+        "why": "Volgt het schema van het boekhoudkantoor (FIN-01)."
+      },
+      {
+        "id": "SET-GENPOST",
+        "area": "Financiën",
+        "what": "Algemene bedrijfs- en productboekingsgroepen + algemene boekingsinstellingen",
+        "why": "Omzet per markt (binnenland, EU, export) apart; bijdragen apart (VK-10)."
+      },
+      {
+        "id": "SET-GENPROD",
+        "area": "Financiën",
+        "what": "Productboekingsgroep BIJDRAGE",
+        "why": "De verwijderingsbijdrage gaat naar een eigen omzetrekening (VK-10)."
+      },
+      {
+        "id": "SET-BTW",
+        "area": "Financiën",
+        "what": "BTW-boekingsinstellingen en roosters",
+        "why": "Aangifte moet aansluiten bij WinBooks (FIN-02)."
+      },
+      {
+        "id": "SET-DIM",
+        "area": "Financiën",
+        "what": "Dimensies VESTIGING en AFDELING",
+        "why": "Marge per vestiging en afdeling (FIN-04)."
+      },
+      {
+        "id": "SET-PRIJS",
+        "area": "Verkoop",
+        "what": "Verkoopprijslijsten per klantkortingsgroep + uitzonderingen",
+        "why": "Prijsafspraken automatisch (VK-01)."
+      },
+      {
+        "id": "SET-BETWIJZE",
+        "area": "Verkoop",
+        "what": "Betalingswijzen CONTANT en KAART met tegenrekening",
+        "why": "Balieverkoop boekt betaling direct (VK-03)."
+      },
+      {
+        "id": "SET-KLANTSJABLOON",
+        "area": "Verkoop",
+        "what": "Klantsjablonen NIEUW, BINNENL, EU, EXPORT",
+        "why": "Juiste boekingsgroepen, kredietlimiet en ondernemingsnummer bij elke nieuwe klant (VK-05, EF-03)."
+      },
+      {
+        "id": "SET-WORKFLOW",
+        "area": "Aankoop",
+        "what": "Goedkeuringsworkflow aankooporder, limiet €5.000",
+        "why": "AK-01."
+      },
+      {
+        "id": "SET-CONFIGPAKKET",
+        "area": "Aankoop",
+        "what": "Configuratiepakket PRIJS-LEV per leverancier",
+        "why": "Maandelijkse prijslijsten (AK-02)."
+      },
+      {
+        "id": "SET-LOCATIES",
+        "area": "Voorraad",
+        "what": "Locaties HQ, FILIAAL, IN-TRANSIT en transferroute",
+        "why": "VR-01."
+      },
+      {
+        "id": "SET-EDOC",
+        "area": "E-facturatie",
+        "what": "E-documentdienst Peppol BIS 3 + connector",
+        "why": "EF-01, EF-02."
+      }
+    ]
+  },
+  "migration": {
+    "cutoff": "laatste werkdag vóór de go-live, 16:00 (illustratief)",
+    "objects": [
+      {
+        "id": "MIG-01",
+        "object": "Rekeningschema",
+        "source": "WinBooks",
+        "owner": "extern boekhoudkantoor",
+        "method": "configuratiepakket",
+        "scope": "212 rekeningen → 168 BC-rekeningen (mapping afgetekend)",
+        "records": 168,
+        "control": "elke WinBooks-rekening met saldo heeft een doelrekening"
+      },
+      {
+        "id": "MIG-02",
+        "object": "Klanten",
+        "source": "TradeDesk",
+        "owner": "binnendienst verkoop",
+        "method": "configuratiepakket + klantsjablonen",
+        "scope": "1.480 actief (beweging < 36 maanden) van 3.900",
+        "records": 1480,
+        "control": "elke Belgische klant heeft een ondernemingsnummer of staat op de opschoonlijst"
+      },
+      {
+        "id": "MIG-03",
+        "object": "Leveranciers",
+        "source": "TradeDesk",
+        "owner": "aankoop",
+        "method": "configuratiepakket + sjablonen",
+        "scope": "310 actief",
+        "records": 310,
+        "control": "IBAN en ondernemingsnummer aanwezig"
+      },
+      {
+        "id": "MIG-04",
+        "object": "Artikels",
+        "source": "TradeDesk",
+        "owner": "aankoop",
+        "method": "configuratiepakket + artikelsjablonen",
+        "scope": "12.400 met beweging in 24 maanden; 1.150 vermoedelijke dubbels vooraf beslist",
+        "records": 12400,
+        "control": "geen dubbele leveranciersartikelnummers; elk artikel heeft boekingsgroepen"
+      },
+      {
+        "id": "MIG-05",
+        "object": "Prijsafspraken klanten",
+        "source": "notities in TradeDesk",
+        "owner": "commercieel verantwoordelijke",
+        "method": "opschoonsjabloon → prijslijsten",
+        "scope": "420 vrije-tekstafspraken → 31 kortingsgroepen + 64 uitzonderingen",
+        "records": 95,
+        "control": "steekproef van 30 orders: prijs gelijk aan TradeDesk"
+      },
+      {
+        "id": "MIG-06",
+        "object": "Openstaande klantposten",
+        "source": "TradeDesk",
+        "owner": "boekhouding",
+        "method": "configuratiepakket in klantdagboek tegen 499000",
+        "scope": "per factuur en creditnota, niet als saldo",
+        "records": null,
+        "control": "som = saldo 400000 + 400100 in WinBooks op het cutoff-moment"
+      },
+      {
+        "id": "MIG-07",
+        "object": "Openstaande leveranciersposten",
+        "source": "TradeDesk",
+        "owner": "boekhouding",
+        "method": "configuratiepakket in leveranciersdagboek tegen 499000",
+        "scope": "per factuur",
+        "records": null,
+        "control": "som = saldo 440000 + 440100 in WinBooks"
+      },
+      {
+        "id": "MIG-08",
+        "object": "Openingsbalans grootboek",
+        "source": "WinBooks",
+        "owner": "extern boekhoudkantoor",
+        "method": "dagboek openingsbalans",
+        "scope": "saldi van alle balansrekeningen behalve debiteuren, leveranciers en voorraad (die komen via MIG-06, 07, 09)",
+        "records": null,
+        "control": "499000 staat na alle migraties op 0"
+      },
+      {
+        "id": "MIG-09",
+        "object": "Voorraad per locatie",
+        "source": "TradeDesk",
+        "owner": "magazijn",
+        "method": "artikeldagboek per locatie",
+        "scope": "hoeveelheid en kostprijs per artikel per locatie",
+        "records": null,
+        "control": "voorraadwaarde verschilt minder dan 0,5% van de laatste waardering"
+      }
+    ],
+    "notMigrated": "Historiek (gesloten facturen, oude orders) wordt niet gemigreerd; TradeDesk blijft 5 jaar raadpleegbaar in alleen-lezen (ADR-002).",
+    "rehearsals": [
+      {
+        "id": "TM-1",
+        "week": 8,
+        "result": "1.150 dubbels gevonden in artikels; 212 klanten zonder ondernemingsnummer op de opschoonlijst"
+      },
+      {
+        "id": "TM-2",
+        "week": 10,
+        "result": "artikels en klanten zonder fouten; prijssteekproef 30/30"
+      },
+      {
+        "id": "GR",
+        "week": 14,
+        "result": "generale repetitie: verschil openstaande klantposten €1.586,40 (zie afstemming)"
+      }
+    ],
+    "controls": {
+      "customerReceivablesAtCutoff": {
+        "accounts": [
+          "400000",
+          "400100"
+        ],
+        "file": "data/migration/klantposten-export-v2.csv",
+        "rehearsalFile": "data/migration/klantposten-export-v1.csv",
+        "legacy": {
+          "400000": 170703.53,
+          "400100": 29910.71
+        },
+        "note": "Saldo in WinBooks om 17:00 op de cutoff-dag. Export v1 liep om 16:00; creditnota CN-0412 werd om 16:40 geboekt.",
+        "lateDocument": "CN-0412"
+      },
+      "vendorPayables": {
+        "legacy": 186240.55,
+        "migrated": 186240.55
+      },
+      "inventoryValue": {
+        "legacy": 2418300.0,
+        "migrated": 2411042.1,
+        "tolerancePct": 0.5
+      },
+      "migrationSuspense": {
+        "account": "499000",
+        "balanceAfter": 0
+      }
+    }
+  },
+  "uat": [
+    {
+      "id": "UAT-01",
+      "title": "Order binnenland: deellevering, factuur via Peppol, CODA-betaling, afpunten",
+      "keyUser": "binnendienst verkoop",
+      "reqs": [
+        "VK-01",
+        "VK-04",
+        "EF-01",
+        "FIN-03"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-02",
+      "title": "Levering aan EU-klant: 0% btw met vermelding, rooster 46",
+      "keyUser": "boekhouding",
+      "reqs": [
+        "FIN-02"
+      ],
+      "result": "geslaagd na herstel",
+      "defect": "DEF-01"
+    },
+    {
+      "id": "UAT-03",
+      "title": "Balieverkoop contant en met kaart",
+      "keyUser": "balie filiaal",
+      "reqs": [
+        "VK-03"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-04",
+      "title": "Nieuwe klant boven kredietlimiet wordt geblokkeerd",
+      "keyUser": "binnendienst verkoop",
+      "reqs": [
+        "VK-05"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-05",
+      "title": "Retour met terugnamekost",
+      "keyUser": "binnendienst verkoop",
+      "reqs": [
+        "VK-07"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-06",
+      "title": "Bijdrageregel bij boiler, niet bij EU-klant, niet dubbel bij order kopiëren",
+      "keyUser": "binnendienst verkoop",
+      "reqs": [
+        "VK-10"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-07",
+      "title": "Bestelling €7.200 ter goedkeuring; afwijzen en opnieuw indienen",
+      "keyUser": "aankoop",
+      "reqs": [
+        "AK-01"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-08",
+      "title": "Onvolledige levering en factuur uit ontvangstregels",
+      "keyUser": "aankoop",
+      "reqs": [
+        "AK-03",
+        "AK-04"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-09",
+      "title": "Inkomende Peppol-factuur van EU-leverancier met verlegging",
+      "keyUser": "boekhouding",
+      "reqs": [
+        "EF-02",
+        "FIN-02"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-10",
+      "title": "Transfer HQ naar filiaal",
+      "keyUser": "magazijn (vervanger)",
+      "reqs": [
+        "VR-01"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-11",
+      "title": "Marge per vestiging en afdeling in analyseweergave",
+      "keyUser": "financieel verantwoordelijke",
+      "reqs": [
+        "FIN-04"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-12",
+      "title": "Herinnering en aanmaning, post met creditnota uitgesloten",
+      "keyUser": "boekhouding",
+      "reqs": [
+        "VK-09"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-13",
+      "title": "Prijslijst leverancier inlezen via sjabloon",
+      "keyUser": "aankoop",
+      "reqs": [
+        "AK-02"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-14",
+      "title": "Klantartikelcode op order en factuur",
+      "keyUser": "binnendienst verkoop",
+      "reqs": [
+        "VK-02"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-15",
+      "title": "Cyclische telling klasse A",
+      "keyUser": "magazijn (vervanger)",
+      "reqs": [
+        "VR-02"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-16",
+      "title": "Kwartaalrapport omzet per klant en bonusberekening",
+      "keyUser": "financieel verantwoordelijke",
+      "reqs": [
+        "VK-06"
+      ],
+      "result": "geslaagd"
+    },
+    {
+      "id": "UAT-17",
+      "title": "Nieuwe Belgische klant zonder ondernemingsnummer: factuur wordt niet verzonden",
+      "keyUser": "boekhouding",
+      "reqs": [
+        "EF-03"
+      ],
+      "result": "geslaagd"
+    }
+  ],
+  "defects": [
+    {
+      "id": "DEF-01",
+      "uat": "UAT-02",
+      "severity": 2,
+      "title": "EU-klant krijgt 21% btw",
+      "cause": "klantsjabloon EU stond op BTW-bedrijfsboekingsgroep BINNENL",
+      "category": "setup",
+      "fix": "klantsjabloon EU hersteld; hertest geslaagd",
+      "status": "gesloten"
+    }
+  ],
+  "goNoGo": [
+    {
+      "id": "GNG-01",
+      "criterion": "Alle UAT-scenario's geslaagd en afgetekend door de key user",
+      "check": "uat"
+    },
+    {
+      "id": "GNG-02",
+      "criterion": "Geen open defects met ernst 1 of 2",
+      "check": "defects"
+    },
+    {
+      "id": "GNG-03",
+      "criterion": "Openstaande klantposten = saldo debiteuren in WinBooks (verschil €0,00)",
+      "check": "customerReceivables"
+    },
+    {
+      "id": "GNG-04",
+      "criterion": "Openstaande leveranciersposten = saldo leveranciers in WinBooks",
+      "check": "vendorPayables"
+    },
+    {
+      "id": "GNG-05",
+      "criterion": "Voorraadwaarde wijkt minder dan 0,5% af",
+      "check": "inventoryValue"
+    },
+    {
+      "id": "GNG-06",
+      "criterion": "Overgangsrekening 499000 staat op 0",
+      "check": "migrationSuspense"
+    },
+    {
+      "id": "GNG-07",
+      "criterion": "Testfactuur via Peppol verzonden en ontvangen",
+      "check": "manual",
+      "status": "ok"
+    },
+    {
+      "id": "GNG-08",
+      "criterion": "Key users getraind (minstens 90%) en TradeDesk beschikbaar in alleen-lezen voor rollback",
+      "check": "manual",
+      "status": "ok"
+    }
+  ],
+  "hypercare": [
+    {
+      "id": "HC-01",
+      "day": 1,
+      "symptom": "Drie facturen geweigerd door het Peppol-netwerk",
+      "category": "data",
+      "cause": "twee tikfouten in het ondernemingsnummer (bij migratie niet gecontroleerd op het controlegetal) en één klant die nog niet op Peppol geregistreerd was",
+      "fix": "nummers gecorrigeerd en opnieuw verzonden; derde klant gecontacteerd, factuur na registratie opnieuw verzonden",
+      "structural": "controle van het controlegetal (modulo 97) toegevoegd aan de opschoonlijst; wekelijkse lijst van e-documenten met fout",
+      "req": "EF-03"
+    },
+    {
+      "id": "HC-02",
+      "day": 1,
+      "symptom": "Kassaticket aan de balie drukt niet af",
+      "category": "setup",
+      "cause": "rapportselectie verkoopfactuur voor de baliegebruiker niet ingesteld",
+      "fix": "rapportselectie en printer ingesteld",
+      "structural": "printertest opgenomen in de go-live-checklist van een volgend filiaal",
+      "req": "VK-03"
+    },
+    {
+      "id": "HC-03",
+      "day": 2,
+      "symptom": "Verkoper ziet de afgesproken prijs niet",
+      "category": "opleiding",
+      "cause": "prijs stond in de prijslijst, maar de verkoper zocht in de artikelkaart",
+      "fix": "uitleg aan de binnendienst; taakkaart \"waar komt mijn prijs vandaan\"",
+      "structural": "taakkaart toegevoegd aan de training",
+      "req": "VK-01"
+    },
+    {
+      "id": "HC-04",
+      "day": 3,
+      "symptom": "Factuur aan een Franse klant met 21% btw",
+      "category": "data",
+      "cause": "4 gemigreerde EU-klanten hadden in TradeDesk geen landcode; de mapping zette ze op BINNENL",
+      "fix": "boekingsgroepen gecorrigeerd, creditnota en nieuwe factuur",
+      "structural": "controlelijst: land ≠ BE en BTW-bedrijfsgroep BINNENL",
+      "req": "FIN-02"
+    },
+    {
+      "id": "HC-05",
+      "day": 4,
+      "symptom": "Transfer niet zichtbaar in het filiaal",
+      "category": "opleiding",
+      "cause": "transfer verzonden maar nog niet ontvangen geboekt",
+      "fix": "uitleg verzenden versus ontvangen",
+      "structural": "ontvangst transfer in de dagelijkse werklijst van het filiaal",
+      "req": "VR-01"
+    },
+    {
+      "id": "HC-06",
+      "day": 6,
+      "symptom": "Prijzen van een leverancier ×100 na import",
+      "category": "data",
+      "cause": "leverancier stuurde decimalen met een punt in plaats van een komma",
+      "fix": "import teruggedraaid, sjabloon met vast getalformaat",
+      "structural": "controle in de taakkaart: steekproef van 5 prijzen vóór toepassen",
+      "req": "AK-02"
+    },
+    {
+      "id": "HC-07",
+      "day": 9,
+      "symptom": "Bijdrageregel staat dubbel na order kopiëren",
+      "category": "bug",
+      "cause": "extensie voegde de regel toe bij het kopiëren én bij het valideren van de artikelregel",
+      "fix": "developer past de extensie aan; hertest UAT-06 met kopieerscenario",
+      "structural": "testgeval \"order kopiëren\" toegevoegd aan de spec (UC-VK-10)",
+      "req": "VK-10"
+    },
+    {
+      "id": "HC-08",
+      "day": 12,
+      "symptom": "Aanmaning naar klant met lopende creditnota",
+      "category": "setup",
+      "cause": "creditnota nog niet afgepunt tegen de factuur",
+      "fix": "afpunten; aanmaning geannuleerd",
+      "structural": "afpunten van creditnota's toegevoegd aan de wekelijkse routine boekhouding",
+      "req": "VK-09"
+    }
+  ],
+  "changeRequests": [
+    {
+      "id": "CR-01",
+      "week": 7,
+      "requestedBy": "zaakvoerder",
+      "req": "VK-06",
+      "request": "De eindejaarsbonus moet per kwartaal automatisch berekend en als creditnota klaargezet worden.",
+      "inOffer": false,
+      "decision": "Optie b bij go-live (kwartaalrapport + jaarlijkse creditnota). Evaluatie van optie c (app) zes maanden na go-live. Optie a (extensie) niet, tenzij de app niet volstaat.",
+      "decidedBy": "zaakvoerder, na voorstel van de projectmanager"
+    }
+  ],
+  "plan": [
+    {
+      "phase": "Initiëren",
+      "weeks": "1",
+      "deliverables": "kick-off, projectorganisatie, planning workshops"
+    },
+    {
+      "phase": "Analyse",
+      "weeks": "2–4",
+      "deliverables": "5 workshops, knelpunten, requirements"
+    },
+    {
+      "phase": "Fit-gap en ontwerp",
+      "weeks": "5–6",
+      "deliverables": "fit-gap afgetekend, setup-ontwerp, spec VK-10"
+    },
+    {
+      "phase": "Inrichten en bouwen",
+      "weeks": "6–10",
+      "deliverables": "setup in sandbox, extensie VK-10, Peppol-connector, testmigraties TM-1 (week 8) en TM-2 (week 10)"
+    },
+    {
+      "phase": "Training en UAT",
+      "weeks": "11–13",
+      "deliverables": "key-user training, 17 UAT-scenario's, defects"
+    },
+    {
+      "phase": "Go-live",
+      "weeks": "14–15",
+      "deliverables": "generale repetitie (week 14), cutover-weekend, go/no-go"
+    },
+    {
+      "phase": "Hypercare",
+      "weeks": "15–18",
+      "deliverables": "hypercare-log, structurele fixes"
+    },
+    {
+      "phase": "Overdracht",
+      "weeks": "19",
+      "deliverables": "overdracht aan support, evaluatie, fase 2-lijst"
+    }
+  ]
+}

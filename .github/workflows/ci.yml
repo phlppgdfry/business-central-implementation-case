@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Fit-gap rules, traceability, postings, migration reconciliation, document claims
+        run: node --test tests/*.test.mjs
+      - name: Rebuild documents and site data from data/case.json; fail if anything drifted
+        run: |
+          node scripts/generate-seed.mjs
+          node scripts/build.mjs
+          git diff --exit-code
+      - name: Links
+        run: python3 scripts/check-links.py
