@@ -84,7 +84,8 @@ Schermafbeeldingen van elke stap van de rondleiding: [docs/screenshots/](docs/sc
 | `docs/00-context/` · `00-project/` | klant, scope, aannames · plan, RACI/RAID, change request, statusrapport |
 | `docs/01-…07-` | het traject, genummerd |
 | `docs/adr/` | ontwerpbeslissingen |
-| `site/` | GitHub Pages: landingspagina en workbench |
+| `site/` | GitHub Pages: landingspagina, workbench, one-pager, deck |
+| `application-kit/` | samenvatting op één pagina, deck + spreeknotities, demo van 2/5/15 minuten, views per lezer, rol-matrix ([exportplan](application-kit/export-plan.md)) |
 | `scripts/` · `tests/` | opbouw van documenten en sitedata · controles |
 
 ## Bronnen, data en licentie

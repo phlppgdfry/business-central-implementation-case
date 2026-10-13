@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interviewdeck — Kalvaert naar Business Central</title>
+<meta name="description" content="Zeven slides: van workshop via fit-gap en boekingsgevolg naar go-live. Onafhankelijke portfoliocase over een fictieve organisatie.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<style>
+  @page { size: 297mm 167mm; margin: 0; }
+  :root { --accent:#1d5c63; --text:#1b2430; --muted:#5b6675; --border:#dde2e8; --bg:#f7f8fa; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color: var(--text); background: #e9edf1; }
+  .slide { width: 297mm; height: 167mm; margin: 12px auto; background: #fff; padding: 14mm 16mm; position: relative; border-top: 6px solid var(--accent); break-after: page; overflow: hidden; }
+  h1 { font-size: 30pt; margin: 0 0 8mm; line-height: 1.1; }
+  h2 { font-size: 22pt; margin: 0 0 6mm; }
+  p, li { font-size: 14pt; line-height: 1.45; }
+  .eyebrow { color: var(--muted); font-size: 11pt; margin: 0 0 4mm; }
+  .foot { position: absolute; left: 16mm; right: 16mm; bottom: 7mm; font-size: 9pt; color: var(--muted); display: flex; justify-content: space-between; }
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; }
+  .box { border: 1px solid var(--border); border-radius: 8px; padding: 5mm; background: var(--bg); }
+  .box b { display: block; font-size: 24pt; color: var(--accent); }
+  table { border-collapse: collapse; width: 100%; font-size: 12pt; }
+  td, th { border-bottom: 1px solid var(--border); padding: 2mm 3mm; text-align: left; }
+  th { color: var(--muted); font-weight: 600; font-size: 10pt; text-transform: uppercase; }
+  .num { text-align: right; }
+  .flow { display: flex; gap: 3mm; flex-wrap: wrap; align-items: center; font-size: 12.5pt; }
+  .flow span { border: 1px solid var(--border); border-radius: 999px; padding: 2mm 4mm; background: var(--bg); }
+  .flow i { color: var(--muted); font-style: normal; }
+  @media screen and (max-width: 1150px) { .slide { width: auto; height: auto; min-height: 60vh; margin: 12px; } .cols { grid-template-columns: 1fr; } }
+  @media print { body { background: #fff; } .slide { margin: 0; } }
+</style>
+</head>
+<body>
+<section class="slide">
+  <p class="eyebrow">Onafhankelijke portfoliocase · fictieve organisatie · alle cijfers illustratief</p>
+  <h1>Kalvaert naar Business Central</h1>
+  <p>Een technische groothandel in West-Vlaanderen moet weg van een pakket van twintig jaar oud: de support stopt eind dit jaar en Peppol-e-facturatie is sinds 2026 verplicht. Prijsafspraken staan in notities, facturen worden twee keer ingegeven, de artikelstam is vervuild.</p>
+  <p><strong>De go-live ligt vast.</strong> Dat stuurt bijna elke keuze in dit project.</p>
+  <div class="foot"><span>1 · Het probleem</span><span>Philippe Godfroy</span></div>
+</section>
+<section class="slide">
+  <h2>Hoe ik begon: kijken, niet demonstreren</h2>
+  <ul>
+    <li>Vijf workshops — verkoop, aankoop, voorraad, financiën, e-facturatie.</li>
+    <li>Mensen doen hun werk voor met documenten van vorige week.</li>
+    <li>Vier soorten notities: <strong>observatie · wens · voorstel · open vraag met eigenaar</strong>.</li>
+    <li>Geen Business Central-demo vooraf: eerst het proces, dan de fit-gap.</li>
+  </ul>
+  <p class="eyebrow">"In TradeDesk typ ik gewoon de prijs over. Ik ken mijn klanten." — binnendienst (fictief)</p>
+  <div class="foot"><span>2 · Hoe ik begon</span><span>docs/01-discovery</span></div>
+</section>
+<section class="slide">
+  <h2>Fit-gap: standaard eerst, beslisser per regel</h2>
+  <div class="cols">
+    <div class="box"><b><!--n:req.total-->25<!--/n--></b>requirements uit 5 workshops</div>
+    <div class="box"><b><!--n:cls.stdconf-->16<!--/n--></b>standaard of configuratie</div>
+    <div class="box"><b><!--n:cls.extensie-->1<!--/n--></b>extensie — een wettelijke bijdrage</div>
+  </div>
+  <p class="flow" style="margin-top:6mm"><span>standaard</span><i>→</i><span>configuratie</span><i>→</i><span>app</span><i>→</i><span>procesaanpassing</span><i>→</i><span>extensie</span></p>
+  <p><!--n:decided.days-->29,0<!--/n--> dagen in plaats van <!--n:max.days-->40,5<!--/n--> als elke gap maatwerk werd, en <!--n:cls.extensie-->1<!--/n--> extensie in plaats van <!--n:max.extensions-->3<!--/n--> om bij elke update te testen.</p>
+  <div class="foot"><span>3 · Fit-gap</span><span>docs/03-fit-gap · ADR-001</span></div>
+</section>
+<section class="slide">
+  <h2>Inrichting met boekingsgevolg</h2>
+  <p>Boiler €420 + €3,50 bijdrage aan een Belgische installateur:</p>
+  <table>
+    <tr><th>Rekening</th><th class="num">Debet</th><th class="num">Credit</th><th>Waarom</th></tr>
+    <tr><td>400000 Handelsdebiteuren</td><td class="num">512,44</td><td></td><td>klantgroep BINNENL</td></tr>
+    <tr><td>700000 Verkopen binnenland</td><td></td><td class="num">420,00</td><td>BINNENL × HANDELSGOED</td></tr>
+    <tr><td>700900 Verwijderingsbijdragen</td><td></td><td class="num">3,50</td><td>BINNENL × BIJDRAGE</td></tr>
+    <tr><td>451000 Te betalen btw</td><td></td><td class="num">88,94</td><td>21% · rooster 03/54</td></tr>
+    <tr><td>609000 Kostprijs / 340000 Voorraad</td><td class="num">290,00</td><td class="num">290,00</td><td>voorraadinstelling HQ</td></tr>
+  </table>
+  <p>Franse klant: btw verlegd (rooster 46), geen bijdrage. Samen met het boekhoudkantoor ontworpen.</p>
+  <div class="foot"><span>4 · Inrichting</span><span>docs/04-oplossingsontwerp</span></div>
+</section>
+<section class="slide">
+  <h2>Change request in week 7</h2>
+  <p>"De eindejaarsbonus moet per kwartaal automatisch berekend worden." — niet in de offerte.</p>
+  <table>
+    <tr><th>Optie</th><th class="num">Extra dagen</th><th>Gevolg</th></tr>
+    <tr><td>a. Extensie rebatemodule</td><td class="num">+7</td><td>go-live onder druk, maatwerk bij elke update</td></tr>
+    <tr><td><strong>b. Kwartaalrapport + jaarlijkse creditnota</strong></td><td class="num">0</td><td>doel bereikt: stand per kwartaal voor het gesprek met de installateur</td></tr>
+    <tr><td>c. Rebate-app, evaluatie na 6 maanden</td><td class="num">+2 later</td><td>automatisch zonder eigen maatwerk</td></tr>
+  </table>
+  <p>Eerst <em>waarom</em> gevraagd. Voorstel via de projectmanager; de zaakvoerder koos b nu, c later.</p>
+  <div class="foot"><span>5 · Change request</span><span>CR-01 · ADR-005</span></div>
+</section>
+<section class="slide">
+  <h2>Van ontwerp naar go-live</h2>
+  <div class="cols">
+    <div class="box"><b><!--n:mig.diff.v1-->€1.586,40<!--/n--></b>verschil in de generale repetitie: een creditnota na de export → eerst bevriezen, dan exporteren</div>
+    <div class="box"><b><!--n:gng.total-->8<!--/n--> criteria</b>voor de go/no-go, vooraf vastgelegd; rollback zondag beslist</div>
+    <div class="box"><b><!--n:hc.bug-->1<!--/n--> van <!--n:hc.total-->8<!--/n--></b>hypercare-meldingen een bug; de rest data, setup of opleiding</div>
+  </div>
+  <p style="margin-top:6mm"><!--n:uat.total-->17<!--/n--> UAT-scenario's, uitgevoerd en afgetekend door de key users. Negen migratieobjecten, elk met een eigenaar bij de klant.</p>
+  <div class="foot"><span>6 · Go-live</span><span>docs/06-migratie · docs/07-go-live</span></div>
+</section>
+<section class="slide">
+  <h2>Wat dit zegt over hoe ik werk</h2>
+  <ul>
+    <li>Ik begin bij het werk van mensen, niet bij het pakket.</li>
+    <li>Ik maak beslissingen beslisbaar — kost, risico, beslisser — en laat ze bij de klant.</li>
+    <li>Ik denk bij elke instelling aan het boekingsgevolg.</li>
+    <li>Ik vertrouw een migratie pas als ze tot op de cent aansluit.</li>
+  </ul>
+  <p class="eyebrow">Wat deze case niet is: klantervaring, een gebouwde BC-omgeving of AL-code. Business Central leer ik nu gericht.</p>
+  <div class="foot"><span>7 · Over mij</span><span>github.com/phlppgdfry/business-central-implementation-case</span></div>
+</section>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Samenvatting — Kalvaert naar Business Central</title>
+<meta name="description" content="Samenvatting op één pagina van een Business Central-implementatiecase. Onafhankelijke portfoliocase over een fictieve organisatie.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<style>
+  @page { size: A4; margin: 13mm 14mm; }
+  :root { --accent:#1d5c63; --text:#1b2430; --muted:#5b6675; --border:#dde2e8; }
+  body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color: var(--text); font-size: 10pt; line-height: 1.45; max-width: 190mm; margin: 0 auto; padding: 16px; background: #fff; }
+  h1 { font-size: 19pt; margin: 0 0 2px; }
+  .eyebrow { color: var(--muted); font-size: 8.8pt; margin: 0 0 8px; }
+  h2 { font-size: 10.5pt; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 2px; margin: 10px 0 5px; }
+  p { margin: 0 0 5px; } ol, ul { margin: 0 0 5px; padding-left: 16px; } li { margin-bottom: 2px; }
+  .flow { font-size: 9.5pt; color: var(--muted); }
+  table { border-collapse: collapse; width: 100%; font-size: 9.3pt; }
+  td, th { border-bottom: 1px solid var(--border); padding: 3px 5px; text-align: left; vertical-align: top; }
+  th { color: var(--muted); font-size: 8.5pt; text-transform: uppercase; }
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .kpi { border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; }
+  .kpi b { display: block; font-size: 15pt; color: var(--accent); }
+  .note { color: var(--muted); font-size: 8.5pt; font-style: italic; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+  <p class="eyebrow">Onafhankelijke portfoliocase over een fictieve organisatie · alle cijfers illustratief · Philippe Godfroy</p>
+  <h1>Kalvaert naar Business Central — van workshop tot hypercare</h1>
+  <p class="flow">Workshops → order-to-cash → fit-gap → inrichting → spec → migratie → UAT · cutover · go/no-go → hypercare</p>
+
+  <h2>Uitdaging</h2>
+  <p>Kalvaert, een technische groothandel in West-Vlaanderen (62 medewerkers, 1.480 installateurs als klant), moet weg van een pakket van twintig jaar oud: de support stopt en Peppol-e-facturatie is sinds 2026 verplicht. Prijsafspraken staan in notities, facturen worden twee keer ingegeven, de artikelstam is vervuild. De go-live ligt vast.</p>
+
+  <h2>Wat ik uitwerkte, als functional consultant</h2>
+  <ol>
+    <li>Vijf procesworkshops met voordoen; observatie, wens en open vraag gescheiden.</li>
+    <li>Fit-gap met <!--n:req.total-->25<!--/n--> requirements: <!--n:cls.stdconf-->16<!--/n--> standaard of configuratie, <!--n:cls.app-->2<!--/n--> app, <!--n:cls.procesaanpassing-->4<!--/n--> procesaanpassing, <!--n:cls.extensie-->1<!--/n--> extensie — een beslisser bij de klant per regel.</li>
+    <li>Business Central-inrichting met boekingsgevolg: boekingsgroepen, btw-matrix met Belgische roosters, dimensies, goedkeuringsworkflow.</li>
+    <li>Use case en spec voor de enige extensie; een change request met drie opties, beslist door de klant.</li>
+    <li>Migratie van negen objecten met afstemming tot op de cent; cutover en go/no-go met <!--n:gng.total-->8<!--/n--> criteria.</li>
+    <li>Hypercare-log naar oorzaak, met een structurele maatregel per melding.</li>
+  </ol>
+
+  <h2>Resultaat (gesimuleerd)</h2>
+  <div class="kpis">
+    <div class="kpi"><b><!--n:decided.days-->29,0<!--/n--> d</b>inschatting, tegenover <!--n:max.days-->40,5<!--/n--> bij maatwerk overal</div>
+    <div class="kpi"><b><!--n:mig.diff.v1-->€1.586,40<!--/n--></b>verschil gevonden in de generale repetitie, opgelost vóór de go-live</div>
+    <div class="kpi"><b><!--n:hc.bug-->1<!--/n--> van <!--n:hc.total-->8<!--/n--></b>hypercare-meldingen was een bug</div>
+  </div>
+  <p class="note">Illustratieve aannames — geen echte bedrijfsdata.</p>
+
+  <h2>Eisen van de rol → bewijs</h2>
+  <table>
+    <tr><th>Eis</th><th>Bewijs in de case</th></tr>
+    <tr><td>Fit-Gap-documenten</td><td>register met classificatie, inschatting en beslisser; zes ontwerpbeslissingen</td></tr>
+    <tr><td>Bedrijfsprocessen analyseren</td><td>workshopplan, vijf verslagen, order-to-cash as-is/to-be</td></tr>
+    <tr><td>Kennis van Business Central</td><td>oplossingsontwerp en boekingsmatrix</td></tr>
+    <tr><td>Use case / specificatie</td><td>UC-VK-10 met acht uitzonderingen en testgevallen</td></tr>
+    <tr><td>Implementatie en uitrol</td><td>migratieplan, afstemming, cutover, go/no-go, <!--n:uat.total-->17<!--/n--> UAT-scenario's</td></tr>
+    <tr><td>Nazorg</td><td>hypercare-log naar oorzaak</td></tr>
+    <tr><td>Schakel klant – PM – developer</td><td>RACI, change request, statusrapport</td></tr>
+  </table>
+
+  <h2>Openen</h2>
+  <p>Workbench met rondleiding van 2 minuten: <a href="https://phlppgdfry.github.io/business-central-implementation-case/workbench/?tour">phlppgdfry.github.io/business-central-implementation-case/workbench/?tour</a> · alle documenten: <a href="https://github.com/phlppgdfry/business-central-implementation-case">github.com/phlppgdfry/business-central-implementation-case</a></p>
+  <p class="note">Niet geclaimd: klantervaring als functional consultant, een gebouwde Business Central-omgeving, AL-code.</p>
+</body>
+</html>
