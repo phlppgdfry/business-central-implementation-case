@@ -1,0 +1,166 @@
+{
+ "id": "o2c_tobe",
+ "file": "o2c-to-be",
+ "name": "TO-BE — order-to-cash in Business Central",
+ "pool": "Kalvaert (straks)",
+ "description": "Hoe een order loopt in Business Central: standaard en configuratie, één extensie (VK-10). Teal = gebeurt automatisch in BC.",
+ "lanes": [
+  {
+   "id": "inst",
+   "name": "Installateur"
+  },
+  {
+   "id": "bd",
+   "name": "Binnendienst"
+  },
+  {
+   "id": "bc",
+   "name": "Business Central"
+  },
+  {
+   "id": "mag",
+   "name": "Magazijn"
+  },
+  {
+   "id": "fin",
+   "name": "Boekhouding"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "s1",
+   "type": "startEvent",
+   "name": "Bestelling per mail of telefoon",
+   "lane": "inst",
+   "col": 0
+  },
+  {
+   "id": "t1",
+   "type": "userTask",
+   "name": "Verkooporder ingeven",
+   "lane": "bd",
+   "col": 1
+  },
+  {
+   "id": "t2",
+   "type": "businessRuleTask",
+   "name": "Prijs uit prijslijst of klantuitzondering",
+   "lane": "bc",
+   "col": 2,
+   "doc": "VK-01, configuratie: prijslijsten per klantkortingsgroep."
+  },
+  {
+   "id": "t3",
+   "type": "serviceTask",
+   "name": "Bijdrageregel onder het artikel",
+   "lane": "bc",
+   "col": 3,
+   "doc": "VK-10, de enige extensie: bc/apps/removal-fee."
+  },
+  {
+   "id": "g1",
+   "type": "exclusiveGateway",
+   "name": "Binnen kredietlimiet?",
+   "lane": "bc",
+   "col": 4,
+   "doc": "VK-05: waarschuwing; nieuwe klanten betalen vooraf."
+  },
+  {
+   "id": "t4",
+   "type": "userTask",
+   "name": "Vooraf laten betalen of vrijgeven na akkoord",
+   "lane": "bd",
+   "col": 5
+  },
+  {
+   "id": "t5",
+   "type": "userTask",
+   "name": "Verzenden, ook gedeeltelijk",
+   "lane": "mag",
+   "col": 5,
+   "doc": "VK-04, standaard; de rest blijft open op de order. De bijdrage verzendt mee (U9)."
+  },
+  {
+   "id": "t6",
+   "type": "serviceTask",
+   "name": "Factuur boeken: omzet, btw, dimensies",
+   "lane": "bc",
+   "col": 6,
+   "doc": "Boekingsgroepen en dimensies bepalen de rekeningen (boekingsmatrix)."
+  },
+  {
+   "id": "t7",
+   "type": "sendTask",
+   "name": "E-document via Peppol",
+   "lane": "bc",
+   "col": 7,
+   "doc": "EF-01, app van een access point."
+  },
+  {
+   "id": "t8",
+   "type": "serviceTask",
+   "name": "CODA inlezen, afpunten op gestructureerde mededeling",
+   "lane": "fin",
+   "col": 8,
+   "doc": "FIN-03, standaard."
+  },
+  {
+   "id": "e1",
+   "type": "endEvent",
+   "name": "Betaald en afgepunt",
+   "lane": "fin",
+   "col": 9
+  }
+ ],
+ "flows": [
+  {
+   "from": "s1",
+   "to": "t1",
+   "bend": 30
+  },
+  {
+   "from": "t1",
+   "to": "t2"
+  },
+  {
+   "from": "t2",
+   "to": "t3"
+  },
+  {
+   "from": "t3",
+   "to": "g1"
+  },
+  {
+   "from": "g1",
+   "to": "t5",
+   "name": "ja",
+   "default": true
+  },
+  {
+   "from": "g1",
+   "to": "t4",
+   "name": "nee"
+  },
+  {
+   "from": "t4",
+   "to": "t5"
+  },
+  {
+   "from": "t5",
+   "to": "t6",
+   "bend": 20
+  },
+  {
+   "from": "t6",
+   "to": "t7"
+  },
+  {
+   "from": "t7",
+   "to": "t8"
+  },
+  {
+   "from": "t8",
+   "to": "e1"
+  }
+ ]
+}

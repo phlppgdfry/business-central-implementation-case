@@ -37,5 +37,14 @@
  "al.subscribers": "14",
  "al.customers": "28",
  "al.setup.calls": "167",
- "al.mig.lines": "40"
+ "al.mig.lines": "40",
+ "bpmn.o2c_asis.tasks": "7",
+ "bpmn.o2c_asis.auto": "0",
+ "bpmn.o2c_tobe.tasks": "8",
+ "bpmn.o2c_tobe.auto": "5",
+ "bpmn.p2p_asis.tasks": "4",
+ "bpmn.p2p_asis.auto": "0",
+ "bpmn.p2p_tobe.tasks": "6",
+ "bpmn.p2p_tobe.auto": "2",
+ "bpmn.models": "4"
 }

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 700" width="1480" height="700" font-family="system-ui, 'Segoe UI', Arial, sans-serif" role="img" aria-label="TO-BE — aankoop in Business Central">
+<title>TO-BE — aankoop in Business Central</title>
+<defs><marker id="arr-p2p_tobe" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#242a38"/></marker></defs>
+<rect x="0" y="0" width="1480" height="700" fill="#ffffff"/>
+<rect x="20" y="20" width="1450" height="650" fill="none" stroke="#242a38" stroke-width="1.5"/>
+<text transform="translate(39,345) rotate(-90)" text-anchor="middle" font-size="14" font-weight="700" fill="#242a38">Kalvaert (straks)</text>
+<rect x="50" y="20" width="1420" height="130" fill="#f6f6f7" stroke="#242a38" stroke-width="0.8"/>
+<text transform="translate(68,85) rotate(-90)" text-anchor="middle" font-size="11.5" fill="#242a38"><tspan x="0" dy="0">Aankoper</tspan></text>
+<rect x="50" y="150" width="1420" height="130" fill="#efefef" stroke="#242a38" stroke-width="0.8"/>
+<text transform="translate(68,215) rotate(-90)" text-anchor="middle" font-size="11.5" fill="#242a38"><tspan x="0" dy="0">Zaakvoerder</tspan></text>
+<rect x="50" y="280" width="1420" height="130" fill="#f6f6f7" stroke="#242a38" stroke-width="0.8"/>
+<text transform="translate(68,345) rotate(-90)" text-anchor="middle" font-size="11.5" fill="#242a38"><tspan x="0" dy="0">Business Central</tspan></text>
+<rect x="50" y="410" width="1420" height="130" fill="#efefef" stroke="#242a38" stroke-width="0.8"/>
+<text transform="translate(68,475) rotate(-90)" text-anchor="middle" font-size="11.5" fill="#242a38"><tspan x="0" dy="0">Magazijn</tspan></text>
+<rect x="50" y="540" width="1420" height="130" fill="#f6f6f7" stroke="#242a38" stroke-width="0.8"/>
+<text transform="translate(68,605) rotate(-90)" text-anchor="middle" font-size="11.5" fill="#242a38"><tspan x="0" dy="0">Boekhouding</tspan></text>
+<path d="M168 85 L242 85" fill="none" stroke="#242a38" stroke-width="1.3" marker-end="url(#arr-p2p_tobe)"/>
+<path d="M300 119 L300 345 L425 345" fill="none" stroke="#242a38" stroke-width="1.3" marker-end="url(#arr-p2p_tobe)"/>
+<path d="M450 320 L450 215 L542 215" fill="none" stroke="#242a38" stroke-width="1.3" marker-end="url(#arr-p2p_tobe)"/>
+<text x="456" y="209" font-size="10.5" fill="#1d5c63" font-weight="600">ja</text>
+<path d="M475 345 L692 345" fill="none" stroke="#242a38" stroke-width="1.3" marker-end="url(#arr-p2p_tobe)"/>
+<path d="M479 341 l8 8" stroke="#242a38" stroke-width="1.3"/>
+<text x="481" y="339" font-size="10.5" fill="#1d5c63" font-weight="600">nee</text>
+<path d="M600 249 L600 345 L692 345" fill="none" stroke="#242a38" stroke-width="1.3" marker-end="url(#arr-p2p_tobe)"/>
+<path d="M750 379 L750 475 L842 475" fill="none" stroke="#242a38" stroke-width="1.3" marker-end="url(#arr-p2p_tobe)"/>
+<path d="M900 441 L900 345 L992 345" fill="none" stroke="#242a38" stroke-width="1.3" marker-end="url(#arr-p2p_tobe)"/>
+<path d="M1050 379 L1050 605 L1142 605" fill="none" stroke="#242a38" stroke-width="1.3" marker-end="url(#arr-p2p_tobe)"/>
+<path d="M1258 605 L1332 605" fill="none" stroke="#242a38" stroke-width="1.3" marker-end="url(#arr-p2p_tobe)"/>
+<circle cx="150" cy="85" r="18" fill="#fff" stroke="#242a38" stroke-width="1.6"/>
+<text x="150" y="116" text-anchor="middle" font-size="10.5" fill="#242a38">Voorraad laag of</text>
+<text x="150" y="128" text-anchor="middle" font-size="10.5" fill="#242a38">klantorder</text>
+<rect x="242" y="51" width="116" height="68" rx="9" fill="#ffffff" stroke="#242a38" stroke-width="1.5"/>
+<g transform="translate(249,57)" fill="none" stroke="#242a38" stroke-width="1.2"><circle cx="6" cy="4" r="3"/><path d="M0 13c0-4 3-6 6-6s6 2 6 6z"/></g>
+<text x="300" y="70.25" text-anchor="middle" font-size="11" fill="#242a38">Aankooporder;</text>
+<text x="300" y="82.75" text-anchor="middle" font-size="11" fill="#242a38">prijs uit</text>
+<text x="300" y="95.25" text-anchor="middle" font-size="11" fill="#242a38">ingelezen</text>
+<text x="300" y="107.75" text-anchor="middle" font-size="11" fill="#242a38">prijslijst</text>
+<path d="M450 320L475 345L450 370L425 345z" fill="#fff" stroke="#242a38" stroke-width="1.6"/>
+<path d="M443 338l14 14M457 338l-14 14" stroke="#242a38" stroke-width="3"/>
+<text x="450" y="314" text-anchor="middle" font-size="10.5" font-weight="600" fill="#242a38">Boven €5.000?</text>
+<rect x="542" y="181" width="116" height="68" rx="9" fill="#ffffff" stroke="#242a38" stroke-width="1.5"/>
+<g transform="translate(549,187)" fill="none" stroke="#242a38" stroke-width="1.2"><circle cx="6" cy="4" r="3"/><path d="M0 13c0-4 3-6 6-6s6 2 6 6z"/></g>
+<text x="600" y="212.75" text-anchor="middle" font-size="11" fill="#242a38">Goedkeuren in de</text>
+<text x="600" y="225.25" text-anchor="middle" font-size="11" fill="#242a38">workflow</text>
+<rect x="692" y="311" width="116" height="68" rx="9" fill="#e3f1f1" stroke="#1d5c63" stroke-width="1.5"/>
+<g transform="translate(699,317)" fill="none" stroke="#1d5c63" stroke-width="1.4"><circle cx="6" cy="6" r="3"/><path d="M6 0v2M6 10v2M0 6h2M10 6h2M1.8 1.8l1.4 1.4M8.8 8.8l1.4 1.4M1.8 10.2l1.4-1.4M8.8 3.2l1.4-1.4"/></g>
+<text x="750" y="342.75" text-anchor="middle" font-size="11" fill="#242a38">Vrijgeven en</text>
+<text x="750" y="355.25" text-anchor="middle" font-size="11" fill="#242a38">versturen</text>
+<rect x="842" y="441" width="116" height="68" rx="9" fill="#ffffff" stroke="#242a38" stroke-width="1.5"/>
+<g transform="translate(849,447)" fill="none" stroke="#242a38" stroke-width="1.2"><circle cx="6" cy="4" r="3"/><path d="M0 13c0-4 3-6 6-6s6 2 6 6z"/></g>
+<text x="900" y="460.25" text-anchor="middle" font-size="11" fill="#242a38">Ontvangst per</text>
+<text x="900" y="472.75" text-anchor="middle" font-size="11" fill="#242a38">regel met de</text>
+<text x="900" y="485.25" text-anchor="middle" font-size="11" fill="#242a38">werkelijke</text>
+<text x="900" y="497.75" text-anchor="middle" font-size="11" fill="#242a38">hoeveelheid</text>
+<rect x="992" y="311" width="116" height="68" rx="9" fill="#ffffff" stroke="#242a38" stroke-width="1.5"/>
+<g transform="translate(999,317)" fill="none" stroke="#242a38"><rect width="14" height="10"/><path d="M0 0l7 5 7-5"/></g>
+<text x="1050" y="336.5" text-anchor="middle" font-size="11" fill="#242a38">Inkomende factuur</text>
+<text x="1050" y="349" text-anchor="middle" font-size="11" fill="#242a38">via Peppol in de</text>
+<text x="1050" y="361.5" text-anchor="middle" font-size="11" fill="#242a38">werklijst</text>
+<rect x="1142" y="571" width="116" height="68" rx="9" fill="#ffffff" stroke="#242a38" stroke-width="1.5"/>
+<g transform="translate(1149,577)" fill="none" stroke="#242a38" stroke-width="1.2"><circle cx="6" cy="4" r="3"/><path d="M0 13c0-4 3-6 6-6s6 2 6 6z"/></g>
+<text x="1200" y="590.25" text-anchor="middle" font-size="11" fill="#242a38">Factuur uit</text>
+<text x="1200" y="602.75" text-anchor="middle" font-size="11" fill="#242a38">ontvangstregels;</text>
+<text x="1200" y="615.25" text-anchor="middle" font-size="11" fill="#242a38">verschil = vraag</text>
+<text x="1200" y="627.75" text-anchor="middle" font-size="11" fill="#242a38">aan aankoop</text>
+<circle cx="1350" cy="605" r="18" fill="#fff" stroke="#1d5c63" stroke-width="3.2"/>
+<text x="1350" y="636" text-anchor="middle" font-size="10.5" fill="#242a38">Betaald</text>
+<g transform="translate(20,680)" font-size="10.5" fill="#242a38"><rect width="12" height="10" rx="2" fill="#ffffff" stroke="#242a38"/><text x="17" y="9">menselijke taak</text><rect x="110" width="12" height="10" rx="2" fill="#e3f1f1" stroke="#1d5c63"/><text x="127" y="9">automatisch in Business Central</text></g>
+</svg>

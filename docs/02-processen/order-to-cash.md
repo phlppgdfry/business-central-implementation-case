@@ -2,7 +2,7 @@
 
 > Wat: het verkoopproces van Kalvaert, zoals het nu loopt (uit [W-VK](../01-discovery/workshops.md#w-vk--verkoop-van-offerte-tot-betaling-week-2)) en zoals het in Business Central zal lopen. Voor wie: klant (herkennen en valideren), projectteam. Vorige stap: [workshops](../01-discovery/workshops.md) · volgende: [fit-gap](../03-fit-gap/README.md).
 >
-> Swimlanes als eenvoudige flowchart: voor een kmo-implementatie leest een zaakvoerder dit sneller dan volledige BPMN.
+> Twee vormen van hetzelfde proces: hieronder als eenvoudige flowchart (een zaakvoerder leest die sneller), en als **BPMN 2.0** met een baan per rol voor het projectteam: [`bpmn/`](bpmn/) — opent in [bpmn.io](https://demo.bpmn.io) of Camunda Modeler, gegenereerd uit [`models/`](../../models/) en gecontroleerd in de tests. Ook de aankoop staat er ([AS-IS](bpmn/p2p-as-is.svg), [TO-BE](bpmn/p2p-to-be.svg)).
 
 ## Vandaag (as-is)
 
@@ -34,6 +34,10 @@ flowchart LR
 
 **Knelpunten (rood):** prijs overtypen (fouten, afhankelijk van één medewerker) · factuur twee keer ingeven · backorders op papier · marge per vestiging alleen via Excel.
 
+### Als BPMN
+
+![AS-IS order-to-cash in BPMN](bpmn/o2c-as-is.svg)
+
 ## Straks (to-be in Business Central)
 
 ```mermaid
@@ -61,6 +65,12 @@ flowchart LR
   K --> L
   classDef fix fill:#e3f4ea,stroke:#1a7f4b,color:#111
 ```
+
+### Als BPMN
+
+Teal = gebeurt automatisch in Business Central. Van <!--n:bpmn.o2c_asis.tasks-->7<!--/n--> stappen die een mens doet naar <!--n:bpmn.o2c_tobe.tasks-->8<!--/n--> stappen, waarvan <!--n:bpmn.o2c_tobe.auto-->5<!--/n--> automatisch.
+
+![TO-BE order-to-cash in BPMN](bpmn/o2c-to-be.svg)
 
 **Wat verandert en waarom**
 

@@ -58,5 +58,5 @@ Ik speel de **functional consultant** van de implementatiepartner. Ik leid de an
 
 - Geen echte klant, workshops of gebruikers: de workshopverslagen en hypercare-meldingen zijn verzonnen maar typisch.
 - Niet in een Business Central-omgeving gebouwd of getest; de workbench simuleert de boekingslogica vereenvoudigd (één regel, geen kortingen).
-- Geen AL-code: de functional consultant schrijft de spec, de developer bouwt.
+- De functional consultant schrijft de spec, de developer bouwt. In deze case staat de extensie toch in AL ([bc/](../../bc/README.md)), om de spec te toetsen; ze compileert, maar is nog niet in een sandbox gedraaid.
 - Geen productie-ervaring geclaimd: dit toont hoe ik zou werken, niet wat ik bij een klant gedaan heb.

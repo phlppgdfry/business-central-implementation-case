@@ -1,0 +1,140 @@
+{
+ "id": "p2p_tobe",
+ "file": "p2p-to-be",
+ "name": "TO-BE — aankoop in Business Central",
+ "pool": "Kalvaert (straks)",
+ "description": "Aankoop in Business Central: workflow, ontvangst per regel en factuur uit ontvangstregels.",
+ "lanes": [
+  {
+   "id": "ak",
+   "name": "Aankoper"
+  },
+  {
+   "id": "zv",
+   "name": "Zaakvoerder"
+  },
+  {
+   "id": "bc",
+   "name": "Business Central"
+  },
+  {
+   "id": "mag",
+   "name": "Magazijn"
+  },
+  {
+   "id": "fin",
+   "name": "Boekhouding"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "s1",
+   "type": "startEvent",
+   "name": "Voorraad laag of klantorder",
+   "lane": "ak",
+   "col": 0
+  },
+  {
+   "id": "t1",
+   "type": "userTask",
+   "name": "Aankooporder; prijs uit ingelezen prijslijst",
+   "lane": "ak",
+   "col": 1,
+   "doc": "AK-02, procesaanpassing: vast sjabloon via configuratiepakket."
+  },
+  {
+   "id": "g1",
+   "type": "exclusiveGateway",
+   "name": "Boven €5.000?",
+   "lane": "bc",
+   "col": 2,
+   "doc": "AK-01, goedkeuringsworkflow."
+  },
+  {
+   "id": "t2",
+   "type": "userTask",
+   "name": "Goedkeuren in de workflow",
+   "lane": "zv",
+   "col": 3
+  },
+  {
+   "id": "t3",
+   "type": "serviceTask",
+   "name": "Vrijgeven en versturen",
+   "lane": "bc",
+   "col": 4
+  },
+  {
+   "id": "t4",
+   "type": "userTask",
+   "name": "Ontvangst per regel met de werkelijke hoeveelheid",
+   "lane": "mag",
+   "col": 5,
+   "doc": "AK-03, standaard."
+  },
+  {
+   "id": "t5",
+   "type": "receiveTask",
+   "name": "Inkomende factuur via Peppol in de werklijst",
+   "lane": "bc",
+   "col": 6,
+   "doc": "EF-02."
+  },
+  {
+   "id": "t6",
+   "type": "userTask",
+   "name": "Factuur uit ontvangstregels; verschil = vraag aan aankoop",
+   "lane": "fin",
+   "col": 7,
+   "doc": "AK-04, standaard."
+  },
+  {
+   "id": "e1",
+   "type": "endEvent",
+   "name": "Betaald",
+   "lane": "fin",
+   "col": 8
+  }
+ ],
+ "flows": [
+  {
+   "from": "s1",
+   "to": "t1"
+  },
+  {
+   "from": "t1",
+   "to": "g1"
+  },
+  {
+   "from": "g1",
+   "to": "t2",
+   "name": "ja"
+  },
+  {
+   "from": "g1",
+   "to": "t3",
+   "name": "nee",
+   "default": true
+  },
+  {
+   "from": "t2",
+   "to": "t3"
+  },
+  {
+   "from": "t3",
+   "to": "t4"
+  },
+  {
+   "from": "t4",
+   "to": "t5"
+  },
+  {
+   "from": "t5",
+   "to": "t6"
+  },
+  {
+   "from": "t6",
+   "to": "e1"
+  }
+ ]
+}

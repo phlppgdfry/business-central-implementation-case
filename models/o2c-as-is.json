@@ -1,0 +1,130 @@
+{
+ "id": "o2c_asis",
+ "file": "o2c-as-is",
+ "name": "AS-IS — order-to-cash in TradeDesk",
+ "pool": "Kalvaert (vandaag)",
+ "description": "Hoe een order vandaag loopt, uit workshop W-VK (fictief). Elke stap doet een mens; de knelpunten staan in de documentatie per taak.",
+ "lanes": [
+  {
+   "id": "inst",
+   "name": "Installateur"
+  },
+  {
+   "id": "bd",
+   "name": "Binnendienst"
+  },
+  {
+   "id": "mag",
+   "name": "Magazijn"
+  },
+  {
+   "id": "bk",
+   "name": "Boekhoudkantoor"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "s1",
+   "type": "startEvent",
+   "name": "Bestelling per mail of telefoon",
+   "lane": "inst",
+   "col": 0
+  },
+  {
+   "id": "t1",
+   "type": "userTask",
+   "name": "Order in TradeDesk, prijs overtypen uit notitie",
+   "lane": "bd",
+   "col": 1,
+   "doc": "420 prijsafspraken als vrije tekst; fouten en afhankelijk van één medewerker (VK-01)."
+  },
+  {
+   "id": "t2",
+   "type": "manualTask",
+   "name": "Bijdrage met de hand toevoegen",
+   "lane": "bd",
+   "col": 2,
+   "doc": "Wordt geregeld vergeten; Kalvaert betaalt de bijdrage dan zelf (VK-10)."
+  },
+  {
+   "id": "t3",
+   "type": "manualTask",
+   "name": "Picken van papier, rest als backorder op papier",
+   "lane": "mag",
+   "col": 3,
+   "doc": "Backorders alleen op papier (VK-04)."
+  },
+  {
+   "id": "t4",
+   "type": "userTask",
+   "name": "Factuur maken in TradeDesk",
+   "lane": "bd",
+   "col": 4
+  },
+  {
+   "id": "t5",
+   "type": "userTask",
+   "name": "Dezelfde factuur nog eens in het Peppol-portaal",
+   "lane": "bd",
+   "col": 5,
+   "doc": "Dubbel werk sinds de Peppol-plicht van 1 januari 2026 (EF-01)."
+  },
+  {
+   "id": "t6",
+   "type": "userTask",
+   "name": "Import in WinBooks, CODA afpunten",
+   "lane": "bk",
+   "col": 6
+  },
+  {
+   "id": "t7",
+   "type": "manualTask",
+   "name": "Marge per vestiging uit twee exports in Excel",
+   "lane": "bk",
+   "col": 7,
+   "doc": "Alleen maandelijks, na twee exports (FIN-04)."
+  },
+  {
+   "id": "e1",
+   "type": "endEvent",
+   "name": "Maand afgesloten",
+   "lane": "bk",
+   "col": 8
+  }
+ ],
+ "flows": [
+  {
+   "from": "s1",
+   "to": "t1",
+   "bend": 30
+  },
+  {
+   "from": "t1",
+   "to": "t2"
+  },
+  {
+   "from": "t2",
+   "to": "t3"
+  },
+  {
+   "from": "t3",
+   "to": "t4"
+  },
+  {
+   "from": "t4",
+   "to": "t5"
+  },
+  {
+   "from": "t5",
+   "to": "t6"
+  },
+  {
+   "from": "t6",
+   "to": "t7"
+  },
+  {
+   "from": "t7",
+   "to": "e1"
+  }
+ ]
+}

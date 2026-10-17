@@ -1,0 +1,96 @@
+{
+ "id": "p2p_asis",
+ "file": "p2p-as-is",
+ "name": "AS-IS — aankoop in TradeDesk",
+ "pool": "Kalvaert (vandaag)",
+ "description": "Hoe een aankoop vandaag loopt, uit workshop W-AK (fictief).",
+ "lanes": [
+  {
+   "id": "ak",
+   "name": "Aankoper"
+  },
+  {
+   "id": "zv",
+   "name": "Zaakvoerder"
+  },
+  {
+   "id": "mag",
+   "name": "Magazijn"
+  },
+  {
+   "id": "bk",
+   "name": "Boekhoudkantoor"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "s1",
+   "type": "startEvent",
+   "name": "Voorraad laag of klantorder",
+   "lane": "ak",
+   "col": 0
+  },
+  {
+   "id": "t1",
+   "type": "userTask",
+   "name": "Bestelling in TradeDesk, prijs uit pdf-prijslijst",
+   "lane": "ak",
+   "col": 1,
+   "doc": "Prijslijsten van leveranciers worden overgetypt (AK-02)."
+  },
+  {
+   "id": "t2",
+   "type": "manualTask",
+   "name": "Mondeling akkoord boven €5.000, soms achteraf",
+   "lane": "zv",
+   "col": 2,
+   "doc": "Geen spoor van wie wat goedkeurde (AK-01)."
+  },
+  {
+   "id": "t3",
+   "type": "manualTask",
+   "name": "Ontvangst op papier, tekorten in een schrift",
+   "lane": "mag",
+   "col": 3,
+   "doc": "AK-03."
+  },
+  {
+   "id": "t4",
+   "type": "userTask",
+   "name": "Factuur inboeken zonder koppeling met de ontvangst",
+   "lane": "bk",
+   "col": 4,
+   "doc": "Verschillen vallen pas op als de leverancier aanmaant (AK-04)."
+  },
+  {
+   "id": "e1",
+   "type": "endEvent",
+   "name": "Betaald",
+   "lane": "bk",
+   "col": 5
+  }
+ ],
+ "flows": [
+  {
+   "from": "s1",
+   "to": "t1",
+   "bend": 30
+  },
+  {
+   "from": "t1",
+   "to": "t2"
+  },
+  {
+   "from": "t2",
+   "to": "t3"
+  },
+  {
+   "from": "t3",
+   "to": "t4"
+  },
+  {
+   "from": "t4",
+   "to": "e1"
+  }
+ ]
+}

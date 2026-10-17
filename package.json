@@ -1,0 +1,22 @@
+{
+  "name": "business-central-implementation-case",
+  "private": true,
+  "type": "module",
+  "description": "Kalvaert to Business Central: fit-gap, setup, migration, go-live — and the case built in AL and Azure.",
+  "scripts": {
+    "build": "node scripts/generate-seed.mjs && node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node scripts/build.mjs && node --test tests/*.test.mjs && python3 scripts/check-links.py",
+    "serve": "python3 -m http.server -d site 8000",
+    "al:symbols": "node bc/scripts/symbols.mjs",
+    "al:compile": "node bc/scripts/compile.mjs",
+    "bc:sandbox": "node bc/scripts/sandbox.mjs",
+    "azure:build": "az bicep build --file azure/main.bicep --stdout > /dev/null && az bicep lint --file azure/main.bicep"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "bpmn-moddle": "9.0.4"
+  }
+}

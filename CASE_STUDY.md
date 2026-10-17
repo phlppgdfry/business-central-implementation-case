@@ -57,6 +57,12 @@ In de generale repetitie verschilden de openstaande klantposten <!--n:mig.diff.v
 
 In de hypercare <!--n:hc.total-->8<!--/n--> meldingen, waarvan <!--n:hc.bug-->1<!--/n--> bug. De rest was data, setup of opleiding. Elke melding kreeg een structurele maatregel, zodat support na de overdracht niet dezelfde vragen krijgt. → [hypercare-log](docs/07-go-live/hypercare.md)
 
+## 8b. De spec getoetst door ze te bouwen
+
+Een spec is pas goed als een developer ze kan bouwen zonder te gokken. Dus heb ik de extensie in AL laten bouwen voor Business Central 29.0, met de testgevallen als <!--n:al.tests-->12<!--/n--> AL-tests, en het hele oplossingsontwerp als installeerbare demo-inrichting die uit dezelfde data komt als de documenten. De bouw vond vier dingen die in de spec ontbraken. Het belangrijkste: bij een deellevering zou de bijdrage voor alle boilers meegaan met de eerste levering (U9). Alles compileert tegen de echte Business Central-symbolen zonder één waarschuwing; in een sandbox gedraaid is het nog niet. → [spec §5](docs/05-specs/uc-vk-10-verwijderingsbijdrage.md#5-gebouwd-in-al), [bc/](bc/README.md)
+
+Naast Business Central staat een kleine Azure-omgeving als code: dezelfde migratiecontrole als functie, een afstemming tegen de BC-API, en telemetrie-queries voor de hypercare. ±€1 per maand, met budget. Niet gedeployed. → [azure/](azure/README.md), [ADR-008](docs/adr/adr-008-azure-voor-hypercare-en-migratiecontrole.md)
+
 ## 9. Wat dit over mijn manier van werken zegt
 
 - Ik begin bij het werk van mensen, niet bij het pakket.
@@ -66,4 +72,4 @@ In de hypercare <!--n:hc.total-->8<!--/n--> meldingen, waarvan <!--n:hc.bug-->1<
 
 ## 10. Wat deze case niet is
 
-Fictief, niet in een Business Central-omgeving gebouwd, geen AL-code, geen klantervaring. De workbench vereenvoudigt de boekingslogica. → [beperkingen](README.md#beperkingen-en-aannames)
+Fictief, geen klantervaring. De AL-code compileert maar is nog niet in een Business Central-sandbox gedraaid; de Azure-omgeving is niet gedeployed. De workbench vereenvoudigt de boekingslogica. → [beperkingen](README.md#beperkingen-en-aannames)

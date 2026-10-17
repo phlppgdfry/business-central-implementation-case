@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kalvaert naar Business Central — portfoliocase functional consultant</title>
-  <meta name="description" content="Hoe een functional consultant een groothandel naar Microsoft Dynamics 365 Business Central brengt: standaard waar het kan, één extensie waar het moet, en een go-live die pas groen wordt als de cijfers kloppen.">
+  <meta name="description" content="Hoe een functional consultant een groothandel naar Microsoft Dynamics 365 Business Central brengt: standaard waar het kan, één extensie waar het moet — die extensie ook gebouwd in AL, met een Azure-ontwikkelomgeving ernaast.">
   <meta property="og:title" content="Kalvaert naar Business Central — van workshop tot hypercare">
-  <meta property="og:description" content="Fit-gap, inrichting met boekingsgevolg, migratie tot op de cent, go/no-go en hypercare. Onafhankelijke portfoliocase over een fictieve organisatie.">
+  <meta property="og:description" content="Fit-gap, inrichting met boekingsgevolg, migratie tot op de cent, go/no-go en hypercare, plus de extensie in AL en een Azure-ontwikkelomgeving. Onafhankelijke portfoliocase over een fictieve organisatie.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/og-image.png">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -18,9 +18,11 @@
     <div class="wrap header-inner">
       <a class="brand" href="./">Kalvaert × Business Central</a>
       <nav aria-label="Secties">
-        <a href="#uitdaging">Uitdaging</a>
+        <a href="#voor-na">Vandaag en straks</a>
+        <a href="#processen">Processen</a>
         <a href="#aanpak">Aanpak</a>
-        <a href="#traject">Traject</a>
+        <a href="#gebouwd">In AL gebouwd</a>
+        <a href="#azure">Azure</a>
         <a href="#bewijs">Bewijs</a>
       </nav>
     </div>
@@ -30,13 +32,21 @@
     <section class="hero wrap">
       <p class="eyebrow">Onafhankelijke portfoliocase · fictieve organisatie · Philippe Godfroy</p>
       <h1>Kalvaert naar Business Central — van workshop tot hypercare</h1>
-      <p class="lede">Hoe een functional consultant een groothandel met <!--n:req.total-->25<!--/n--> wensen naar Business Central brengt: standaard waar het kan, één extensie waar het moet, en een go-live die pas groen wordt als de cijfers kloppen.</p>
+      <p class="lede">Hoe een functional consultant een groothandel met <!--n:req.total-->25<!--/n--> wensen naar Business Central brengt: standaard waar het kan, één extensie waar het moet, en een go-live die pas groen wordt als de cijfers kloppen. Die ene extensie staat ook in AL, met tests, en met een Azure-ontwikkelomgeving ernaast.</p>
       <div class="cta-row">
         <a class="btn primary" href="workbench/?tour">Workbench met rondleiding (2 min)</a>
+        <a class="btn" href="#voor-na">Vandaag en straks</a>
+        <a class="btn" href="https://github.com/phlppgdfry/business-central-implementation-case/tree/main/bc">AL-code</a>
         <a class="btn" href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/CASE_STUDY.md">Het volledige verhaal</a>
-        <a class="btn" href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/03-fit-gap/fit-gap.md">Fit-gap-register</a>
         <a class="btn" href="https://github.com/phlppgdfry/business-central-implementation-case">Op GitHub</a>
       </div>
+      <ul class="stats" aria-label="De case in cijfers">
+        <li><b><!--n:cls.stdconf-->16<!--/n--> van <!--n:req.total-->25<!--/n--></b><span>wensen met standaard of configuratie</span></li>
+        <li><b><!--n:cls.extensie-->1<!--/n--> extensie</b><span>gespecificeerd én gebouwd in AL</span></li>
+        <li><b><!--n:al.tests-->12<!--/n--> AL-tests</b><span>één per testgeval uit de spec</span></li>
+        <li><b><!--n:decided.days-->29,0<!--/n--> dagen</b><span>in plaats van <!--n:max.days-->40,5<!--/n--> bij overal maatwerk</span></li>
+        <li><b>€0,00</b><span>verschil na de migratie (eerst <!--n:mig.diff.v1-->€1.586,40<!--/n-->)</span></li>
+      </ul>
     </section>
 
     <section id="uitdaging" class="wrap section">
@@ -50,17 +60,53 @@
       </div>
     </section>
 
+    <section id="voor-na" class="wrap section">
+      <div class="section-title"><h2>Vandaag en straks</h2><span class="muted">sleep de schuif · stappen uit de BPMN-modellen, cijfers uit het model</span></div>
+      <p class="measure">Links hoe het nu loopt in het oude pakket, rechts hoe het loopt in Business Central. Zelfde plek op het scherm, zodat je ziet wat verandert: welke stappen een mens nog doet en welke Business Central overneemt.</p>
+      <div class="tabs-row" role="tablist" aria-label="Kies een proces" id="ba-tabs"></div>
+      <div class="ba" id="ba">
+        <div class="ba-layer ba-before"></div>
+        <div class="ba-layer ba-after"></div>
+        <input class="ba-range sr-only" type="range" min="0" max="100" value="50" aria-label="Schuif: links vandaag, rechts straks">
+        <div class="ba-handle" aria-hidden="true"><span class="ba-side l">‹ Vandaag</span><span class="ba-knob">‹ ›</span><span class="ba-side r">Straks ›</span></div>
+      </div>
+      <div class="ba-controls">
+        <button class="btn small ghost" data-ba-pos="100">Alleen vandaag</button>
+        <button class="btn small primary" data-ba-play>▶ Speel de verandering af</button>
+        <button class="btn small ghost" data-ba-pos="0">Alleen straks</button>
+      </div>
+      <div class="table-wrap ba-delta" id="ba-delta"></div>
+      <p class="note">Vandaag = bevindingen uit de (gesimuleerde) workshops. Straks = het oplossingsontwerp. Geen gemeten resultaat bij een echt bedrijf.</p>
+      <noscript><p>Deze vergelijking heeft JavaScript nodig. De processen staan als BPMN op GitHub.</p></noscript>
+    </section>
+
+    <section id="processen" class="wrap section">
+      <div class="section-title"><h2>Processen in BPMN</h2><span class="muted">AS-IS en TO-BE · teal = gebeurt automatisch in Business Central</span></div>
+      <div class="tabs-row" role="tablist" aria-label="Kies een proces">
+        <button class="btn small" role="tab" aria-selected="true" data-bpmn-case="o2c">Van order tot betaling</button>
+        <button class="btn small" role="tab" aria-selected="false" data-bpmn-case="p2p">Aankoop</button>
+      </div>
+      <div class="tabs-row" role="tablist" aria-label="Kies vandaag of straks">
+        <button class="btn small" role="tab" aria-selected="false" data-bpmn-phase="asis">AS-IS · vandaag</button>
+        <button class="btn small" role="tab" aria-selected="true" data-bpmn-phase="tobe">TO-BE · in Business Central</button>
+      </div>
+      <figure class="figure">
+        <img id="bpmn-img" src="assets/bpmn/o2c_tobe.svg" alt="TO-BE-proces van order tot betaling in BPMN" width="1580" height="680">
+        <figcaption>Gegenereerd uit <code>models/*.json</code>; dezelfde bron levert geldige <code>.bpmn</code>-bestanden die in bpmn.io of Camunda Modeler openen (<a href="https://github.com/phlppgdfry/business-central-implementation-case/tree/main/docs/02-processen/bpmn">bpmn/</a>). Elke stap verwijst naar een requirement.</figcaption>
+      </figure>
+    </section>
+
     <section id="rol" class="wrap section">
       <h2>Mijn rol in deze case: functional consultant bij de implementatiepartner</h2>
       <ul class="checklist">
         <li>vijf analyseworkshops leiden met echte documenten, en verslaan</li>
         <li>de fit-gap opstellen met een classificatie, inschatting en beslisser per regel</li>
-        <li>Business Central inrichten op papier: boekingsgroepen, btw, dimensies, workflow — elke instelling met een reden</li>
-        <li>de enige extensie specificeren voor de developer</li>
+        <li>Business Central inrichten: boekingsgroepen, btw, dimensies, workflow — elke instelling met een reden</li>
+        <li>de enige extensie specificeren voor de developer, en de testgevallen schrijven</li>
         <li>een change request met opties voorleggen via de projectmanager</li>
         <li>de migratie plannen en afstemmen, de go/no-go voorbereiden en de hypercare opvolgen</li>
       </ul>
-      <p class="note">De projectmanager bewaakt planning en budget, de developer bouwt, de klant beslist.</p>
+      <p class="note">De projectmanager bewaakt planning en budget, de developer bouwt, de klant beslist. De AL-code hieronder is wat de developer zou opleveren: hier gebouwd om de spec te toetsen.</p>
     </section>
 
     <section id="aanpak" class="wrap section">
@@ -84,20 +130,6 @@
       </div>
     </section>
 
-    <section id="traject" class="wrap section">
-      <h2>Het traject</h2>
-      <ol class="journey">
-        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/01-discovery/workshops.md"><span class="step-no">1</span>Workshops</a></li>
-        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/02-processen/order-to-cash.md"><span class="step-no">2</span>Processen</a></li>
-        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/03-fit-gap/fit-gap.md"><span class="step-no">3</span>Fit-gap</a></li>
-        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/04-oplossingsontwerp/README.md"><span class="step-no">4</span>Inrichting</a></li>
-        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/05-specs/uc-vk-10-verwijderingsbijdrage.md"><span class="step-no">5</span>Spec</a></li>
-        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/06-migratie/README.md"><span class="step-no">6</span>Migratie</a></li>
-        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/07-go-live/README.md"><span class="step-no">7</span>Go-live</a></li>
-        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/07-go-live/hypercare.md"><span class="step-no">8</span>Hypercare</a></li>
-      </ol>
-    </section>
-
     <section id="inrichting" class="wrap section">
       <h2>Inrichting: elke boeking verklaarbaar</h2>
       <figure class="diagram">
@@ -115,6 +147,85 @@ flowchart LR
       </figure>
     </section>
 
+    <section id="gebouwd" class="wrap section">
+      <div class="section-title"><h2>De extensie, gebouwd in AL</h2><span class="muted">Business Central 29.0 · Belgische lokalisatie · per-tenant extension</span></div>
+      <p class="measure">Een spec is pas goed als een developer ze kan bouwen zonder te gokken. Dus is ze gebouwd: de extensie, de testgevallen als AL-tests, en het hele oplossingsontwerp als installeerbare demo-inrichting die uit dezelfde data komt als deze site.</p>
+      <div class="grid cards-3">
+        <article class="card">
+          <h3>Kalvaert Removal Fee <small>· <!--n:al.fee.objects-->25<!--/n--> objecten</small></h3>
+          <p>Bijdrage per artikel; precies één bijdrageregel onder de artikelregel, alleen voor BINNENL. Volgt hoeveelheid en deellevering, verdwijnt met de artikelregel, niet met de hand te wijzigen. <!--n:al.subscribers-->14<!--/n--> subscribers op standaard events, geen gewijzigde standaardcode.</p>
+          <p><a href="https://github.com/phlppgdfry/business-central-implementation-case/tree/main/bc/apps/removal-fee">bc/apps/removal-fee</a></p>
+        </article>
+        <article class="card">
+          <h3>Tests T1–T9 <small>· <!--n:al.tests-->12<!--/n--> AL-tests</small></h3>
+          <p>Elke test heet naar het testgeval in de spec: één bijdrageregel, hoeveelheid volgt, EU-klant krijgt niets, kopiëren geeft geen dubbel (HC-07), boeking op 700900 met btw.</p>
+          <p><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/bc/apps/removal-fee-test/src/KLVRemovalFeeTests.Codeunit.al">KLVRemovalFeeTests</a></p>
+        </article>
+        <article class="card">
+          <h3>Demo-inrichting <small>· <!--n:al.customers-->28<!--/n--> klanten, <!--n:al.mig.lines-->40<!--/n--> openstaande posten</small></h3>
+          <p>Rekeningen, boekings- en btw-groepen, dimensies met "code verplicht", locaties, artikels, klanten en het migratiedagboek tegen 499000, <strong>gegenereerd uit <code>data/case.json</code></strong>. De compiler controleert elk veld tegen Business Central.</p>
+          <p><a href="https://github.com/phlppgdfry/business-central-implementation-case/tree/main/bc/apps/demo-setup">bc/apps/demo-setup</a></p>
+        </article>
+      </div>
+      <div class="two-col" style="margin-top:20px">
+        <pre class="code" aria-label="Fragment uit KLVRemovalFeeMgt.Codeunit.al"><span class="c">/// U9 (gevonden bij de bouw): bij een deellevering verzendt</span>
+<span class="c">/// de bijdrage mee met de goederen, niet allemaal vooraf.</span>
+<span class="k">local procedure</span> SyncQuantityToHandle(<span class="k">var</span> FeeLine: <span class="k">Record</span> <span class="s">"Sales Line"</span>; ItemLine: <span class="k">Record</span> <span class="s">"Sales Line"</span>): <span class="k">Boolean</span>
+<span class="k">begin</span>
+    <span class="k">case</span> FeeLine.<span class="s">"Document Type"</span> <span class="k">of</span>
+        FeeLine.<span class="s">"Document Type"</span>::Order:
+            <span class="k">if</span> FeeLine.<span class="s">"Qty. to Ship"</span> &lt;&gt; ItemLine.<span class="s">"Qty. to Ship"</span> <span class="k">then begin</span>
+                FeeLine.Validate(<span class="s">"Qty. to Ship"</span>, ItemLine.<span class="s">"Qty. to Ship"</span>);
+                <span class="k">exit</span>(<span class="k">true</span>);
+            <span class="k">end</span>;
+        ...</pre>
+        <div class="card">
+          <h3>Wat de bouw aan de spec veranderde</h3>
+          <ul>
+            <li><b>Deelleveringen</b> — zonder U9 zou de bijdrage van 5 boilers gefactureerd worden bij de eerste levering van 2.</li>
+            <li><b>Andere klant op de order</b> — BC maakt dan alle regels opnieuw; de bijdrageregel zou als gewone regel achterblijven.</li>
+            <li><b>Verplichte dimensies</b> — de bijdrageregel erft VESTIGING en AFDELING, anders blokkeert het boeken.</li>
+            <li><b>Bulkbewerkingen</b> — kopiëren, offerte naar order: eerst alles, dan één keer afstemmen.</li>
+          </ul>
+          <p><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/05-specs/uc-vk-10-verwijderingsbijdrage.md">Spec UC-VK-10 §5</a></p>
+        </div>
+      </div>
+      <div class="card" style="margin-top:20px">
+        <h3>Status — eerlijk</h3>
+        <div class="status">
+          <div><span class="badge ok">✓ CI</span><span>Compileert tegen de Belgische symbolen van Business Central 29.0 (Microsofts publieke feed), met CodeCop, UICop en PerTenantExtensionCop: 0 fouten, 0 waarschuwingen.</span></div>
+          <div><span class="badge ok">✓ CI</span><span>Nederlandse vertaling (nl-BE) volledig; object-ID's, afhankelijkheden en de koppeling spec ↔ test automatisch gecontroleerd.</span></div>
+          <div><span class="badge todo">nog niet</span><span>Gepubliceerd en gedraaid in een sandbox. Het script staat klaar (<code>bc/scripts/sandbox.mjs all</code>: publiceren, inrichten, migreren, order via de API boeken en vergelijken met de boekingsmatrix, AL-tests draaien). Tot dan is "werkt" een verwachting.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="azure" class="wrap section">
+      <div class="section-title"><h2>Azure-ontwikkelomgeving naast Business Central</h2><span class="muted">Bicep · ±€1 per maand · budget op €5</span></div>
+      <div class="two-col">
+        <figure class="diagram">
+          <pre class="mermaid">
+flowchart TB
+  CON(["Consultant"]) -- "CSV-export" --> FN["Functies<br/>migratiecontrole · afstemming"]
+  FN --> ST[("Storage<br/>export + rapport")]
+  FN -- "managed identity" --> KV["Key Vault"]
+  FN -- "API" --> BC["BC-sandbox<br/>+ extensie"]
+  BC -- "telemetrie" --> AI["Application Insights<br/>8 hypercare-queries"]
+  AI --> AL["Alert: veel foutmeldingen"]
+          </pre>
+        </figure>
+        <div>
+          <ul class="checklist">
+            <li><b>Migratiecontrole als functie</b>: elke export uit het oude pakket gaat door dezelfde afstemming als in de case. Export v1 → "Niet laden: €1.586,40 verschil", export v2 → "Klaar om te laden".</li>
+            <li><b>Afstemming tegen BC</b>: na het laden de openstaande posten via de API tegen het saldo op de cutoffdag — een go/no-go-criterium dat zichzelf controleert.</li>
+            <li><b>Telemetrie voor hypercare</b>: foutmeldingen per pagina, trage AL, mislukte jobs, en de eigen signalen van de extensie, in KQL.</li>
+            <li><b>Kostenrem</b>: daglimiet op logs, budgetmelding, geen secrets buiten Key Vault, geen gedeelde sleutels.</li>
+          </ul>
+          <p class="note">Gebouwd en gevalideerd (Bicep build + lint in CI, functielogica getest zonder Azure). Nog niet gedeployed: dat kost geld en gebeurt alleen na akkoord. <a href="https://github.com/phlppgdfry/business-central-implementation-case/tree/main/azure">azure/</a></p>
+        </div>
+      </div>
+    </section>
+
     <section id="golive" class="wrap section">
       <h2>Migratie, go-live en hypercare</h2>
       <div class="grid cards-3">
@@ -125,6 +236,21 @@ flowchart LR
       <p class="note">Gesimuleerde resultaten met illustratieve aannames — geen echte bedrijfsdata.</p>
     </section>
 
+    <section id="traject" class="wrap section">
+      <h2>Het traject</h2>
+      <ol class="journey">
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/01-discovery/workshops.md"><span class="step-no">1</span>Workshops</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/02-processen/order-to-cash.md"><span class="step-no">2</span>Processen</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/03-fit-gap/fit-gap.md"><span class="step-no">3</span>Fit-gap</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/04-oplossingsontwerp/README.md"><span class="step-no">4</span>Inrichting</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/05-specs/uc-vk-10-verwijderingsbijdrage.md"><span class="step-no">5</span>Spec</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/tree/main/bc"><span class="step-no">6</span>AL</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/06-migratie/README.md"><span class="step-no">7</span>Migratie</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/07-go-live/README.md"><span class="step-no">8</span>Go-live</a></li>
+        <li><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/07-go-live/hypercare.md"><span class="step-no">9</span>Hypercare</a></li>
+      </ol>
+    </section>
+
     <section id="bewijs" class="wrap section">
       <h2>Bewijs per eis van de rol</h2>
       <div class="table-wrap">
@@ -132,11 +258,12 @@ flowchart LR
           <thead><tr><th>Eis</th><th>Bewijs</th><th>Waar</th></tr></thead>
           <tbody>
             <tr><td>Fit-gap-documenten, klantbehoeften → BC</td><td>register met <!--n:req.total-->25<!--/n--> requirements, zes klassen, beslisser per regel</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/03-fit-gap/fit-gap.md">Openen</a></td></tr>
-            <tr><td>Bedrijfsprocessen analyseren, challengen</td><td>workshopplan, 5 verslagen, as-is/to-be, 6 ADR's</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/01-discovery/workshops.md">Openen</a></td></tr>
-            <tr><td>Kennis van Business Central</td><td>boekingsgroepen, btw-matrix met Belgische roosters, dimensies, workflow</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/04-oplossingsontwerp/boekingsmatrix.md">Openen</a></td></tr>
-            <tr><td>Specificaties in een use case</td><td>use case met 8 uitzonderingen en 8 testgevallen</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/05-specs/uc-vk-10-verwijderingsbijdrage.md">Openen</a></td></tr>
-            <tr><td>Implementatie en uitrol</td><td>migratieplan, afstemming, cutover, go/no-go, <!--n:uat.total-->17<!--/n--> UAT-scenario's</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/07-go-live/README.md">Openen</a></td></tr>
-            <tr><td>Eerste nazorg</td><td>hypercare-log naar oorzaak</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/07-go-live/hypercare.md">Openen</a></td></tr>
+            <tr><td>Bedrijfsprocessen analyseren, challengen</td><td>workshopplan, 5 verslagen, <!--n:bpmn.models-->4<!--/n--> BPMN-modellen as-is/to-be, 6 ADR's</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/02-processen/order-to-cash.md">Openen</a></td></tr>
+            <tr><td>Kennis van Business Central</td><td>boekingsgroepen, btw-matrix met Belgische roosters, dimensies, workflow — en dezelfde inrichting als AL, gecontroleerd door de compiler</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/04-oplossingsontwerp/boekingsmatrix.md">Openen</a></td></tr>
+            <tr><td>Specificaties in een use case</td><td>use case met 9 uitzonderingen en 9 testgevallen, gebouwd en als AL-tests uitgeschreven</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/05-specs/uc-vk-10-verwijderingsbijdrage.md">Openen</a></td></tr>
+            <tr><td>Schakel met de developer</td><td>AL-extensie, testcodeunit, wat de bouw aan de spec veranderde</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/tree/main/bc">Openen</a></td></tr>
+            <tr><td>Implementatie en uitrol</td><td>migratieplan, afstemming, cutover, go/no-go, <!--n:uat.total-->17<!--/n--> UAT-scenario's, migratiecontrole als Azure-functie</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/07-go-live/README.md">Openen</a></td></tr>
+            <tr><td>Eerste nazorg</td><td>hypercare-log naar oorzaak, telemetrie-queries in KQL</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/07-go-live/hypercare.md">Openen</a></td></tr>
             <tr><td>Schakel klant – AM – PM – developer</td><td>RACI, change request, statusrapport</td><td><a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/docs/00-project/raci.md">Openen</a></td></tr>
           </tbody>
         </table>
@@ -148,26 +275,42 @@ flowchart LR
       <h2>Beperkingen</h2>
       <ul>
         <li>Fictieve klant, fictief oud pakket, fictieve workshops; alle cijfers illustratief.</li>
-        <li>Niet in Business Central gebouwd: de standaard komt uit de Microsoft-documentatie, niet uit een sandbox.</li>
-        <li>Geen AL-code: de extensie is gespecificeerd, niet gebouwd.</li>
-        <li>Geen klantervaring geclaimd: dit toont hoe ik als functional consultant zou werken.</li>
+        <li>De AL-code compileert tegen Business Central 29.0, maar is nog niet in een sandbox gepubliceerd en gedraaid. De Azure-omgeving is als code klaar, niet gedeployed.</li>
+        <li>De workbench simuleert de boekingslogica vereenvoudigd (één regel, geen kortingen, geen afrondingsregels).</li>
+        <li>Geen klantervaring geclaimd: dit toont hoe ik als functional consultant zou werken. De AL-code is wat een developer zou bouwen; ze staat hier om de spec te toetsen.</li>
         <li>Elk getal op deze site komt uit één bron (<code>data/case.json</code>) en wordt bij elke wijziging automatisch gecontroleerd.</li>
       </ul>
       <p>Demo laadt niet? <a href="https://github.com/phlppgdfry/business-central-implementation-case/tree/main/docs/screenshots">Bekijk de schermafbeeldingen</a>.</p>
-      <p>Om te bewaren of door te sturen: <a href="one-pager/">samenvatting op één pagina</a> · <a href="deck/">interviewdeck (7 slides)</a> · <a href="https://github.com/phlppgdfry/business-central-implementation-case/raw/main/application-kit/exports/one-pager.pdf">one-pager als PDF</a>.</p>
+      <p>Om te bewaren of door te sturen: <a href="one-pager/">samenvatting op één pagina</a> · <a href="deck/">interviewdeck</a> · <a href="https://github.com/phlppgdfry/business-central-implementation-case/raw/main/application-kit/exports/one-pager.pdf">one-pager als PDF</a>.</p>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="wrap">
       <p>Onafhankelijke portfoliocase over een fictieve organisatie. Bevat geen vertrouwelijke informatie van een echte werkgever of klant.</p>
-      <p>Philippe Godfroy · <a href="https://github.com/phlppgdfry">GitHub</a> · bijgewerkt 2026-10-13</p>
+      <p>Philippe Godfroy · <a href="https://github.com/phlppgdfry">GitHub</a> · bijgewerkt 2026-10-17</p>
     </div>
   </footer>
 
+  <script src="assets/before-after.js"></script>
+  <script>
+    // BPMN viewer: process × phase, both as tabs
+    (() => {
+      const img = document.getElementById("bpmn-img");
+      let proc = "o2c", phase = "tobe";
+      const names = { o2c: "van order tot betaling", p2p: "aankoop" };
+      const show = () => { img.src = `assets/bpmn/${proc}_${phase}.svg`; img.alt = `${phase === "tobe" ? "TO-BE" : "AS-IS"}-proces ${names[proc]} in BPMN`; };
+      const bind = (attr, set) => document.querySelectorAll(`[${attr}]`).forEach((b) => b.addEventListener("click", () => {
+        document.querySelectorAll(`[${attr}]`).forEach((x) => x.setAttribute("aria-selected", String(x === b)));
+        set(b.getAttribute(attr)); show();
+      }));
+      bind("data-bpmn-case", (v) => (proc = v));
+      bind("data-bpmn-phase", (v) => (phase = v));
+    })();
+  </script>
   <script type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
-    const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+    const dark = matchMedia("(prefers-color-scheme: dark)").matches && document.documentElement.dataset.theme !== "light";
     mermaid.initialize({ startOnLoad: true, theme: dark ? "dark" : "neutral" });
   </script>
 </body>

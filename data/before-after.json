@@ -1,0 +1,39 @@
+{
+  "note": "Text for the comparison 'Vandaag en straks' on the landing page. Steps come from models/*.json; {key} is replaced by a claim from scripts/build.mjs (an unknown key fails the build). Vandaag = workshop findings (fictitious), straks = the solution design.",
+  "cases": [
+    {
+      "id": "o2c",
+      "tab": "Van order tot betaling",
+      "asis": { "model": "o2c_asis", "headline": "Elke factuur twee keer, de prijs uit een notitie, de bijdrage met de hand.", "end": "Marge pas na de maandafsluiting", "list": ["420 prijsafspraken als vrije tekst", "bijdrage geregeld vergeten: Kalvaert betaalt", "backorders op papier", "Peppol-portaal naast het pakket"] },
+      "tobe": { "model": "o2c_tobe", "headline": "Eén keer ingeven; prijs, bijdrage, btw en dimensies volgen uit de inrichting.", "end": "Betaald en afgepunt, marge per vestiging live", "list": ["prijslijsten per klantkortingsgroep (VK-01)", "bijdrageregel automatisch, de enige extensie (VK-10)", "restant blijft open op de order (VK-04)", "Peppol vanuit Business Central (EF-01)"] },
+      "kpis": [
+        { "label": "Keer ingeven per factuur", "asis": "2", "tobe": "1", "note": "EF-01, Peppol-app" },
+        { "label": "Prijsafspraken", "asis": "420 notities", "tobe": "prijslijsten", "note": "VK-01, opschoning MIG-05" },
+        { "label": "Verwijderingsbijdrage", "asis": "met de hand", "tobe": "automatisch", "note": "VK-10, {al.tests} AL-tests" },
+        { "label": "Marge per vestiging", "asis": "2 exports, Excel", "tobe": "dimensie op elke boeking", "note": "FIN-04" }
+      ]
+    },
+    {
+      "id": "p2p",
+      "tab": "Aankoop",
+      "asis": { "model": "p2p_asis", "headline": "Akkoord boven €5.000 is mondeling; de factuur wordt nooit met de ontvangst vergeleken.", "end": "Betaald, verschillen ontdekt via aanmaning", "list": ["prijslijsten uit pdf overtypen", "geen spoor van goedkeuringen", "tekorten in een schrift"] },
+      "tobe": { "model": "p2p_tobe", "headline": "Workflow boven €5.000, ontvangst per regel, factuur uit de ontvangstregels.", "end": "Betaald, verschil = vraag aan aankoop", "list": ["goedkeuringsworkflow (AK-01)", "prijslijst via vast sjabloon (AK-02)", "factuur uit ontvangstregels (AK-04)", "inkomende facturen via Peppol (EF-02)"] },
+      "kpis": [
+        { "label": "Goedkeuring boven €5.000", "asis": "mondeling", "tobe": "workflow met spoor", "note": "AK-01, configuratie" },
+        { "label": "Factuurcontrole", "asis": "geen", "tobe": "tegen ontvangst", "note": "AK-04, standaard" },
+        { "label": "Maatwerk in aankoop", "asis": "—", "tobe": "0 extensies", "note": "standaard en configuratie" }
+      ]
+    },
+    {
+      "id": "proj",
+      "tab": "Het project",
+      "asis": { "model": null, "headline": "Als elke wens maatwerk wordt.", "end": "Duurder, en elke update een risico", "list": ["elke gap met een extensieoptie wordt maatwerk", "ook de eindejaarsbonus en de balie"], "steps": [] },
+      "tobe": { "model": null, "headline": "Standaard eerst, één extensie, beslisser per regel.", "end": "Go-live met cijfers die kloppen", "list": ["{cls.stdconf} keer standaard of configuratie", "drie gaps als procesaanpassing", "migratie afgestemd tot op de cent"], "steps": [] },
+      "kpis": [
+        { "label": "Consultantdagen", "asis": "{max.days}", "tobe": "{decided.days}", "note": "fit-gap, scenario's in de workbench" },
+        { "label": "Extensies", "asis": "{max.extensions}", "tobe": "{cls.extensie}", "note": "ADR-001" },
+        { "label": "Verschil migratie", "asis": "{mig.diff.v1}", "tobe": "€0,00", "note": "generale repetitie → cutover" }
+      ]
+    }
+  ]
+}

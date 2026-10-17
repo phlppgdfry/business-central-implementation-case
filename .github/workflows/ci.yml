@@ -14,6 +14,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
+      - run: npm ci
       - name: Fit-gap rules, traceability, postings, migration, AL structure, Azure function logic, document claims
         run: node --test tests/*.test.mjs
       - name: Rebuild documents, site data, AL demo data and function libs from data/case.json; fail if anything drifted
