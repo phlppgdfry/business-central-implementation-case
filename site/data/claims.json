@@ -30,5 +30,12 @@
  "mig.diff.v1": "€1.586,40",
  "mig.inv.pct": "0,3",
  "setup.settings": 12,
- "dayrate": "€900"
+ "dayrate": "€900",
+ "al.fee.objects": "25",
+ "al.demo.objects": "9",
+ "al.tests": "12",
+ "al.subscribers": "14",
+ "al.customers": "28",
+ "al.setup.calls": "167",
+ "al.mig.lines": "40"
 }

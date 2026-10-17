@@ -33,6 +33,7 @@
 | U6 | Order wordt gekopieerd (document kopiëren) of een retourorder wordt gemaakt uit een factuur | precies één bijdrageregel per artikelregel, niet dubbel *(toegevoegd na HC-07)* |
 | U7 | Bijdragebedrag op het artikel wijzigt terwijl er open orders zijn | open orders blijven ongewijzigd; nieuwe regels krijgen het nieuwe bedrag |
 | U8 | Offerte wordt omgezet naar order | bijdrageregel gaat mee, niet opnieuw toegevoegd |
+| U9 | Deellevering: van 5 boilers worden er 2 verzonden | de bijdrageregel verzendt en factureert er ook 2, niet alles bij de eerste levering *(toegevoegd bij de bouw, zie §5)* |
 
 ## 2. Functionele spec voor de developer
 
@@ -68,9 +69,26 @@
 | T6 | order uit T1 kopiëren naar nieuwe order | precies één bijdrageregel per artikel *(toegevoegd na HC-07)* |
 | T7 | offerte met A-220318 omzetten naar order | één bijdrageregel |
 | T8 | boeken T1 | 700900 credit 7,00; btw 21% ook op de bijdrage |
+| T9 | order met A-220318 × 5, te verzenden 2 | bijdrageregel: hoeveelheid 5, te verzenden 2 *(toegevoegd bij de bouw)* |
 
 ## 4. Inschatting en aftekening
 
 - Inschatting developer: 2 dagen bouw + 1 dag test en documentatie = **3 dagen** (zie fit-gap).
 - Aftekening spec: key user verkoop en zaakvoerder (week 6). Aftekening test: UAT-06.
 - Updaterisico: laag — de extensie gebruikt alleen standaard events op verkoopregels; test T1–T8 bij elke jaarlijkse update.
+
+## 5. Gebouwd in AL
+
+De spec is gebouwd als per-tenant-extensie in [`bc/apps/removal-fee`](../../bc/apps/removal-fee/) (<!--n:al.fee.objects-->25<!--/n--> objecten, <!--n:al.subscribers-->14<!--/n--> event subscribers, alleen standaard events). De testgevallen staan als AL-testcodeunit in [`bc/apps/removal-fee-test`](../../bc/apps/removal-fee-test/src/KLVRemovalFeeTests.Codeunit.al): <!--n:al.tests-->12<!--/n--> tests, één per testgeval T1–T9 plus U4, U5 en U7. Alles compileert tegen de Belgische symbolen van Business Central 29.0 met CodeCop, UICop en PerTenantExtensionCop, zonder één waarschuwing ([bc/README.md](../../bc/README.md)).
+
+Wat de bouw aan de spec veranderde, en waarom een functional consultant dat moet weten:
+
+| Bij het bouwen bleek | Gevolg voor de spec |
+|---|---|
+| Een G/L-regel op een order wordt standaard volledig verzonden bij de eerste levering. Bij een deellevering (VK-04) zou de bijdrage voor 5 boilers mee gefactureerd worden terwijl er 2 vertrekken. | **U9 en T9 toegevoegd**: de te verzenden hoeveelheid van de bijdrage volgt de artikelregel. |
+| Als de klant op een order verandert, maakt Business Central alle regels opnieuw aan. De kopie van de bijdrageregel zou haar markering verliezen en als gewone regel op 700900 blijven staan. | Bijdrageregels gaan eruit vóór het herschrijven en komen terug als de nieuwe klant BINNENL is (test U4 controleert dat er geen gewone 700900-regel achterblijft). |
+| Omzetrekeningen 700000–706000 hebben "code verplicht" voor VESTIGING en AFDELING (FIN-04). Een bijdrageregel zonder dimensies blokkeert het boeken. | De bijdrageregel neemt de dimensies van de artikelregel over (T1 controleert het). |
+| Standaard kopieert en zet om met veel regels tegelijk (document kopiëren, offerte naar order, verzendregels ophalen). Regel per regel ingrijpen geeft dubbele regels of botsende regelnummers. | Tijdens zo'n bewerking staat de automatiek stil; daarna wordt het hele document één keer afgestemd. Bij vrijgeven en boeken nog een keer, als vangnet. |
+
+**Status:** gecompileerd en statisch gecontroleerd, nog **niet gedraaid in een Business Central-sandbox**. De tests draaien pas met `node bc/scripts/sandbox.mjs tests` in een sandbox; tot dan is "werkt" een verwachting, geen resultaat.
+

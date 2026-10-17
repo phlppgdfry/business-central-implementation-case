@@ -2,12 +2,15 @@
 //   - site/data/case.json            (data + computed results for the workbench)
 //   - generated tables in docs/      (fit-gap register, workshops, posting matrix, reconciliation, UAT, hypercare)
 //   - docs/03-fit-gap/fit-gap.csv    (opens in Excel)
+//   - bc/apps/demo-setup/src/generated/  (AL data codeunit: the solution design as code for the sandbox)
+//   - azure/functions/lib/            (shared logic + control totals for the Azure Functions)
 //   - every <!--n:key-->…<!--/n--> number in the hand-written documents and the site
 // CI runs this and fails if anything changed, so documents can never drift from the model.
 // Run: node scripts/build.mjs
 import { readFileSync, writeFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import * as L from "../site/assets/case-logic.mjs";
+import { generateDemoData } from "./al-gen.mjs";
 
 const caseData = JSON.parse(readFileSync("data/case.json", "utf8"));
 const ctl = caseData.migration.controls.customerReceivablesAtCutoff;
@@ -70,6 +73,24 @@ const claims = {
   "setup.settings": caseData.setup.settings.length,
   "dayrate": eur(caseData.meta.dayRateEur, 0),
 };
+// ---------- Business Central: the solution design as AL, and counts from the AL apps ----------
+const migrationCsv = readFileSync(ctl.file, "utf8");
+const demo = generateDemoData(caseData, migrationCsv, readFileSync("data/case.json", "utf8") + migrationCsv);
+writeFileSync("bc/apps/demo-setup/src/generated/KLVDemoData.Codeunit.al", demo.code);
+const alFiles = (app) => walk(join("bc/apps", app, "src")).filter((f) => f.endsWith(".al")).map((f) => readFileSync(f, "utf8"));
+const alObjects = (app) => alFiles(app).reduce((n, t) => n + (t.match(/^(table|tableextension|page|pageextension|codeunit|permissionset|permissionsetextension|query|report|enum|enumextension)\s+\d+/gm)?.length ?? 0), 0);
+const alTests = alFiles("removal-fee-test").reduce((n, t) => n + (t.match(/^\s*\[Test\]/gm)?.length ?? 0), 0);
+const subscribers = alFiles("removal-fee").reduce((n, t) => n + (t.match(/\[EventSubscriber\(/g)?.length ?? 0), 0);
+Object.assign(claims, {
+  "al.fee.objects": String(alObjects("removal-fee")),
+  "al.demo.objects": String(alObjects("demo-setup")),
+  "al.tests": String(alTests),
+  "al.subscribers": String(subscribers),
+  "al.customers": String(demo.customers.length),
+  "al.setup.calls": String((demo.code.match(/^\s+H\./gm) ?? []).length),
+  "al.mig.lines": String((demo.code.match(/M\.AddEntry\(/g) ?? []).length),
+});
+
 writeFileSync("site/data/claims.json", JSON.stringify(claims, null, 1) + "\n");
 
 // ---------- generated documents ----------
@@ -287,6 +308,12 @@ De les voor de overdracht: wie hypercare-meldingen alleen oplost, krijgt ze teru
 ${md(caseData.hypercare.map((h) => [h.id, h.day, h.symptom, h.category, h.cause, h.fix, h.structural, `${h.req} ${reqById[h.req].title}`]))}
 `,
 );
+
+// ---------- Azure Functions: same logic as the workbench and the tests, copied so the function package is self-contained ----------
+const LIB = "azure/functions/lib";
+writeFileSync(`${LIB}/case-logic.mjs`, `// Copied from site/assets/case-logic.mjs by scripts/build.mjs — do not edit here.\n${readFileSync("site/assets/case-logic.mjs", "utf8")}`);
+writeFileSync(`${LIB}/verify-lib.mjs`, `// Copied from bc/scripts/verify-lib.mjs by scripts/build.mjs — do not edit here.\n${readFileSync("bc/scripts/verify-lib.mjs", "utf8").replace("../../site/assets/case-logic.mjs", "./case-logic.mjs")}`);
+writeFileSync(`${LIB}/controls.json`, JSON.stringify({ note: "Generated from data/case.json by scripts/build.mjs.", legacy: ctl.legacy, customerPostingGroups: caseData.setup.customerPostingGroups, suspenseAccount: caseData.migration.controls.migrationSuspense.account }, null, 1) + "\n");
 
 // ---------- fill claims in hand-written files ----------
 const handWritten = [...walk("docs"), ...walk("site"), "README.md", "START-HERE.md", "EVIDENCE.md", "CASE_STUDY.md", ...walk("application-kit")]

@@ -7,3 +7,10 @@ __pycache__/
 *.pyc
 .vscode/
 .idea/
+# Business Central: downloaded symbols, build output, generated XLIFF, compiler snapshots, local connection settings
+bc/.alpackages/
+bc/out/
+bc/apps/*/Translations/*.g.xlf
+bc/apps/*/.snapshots/
+bc/apps/*/*.app
+bc/sandbox.local.json

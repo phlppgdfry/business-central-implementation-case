@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "al",
+      "request": "launch",
+      "name": "Kalvaert sandbox",
+      "environmentType": "Sandbox",
+      "environmentName": "kalvaert-dev",
+      "tenant": "<your tenant id or domain>",
+      "startupObjectType": "Page",
+      "startupObjectId": 50201,
+      "schemaUpdateMode": "Synchronize",
+      "breakOnError": "All",
+      "launchBrowser": true
+    }
+  ]
+}

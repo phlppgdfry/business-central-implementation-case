@@ -14,12 +14,55 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - name: Fit-gap rules, traceability, postings, migration reconciliation, document claims
+      - name: Fit-gap rules, traceability, postings, migration, AL structure, Azure function logic, document claims
         run: node --test tests/*.test.mjs
-      - name: Rebuild documents and site data from data/case.json; fail if anything drifted
+      - name: Rebuild documents, site data, AL demo data and function libs from data/case.json; fail if anything drifted
         run: |
           node scripts/generate-seed.mjs
           node scripts/build.mjs
           git diff --exit-code
       - name: Links
         run: python3 scripts/check-links.py
+
+  al:
+    name: Business Central apps (compile + CodeCop, UICop, PerTenantExtensionCop)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: AL CLI from NuGet
+        run: dotnet tool install -g Microsoft.Dynamics.BusinessCentral.Development.Tools --version 18.1.43.24897
+      - name: Cache symbols
+        uses: actions/cache@v4
+        with:
+          path: bc/.alpackages
+          key: bc-symbols-${{ hashFiles('bc/symbols.json') }}
+      - name: Symbols (BC 29.0, BE) from Microsoft's public feed
+        run: node bc/scripts/symbols.mjs
+      - name: Compile all apps, zero warnings, nl-BE translations complete
+        run: node bc/scripts/compile.mjs
+      - name: Committed translations match the captions in the code
+        run: git diff --exit-code -- 'bc/apps/*/Translations/*.nl-BE.xlf'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kalvaert-bc-apps
+          path: |
+            bc/out/*.app
+            bc/out/build-report.json
+
+  azure:
+    name: Azure landscape (Bicep build + lint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bicep
+        run: |
+          az bicep install
+          az bicep build --file azure/main.bicep --stdout > /dev/null
+          az bicep lint --file azure/main.bicep
+          az bicep build-params --file azure/dev.bicepparam --stdout > /dev/null

@@ -1,0 +1,14 @@
+{
+  "folders": [
+    { "path": "apps/removal-fee", "name": "Kalvaert Removal Fee" },
+    { "path": "apps/demo-setup", "name": "Kalvaert Demo Setup" },
+    { "path": "apps/removal-fee-test", "name": "Kalvaert Removal Fee Tests" }
+  ],
+  "settings": {
+    "al.packageCachePath": ["../../.alpackages"],
+    "al.enableCodeAnalysis": true,
+    "al.codeAnalyzers": ["${CodeCop}", "${UICop}", "${PerTenantExtensionCop}"],
+    "al.backgroundCodeAnalysis": "Project"
+  },
+  "extensions": { "recommendations": ["ms-dynamics-smb.al"] }
+}

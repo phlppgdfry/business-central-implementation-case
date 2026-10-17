@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="nl-BE" original="Kalvaert Demo Setup">
+    <body>
+      <group id="body">
+        <trans-unit id="Table 2983468656 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Demo Setup Run</source>
+          <target state="translated">Uitvoering demo-inrichting</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Demo Setup Run - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2983468656 - Field 3527730820 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cutover Date</source>
+          <target state="translated">Overgangsdatum</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Demo Setup Run - Field Cutover Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2983468656 - Field 2789615254 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Data Version</source>
+          <target state="translated">Dataversie</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Demo Setup Run - Field Data Version - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2983468656 - Field 3812698340 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Migration Amount</source>
+          <target state="translated">Migratiebedrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Demo Setup Run - Field Migration Amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2983468656 - Field 2938722515 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Migration Lines</source>
+          <target state="translated">Migratieregels</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Demo Setup Run - Field Migration Lines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2983468656 - Field 927524540 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Migration Posted At</source>
+          <target state="translated">Migratie geboekt op</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Demo Setup Run - Field Migration Posted At - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2983468656 - Field 1042278232 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Migration Prepared At</source>
+          <target state="translated">Migratie klaargezet op</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Demo Setup Run - Field Migration Prepared At - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2983468656 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <target state="translated">Primaire sleutel</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Demo Setup Run - Field Primary Key - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2983468656 - Field 559559561 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Setup Applied At</source>
+          <target state="translated">Inrichting toegepast op</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Demo Setup Run - Field Setup Applied At - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2983468656 - Field 2164990091 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Setup Records</source>
+          <target state="translated">Instellingsrecords</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Demo Setup Run - Field Setup Records - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Kalvaert Demo Setup</source>
+          <target state="translated">Kalvaert demo-inrichting</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Control 4272349877 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Migration (MIG-06)</source>
+          <target state="translated">Migratie (MIG-06)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Control MigrationGroup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Control 3527730820 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the posting date of the opening entries.</source>
+          <target state="translated">Geeft de boekingsdatum van de openingsposten op.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Control Cutover Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Control 3812698340 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the total of the open customer entries. It must match the receivables in the legacy system.</source>
+          <target state="translated">Geeft het totaal van de openstaande klantposten op. Het moet overeenkomen met de vorderingen in het oude pakket.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Control Migration Amount - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Control 2938722515 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of open customer entries in the migration journal.</source>
+          <target state="translated">Geeft het aantal openstaande klantposten in het migratiedagboek op.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Control Migration Lines - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Control 927524540 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies when the migration journal was posted.</source>
+          <target state="translated">Geeft aan wanneer het migratiedagboek geboekt is.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Control Migration Posted At - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Control 1042278232 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies when the migration journal was prepared.</source>
+          <target state="translated">Geeft aan wanneer het migratiedagboek klaargezet is.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Control Migration Prepared At - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Control 2495166380 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Solution design</source>
+          <target state="translated">Oplossingsontwerp</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Control SetupGroup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Control 2789615254 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the version of data/case.json the setup was generated from.</source>
+          <target state="translated">Geeft de versie van data/case.json op waaruit de inrichting gegenereerd is.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Control Data Version - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Control 559559561 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies when the setup from the solution design was last applied.</source>
+          <target state="translated">Geeft aan wanneer de inrichting uit het oplossingsontwerp het laatst toegepast is.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Control Setup Applied At - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Control 2164990091 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies how many setup records were created or updated.</source>
+          <target state="translated">Geeft aan hoeveel instellingsrecords aangemaakt of bijgewerkt zijn.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Control Setup Records - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Action 2495642269 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Creates or updates accounts, posting groups, VAT setup, dimensions, locations, items, customers and the removal fee setup.</source>
+          <target state="translated">Maakt of werkt rekeningen, boekingsgroepen, btw-instellingen, dimensies, locaties, artikels, klanten en de instellingen van de verwijderingsbijdrage bij.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Action ApplySetup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Action 2495642269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Apply solution design</source>
+          <target state="translated">Oplossingsontwerp toepassen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Action ApplySetup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Action 2495642269 - Method 1377591017 - NamedType 2045047760" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 setup records created or updated.</source>
+          <target state="translated">%1 instellingsrecords aangemaakt of bijgewerkt.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = number of records</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Action ApplySetup - Method OnAction - NamedType AppliedMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Action 665436992 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posts the migration journal. Afterwards the receivables accounts must match the legacy balances to the cent.</source>
+          <target state="translated">Boekt het migratiedagboek. Daarna moeten de debiteurenrekeningen tot op de cent overeenkomen met de saldi in het oude pakket.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Action PostMigration - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Action 665436992 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Post migration journal</source>
+          <target state="translated">Migratiedagboek boeken</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Action PostMigration - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Action 1539806983 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fills journal KLV-MIG / KLANTEN with one line per open legacy document, against suspense account 499000, with the work date as cutover date.</source>
+          <target state="translated">Vult dagboek KLV-MIG / KLANTEN met één regel per openstaand document uit het oude pakket, tegen overgangsrekening 499000, met de werkdatum als overgangsdatum.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Action PrepareMigration - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2094359255 - Action 1539806983 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Prepare migration journal</source>
+          <target state="translated">Migratiedagboek klaarzetten</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup - Action PrepareMigration - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 673615247 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>KLV Demo Setup API</source>
+          <target state="translated">KLV Demo-inrichting API</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup API - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 673615247 - Property 3446740159" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Demo Setup</source>
+          <target state="translated">Demo-inrichting</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup API - Property EntityCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 673615247 - Property 631549417" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Demo Setups</source>
+          <target state="translated">Demo-inrichtingen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup API - Property EntitySetCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 673615247 - Control 1833349660 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Cutover Date</source>
+          <target state="translated">Overgangsdatum</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup API - Control cutoverDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 673615247 - Control 601555582 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Data Version</source>
+          <target state="translated">Dataversie</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup API - Control dataVersion - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 673615247 - Control 2686962215 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Id</source>
+          <target state="translated">Id</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup API - Control id - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 673615247 - Control 1967574636 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Migration Amount</source>
+          <target state="translated">Migratiebedrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup API - Control migrationAmount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 673615247 - Control 1963953595 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Migration Lines</source>
+          <target state="translated">Migratieregels</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup API - Control migrationLines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 673615247 - Control 1185618820 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Migration Posted At</source>
+          <target state="translated">Migratie geboekt op</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup API - Control migrationPostedAt - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 673615247 - Control 3989687952 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Migration Prepared At</source>
+          <target state="translated">Migratie klaargezet op</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup API - Control migrationPreparedAt - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 673615247 - Control 833605505 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Setup Applied At</source>
+          <target state="translated">Inrichting toegepast op</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup API - Control setupAppliedAt - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 673615247 - Control 472765915 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Setup Records</source>
+          <target state="translated">Instellingsrecords</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Demo Setup API - Control setupRecords - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 729416172 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>KLV Open Cust. Entries API</source>
+          <target state="translated">KLV Openstaande klantposten API</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Open Cust. Entries API - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 729416172 - Property 3446740159" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open Customer Entry</source>
+          <target state="translated">Openstaande klantpost</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Open Cust. Entries API - Property EntityCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 729416172 - Property 631549417" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open Customer Entries</source>
+          <target state="translated">Openstaande klantposten</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Open Cust. Entries API - Property EntitySetCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 729416172 - Control 1108861191 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer No.</source>
+          <target state="translated">Klantnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Open Cust. Entries API - Control customerNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 729416172 - Control 3020568349 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Posting Group</source>
+          <target state="translated">Klantboekingsgroep</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Open Cust. Entries API - Control customerPostingGroup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 729416172 - Control 73228906 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document No.</source>
+          <target state="translated">Documentnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Open Cust. Entries API - Control documentNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 729416172 - Control 305869689 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document Type</source>
+          <target state="translated">Documenttype</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Open Cust. Entries API - Control documentType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 729416172 - Control 2683860767 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <target state="translated">Volgnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Open Cust. Entries API - Control entryNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 729416172 - Control 3947953933 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>External Document No.</source>
+          <target state="translated">Extern documentnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Open Cust. Entries API - Control externalDocumentNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 729416172 - Control 2686962215 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Id</source>
+          <target state="translated">Id</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Open Cust. Entries API - Control id - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 729416172 - Control 1260828904 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date</source>
+          <target state="translated">Boekingsdatum</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Open Cust. Entries API - Control postingDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 729416172 - Control 3751902538 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remaining Amount (LCY)</source>
+          <target state="translated">Openstaand bedrag (LV)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Open Cust. Entries API - Control remainingAmountLCY - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 3148182839 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Kalvaert demo setup – run</source>
+          <target state="translated">Kalvaert demo-inrichting – uitvoeren</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet KLV DEMO SETUP - Property Caption</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

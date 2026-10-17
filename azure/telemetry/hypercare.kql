@@ -1,0 +1,70 @@
+// Kalvaert BC — hypercare queries on Business Central telemetry in Application Insights.
+// Connect the environment in the BC admin center (Environments → kalvaert-dev → Telemetry) with the
+// connection string from the Bicep output, and the extension through app.json "applicationInsightsConnectionString".
+// Event ids: https://learn.microsoft.com/dynamics365/business-central/dev-itpro/administration/telemetry-event-ids
+// Each query answers one hypercare question; the categories match docs/07-go-live/hypercare.md (data, setup, opleiding, bug).
+
+// 1. Which error messages do users see, and on which page? (alert in main.bicep fires above 20 per hour)
+//    Many identical errors on one page = setup or permission problem (category "setup"), not user error.
+traces
+| where timestamp > ago(7d)
+| where customDimensions.eventId == "RT0030"
+| extend page = tostring(customDimensions.alObjectName), error = tostring(customDimensions.failureReason)
+| summarize count(), users = dcount(tostring(customDimensions.userTelemetryId)) by page, error
+| order by count_ desc;
+
+// 2. Slow AL operations (> threshold) per object: candidates for a performance ticket at the partner.
+traces
+| where timestamp > ago(7d)
+| where customDimensions.eventId == "RT0018"
+| extend object = strcat(tostring(customDimensions.alObjectType), " ", tostring(customDimensions.alObjectName)), ms = totimespan(customDimensions.executionTime) / 1ms
+| summarize count(), p95_ms = percentile(ms, 95) by object
+| order by p95_ms desc;
+
+// 3. Long-running SQL: usually a missing key or a FlowField on a list page.
+traces
+| where timestamp > ago(7d)
+| where customDimensions.eventId == "RT0005"
+| extend object = tostring(customDimensions.alObjectName), ms = totimespan(customDimensions.executionTime) / 1ms
+| summarize count(), max_ms = max(ms) by object
+| order by count_ desc;
+
+// 4. API and web service calls (webshop later, the Azure reconciliation now): volume and failures per endpoint.
+traces
+| where timestamp > ago(7d)
+| where customDimensions.eventId == "RT0008"
+| extend endpoint = tostring(customDimensions.endpoint), status = toint(customDimensions.httpStatusCode)
+| summarize calls = count(), failed = countif(status >= 400) by endpoint
+| order by failed desc;
+
+// 5. Job queue entries that failed (Peppol sending, CODA import, adjust cost) — someone must act today.
+traces
+| where timestamp > ago(7d)
+| where customDimensions.eventId == "AL0000HE7"
+| extend job = strcat(tostring(customDimensions.alJobQueueObjectType), " ", tostring(customDimensions.alJobQueueObjectId)), error = tostring(customDimensions.alJobQueueStacktrace)
+| summarize failures = count(), last = max(timestamp) by job
+| order by last desc;
+
+// 6. Extension lifecycle: did the Kalvaert apps install and upgrade cleanly after the update weekend?
+traces
+| where timestamp > ago(30d)
+| where customDimensions.eventId in ("LC0010", "LC0011", "LC0020", "LC0021", "LC0022", "LC0023")
+| where tostring(customDimensions.extensionPublisher) == "Kalvaert Portfolio Case"
+| project timestamp, event = tostring(customDimensions.eventId), extension = tostring(customDimensions.extensionName), version = tostring(customDimensions.extensionVersion), message
+| order by timestamp desc;
+
+// 7. The removal fee extension's own signals (Session.LogMessage in KLVRemovalFeeMgt.Codeunit.al):
+//    KLV0001 fee line added · KLV0002 fee lines removed (customer not domestic) · KLV0003 document reconciled.
+//    A KLV0002 spike after go-live = customers with the wrong business posting group in the migration (MIG-02).
+traces
+| where timestamp > ago(7d)
+| where customDimensions.eventId in ("KLV0001", "KLV0002", "KLV0003")
+| summarize count() by event = tostring(customDimensions.eventId), bin(timestamp, 1d)
+| render columnchart;
+
+// 8. Adoption: active users per day in the first weeks (opleiding: who has not logged in yet?).
+traces
+| where timestamp > ago(30d)
+| where customDimensions.eventId == "CL0001"
+| summarize users = dcount(tostring(customDimensions.userTelemetryId)) by bin(timestamp, 1d)
+| render timechart;

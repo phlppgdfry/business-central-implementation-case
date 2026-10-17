@@ -1,0 +1,18 @@
+{
+ "note": "Generated from data/case.json by scripts/build.mjs.",
+ "legacy": {
+  "400000": 170703.53,
+  "400100": 29910.71
+ },
+ "customerPostingGroups": [
+  {
+   "code": "BINNENL",
+   "receivables": "400000"
+  },
+  {
+   "code": "BUITENL",
+   "receivables": "400100"
+  }
+ ],
+ "suspenseAccount": "499000"
+}

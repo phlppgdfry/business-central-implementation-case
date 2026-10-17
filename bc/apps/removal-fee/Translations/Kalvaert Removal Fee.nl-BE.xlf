@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="nl-BE" original="Kalvaert Removal Fee">
+    <body>
+      <group id="body">
+        <trans-unit id="Table 2075434594 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Removal Fee Setup</source>
+          <target state="translated">Instellingen verwijderingsbijdrage</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2075434594 - Field 3781275066 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the description of the fee line. %1 is replaced by the item number.</source>
+          <target state="translated">Geeft de omschrijving van de bijdrageregel op. %1 wordt vervangen door het artikelnummer.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Field Description Template - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2075434594 - Field 3781275066 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description Template</source>
+          <target state="translated">Omschrijvingssjabloon</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Field Description Template - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2075434594 - Field 2891538263 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies whether fee lines are added automatically. Turn this off during data migration.</source>
+          <target state="translated">Geeft aan of bijdrageregels automatisch toegevoegd worden. Schakel dit uit tijdens de datamigratie.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Field Enabled - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2075434594 - Field 2891538263 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Enabled</source>
+          <target state="translated">Ingeschakeld</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Field Enabled - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2075434594 - Field 1406730552 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the revenue account the fee line posts to.</source>
+          <target state="translated">Geeft de opbrengstrekening op waarop de bijdrageregel geboekt wordt.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Field Fee G/L Account No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2075434594 - Field 1406730552 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fee G/L Account No.</source>
+          <target state="translated">Grootboekrekeningnr. bijdrage</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Field Fee G/L Account No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2075434594 - Field 633819257 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the general business posting group of the customers who pay the fee (domestic deliveries only).</source>
+          <target state="translated">Geeft de algemene bedrijfsboekingsgroep op van de klanten die de bijdrage betalen (alleen leveringen in België).</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Field Gen. Bus. Posting Group - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2075434594 - Field 633819257 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Applies to Gen. Bus. Posting Group</source>
+          <target state="translated">Geldt voor alg. bedrijfsboekingsgroep</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Field Gen. Bus. Posting Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2075434594 - Field 2139693550 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the general product posting group of the fee line, so the fee is reported apart from the goods.</source>
+          <target state="translated">Geeft de algemene productboekingsgroep van de bijdrageregel op, zodat de bijdrage apart van de goederen gerapporteerd wordt.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Field Gen. Prod. Posting Group - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2075434594 - Field 2139693550 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Gen. Prod. Posting Group</source>
+          <target state="translated">Alg. productboekingsgroep</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Field Gen. Prod. Posting Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2075434594 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <target state="translated">Primaire sleutel</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Field Primary Key - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2559949379 - NamedType 1260440724" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This removal fee line is managed automatically. Change or delete the item line above it instead.</source>
+          <target state="translated">Deze bijdrageregel wordt automatisch beheerd. Wijzig of verwijder de artikelregel erboven.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit KLV Removal Fee Mgt. - NamedType ManagedErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2559949379 - NamedType 2441722197" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Removal fee lines were removed from %1 %2: the fee only applies to deliveries in Belgium.</source>
+          <target state="translated">De bijdrageregels zijn verwijderd uit %1 %2: de verwijderingsbijdrage geldt alleen voor leveringen in België.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = document type, %2 = document number</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit KLV Removal Fee Mgt. - NamedType RemovedMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 2075434594 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Removal Fee Setup</source>
+          <target state="translated">Instellingen verwijderingsbijdrage</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Removal Fee Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2075434594 - Control 2000280668 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fee line</source>
+          <target state="translated">Bijdrageregel</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Removal Fee Setup - Control FeeLine - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2075434594 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <target state="translated">Algemeen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page KLV Removal Fee Setup - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 364500248 - Field 3027542939 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
+          <source>Specifies the removal fee per unit (verwijderingsbijdrage). Domestic sales documents get a fee line for this amount under the item line. Only users allowed in User Setup can change it.</source>
+          <target state="translated">Geeft de verwijderingsbijdrage per eenheid op. Verkoopdocumenten voor Belgische klanten krijgen onder de artikelregel een bijdrageregel voor dit bedrag. Alleen gebruikers die dit mogen volgens de gebruikersinstellingen kunnen het wijzigen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Item - Field KLV Removal Fee - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 364500248 - Field 3027542939 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3276313895">
+          <source>Removal Fee</source>
+          <target state="translated">Verwijderingsbijdrage</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Item - Field KLV Removal Fee - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 364500248 - Field 3027542939 - Method 2126772001 - NamedType 2957784316" size-unit="char" translate="yes" xml:space="preserve" al-object-target="TableExtension 364500248">
+          <source>You are not allowed to change the removal fee. Ask purchasing, or ask an administrator to turn on %1 for you in User Setup.</source>
+          <target state="translated">U mag de verwijderingsbijdrage niet wijzigen. Vraag het aan aankoop, of vraag een beheerder om %1 voor u aan te zetten in de gebruikersinstellingen.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = field caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Item - Field KLV Removal Fee - Method OnValidate - NamedType NotAllowedErr</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 4251792555 - Field 3157911697 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1173465396">
+          <source>Specifies that this line was the automatic removal fee for the item line above it.</source>
+          <target state="translated">Geeft aan dat deze regel de automatische verwijderingsbijdrage was van de artikelregel erboven.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Return Receipt Line - Field KLV Removal Fee Line - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 4251792555 - Field 3157911697 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1173465396">
+          <source>Removal Fee Line</source>
+          <target state="translated">Bijdrageregel</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Return Receipt Line - Field KLV Removal Fee Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2471609734 - Field 3157911697 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3059602325">
+          <source>Specifies that this line was the automatic removal fee for the item line above it.</source>
+          <target state="translated">Geeft aan dat deze regel de automatische verwijderingsbijdrage was van de artikelregel erboven.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Sales Cr.Memo Line - Field KLV Removal Fee Line - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2471609734 - Field 3157911697 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3059602325">
+          <source>Removal Fee Line</source>
+          <target state="translated">Bijdrageregel</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Sales Cr.Memo Line - Field KLV Removal Fee Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 4047993570 - Field 3157911697 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2079186865">
+          <source>Specifies that this line was the automatic removal fee for the item line above it.</source>
+          <target state="translated">Geeft aan dat deze regel de automatische verwijderingsbijdrage was van de artikelregel erboven.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Sales Invoice Line - Field KLV Removal Fee Line - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 4047993570 - Field 3157911697 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2079186865">
+          <source>Removal Fee Line</source>
+          <target state="translated">Bijdrageregel</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Sales Invoice Line - Field KLV Removal Fee Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3855727537 - Field 3157911697 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
+          <source>Specifies that this line is the removal fee for the item line it is attached to. The line is managed automatically and cannot be changed by hand.</source>
+          <target state="translated">Geeft aan dat deze regel de verwijderingsbijdrage is van de artikelregel erboven. De regel wordt automatisch beheerd en kan niet met de hand gewijzigd worden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Sales Line - Field KLV Removal Fee Line - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 3855727537 - Field 3157911697 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
+          <source>Removal Fee Line</source>
+          <target state="translated">Bijdrageregel</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Sales Line - Field KLV Removal Fee Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1804767327 - Field 3157911697 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2903552224">
+          <source>Specifies that this line was the automatic removal fee for the item line above it.</source>
+          <target state="translated">Geeft aan dat deze regel de automatische verwijderingsbijdrage was van de artikelregel erboven.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Sales Line Archive - Field KLV Removal Fee Line - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1804767327 - Field 3157911697 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2903552224">
+          <source>Removal Fee Line</source>
+          <target state="translated">Bijdrageregel</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Sales Line Archive - Field KLV Removal Fee Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 586304553 - Field 3157911697 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1114148978">
+          <source>Specifies that this line was the automatic removal fee for the item line above it.</source>
+          <target state="translated">Geeft aan dat deze regel de automatische verwijderingsbijdrage was van de artikelregel erboven.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Sales Shipment Line - Field KLV Removal Fee Line - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 586304553 - Field 3157911697 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1114148978">
+          <source>Removal Fee Line</source>
+          <target state="translated">Bijdrageregel</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV Sales Shipment Line - Field KLV Removal Fee Line - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1039560353 - Field 382631443 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 337631938">
+          <source>Specifies whether the user may change the removal fee on items. In the Kalvaert case only purchasing gets this.</source>
+          <target state="translated">Geeft aan of de gebruiker de verwijderingsbijdrage op artikels mag wijzigen. Bij Kalvaert krijgt alleen aankoop dit recht.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV User Setup - Field KLV Can Edit Removal Fee - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1039560353 - Field 382631443 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 337631938">
+          <source>Can Edit Removal Fee</source>
+          <target state="translated">Mag verwijderingsbijdrage wijzigen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension KLV User Setup - Field KLV Can Edit Removal Fee - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 504988571 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Kalvaert removal fee – use</source>
+          <target state="translated">Kalvaert verwijderingsbijdrage – gebruiken</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet KLV REMOVAL FEE - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 753958691 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Kalvaert removal fee – setup</source>
+          <target state="translated">Kalvaert verwijderingsbijdrage – instellen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet KLV REMOVAL FEE ADM - Property Caption</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

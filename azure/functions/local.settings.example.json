@@ -1,0 +1,12 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "BC_TENANT": "<tenant id>",
+    "BC_ENVIRONMENT": "kalvaert-dev",
+    "BC_COMPANY": "KALVAERT",
+    "BC_CLIENT_ID": "",
+    "BC_CLIENT_SECRET": ""
+  }
+}

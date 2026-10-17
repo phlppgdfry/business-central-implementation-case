@@ -1,0 +1,85 @@
+{
+  "note": "Business Central 29.0 (2026 release wave 2), Belgian localisation. Symbol packages come from Microsoft's public NuGet feed for AL development; no account or licence needed. Bump the versions here to compile against a newer release.",
+  "feed": "https://dynamicssmb2.pkgs.visualstudio.com/571e802d-b44b-45fc-bd41-4cfddec73b44/_packaging/b656b10c-3de0-440c-900c-bc2e4e86d84c/nuget/v3/flat2",
+  "packages": [
+    {
+      "name": "System",
+      "id": "Microsoft.Platform.symbols",
+      "version": "29.0.55597"
+    },
+    {
+      "name": "System Application",
+      "id": "Microsoft.SystemApplication.BE.symbols.63ca2fa4-4f03-4f2b-a480-172fef340d3f",
+      "version": "29.0.54011.55644"
+    },
+    {
+      "name": "Business Foundation",
+      "id": "Microsoft.BusinessFoundation.BE.symbols.f3552374-a1f2-4356-848e-196002525837",
+      "version": "29.0.54011.55644"
+    },
+    {
+      "name": "Base Application",
+      "id": "Microsoft.BaseApplication.BE.symbols.437dbf0e-84ff-417a-965d-ed2bb9650972",
+      "version": "29.0.54011.55644"
+    },
+    {
+      "name": "Application",
+      "id": "Microsoft.Application.BE.symbols",
+      "version": "29.0.54011.55644"
+    },
+    {
+      "name": "Library Assert",
+      "id": "Microsoft.LibraryAssert.BE.symbols.dd0be2ea-f733-4d65-bb34-a28f4624fb14",
+      "version": "29.0.54011.55644",
+      "tests": true
+    },
+    {
+      "name": "Library Variable Storage",
+      "id": "Microsoft.LibraryVariableStorage.BE.symbols.5095f467-0a01-4b99-99d1-9ff1237d286f",
+      "version": "29.0.54011.55644",
+      "tests": true
+    },
+    {
+      "name": "Permissions Mock",
+      "id": "Microsoft.PermissionsMock.BE.symbols.40860557-a18d-42ad-aecb-22b7dd80dc80",
+      "version": "29.0.54011.55644",
+      "tests": true
+    },
+    {
+      "name": "Any",
+      "id": "Microsoft.Any.BE.symbols.e7320ebb-08b3-4406-b1ec-b4927d3e280b",
+      "version": "29.0.54011.55644",
+      "tests": true
+    },
+    {
+      "name": "System Application Test Library",
+      "id": "Microsoft.SystemApplicationTestLibrary.BE.symbols.9856ae4f-d1a7-46ef-89bb-6ef056398228",
+      "version": "29.0.54011.55644",
+      "tests": true
+    },
+    {
+      "name": "Business Foundation Test Libraries",
+      "id": "Microsoft.BusinessFoundationTestLibraries.BE.symbols.bee8cf2f-494a-42f4-aabd-650e87934d39",
+      "version": "29.0.54011.55644",
+      "tests": true
+    },
+    {
+      "name": "Application Test Library",
+      "id": "Microsoft.ApplicationTestLibrary.BE.symbols.d852d5d2-a39d-4179-baeb-f99a19e32510",
+      "version": "29.0.54011.55644",
+      "tests": true
+    },
+    {
+      "name": "Tests-TestLibraries",
+      "id": "Microsoft.Tests-TestLibraries.BE.symbols.5d86850b-0d76-4eca-bd7b-951ad998e997",
+      "version": "29.0.54011.55644",
+      "tests": true
+    },
+    {
+      "name": "Test Runner",
+      "id": "Microsoft.TestRunner.BE.symbols.23de40a6-dfe8-4f80-80db-d70f83ce8caf",
+      "version": "29.0.54011.55644",
+      "tests": true
+    }
+  ]
+}
