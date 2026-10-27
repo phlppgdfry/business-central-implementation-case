@@ -1,27 +1,24 @@
-import { app } from "@azure/functions";
-import { BlobServiceClient } from "@azure/storage-blob";
-import { DefaultAzureCredential } from "@azure/identity";
+import { app, output } from "@azure/functions";
 import { migrationControl, bcReconciliation } from "../core.mjs";
 import { bcFetcher } from "../bc.mjs";
 
-const blobs = () => new BlobServiceClient(`https://${process.env.AzureWebJobsStorage__accountName}.blob.core.windows.net`, new DefaultAzureCredential());
+// The audit trail of every rehearsal and of the cutover: the export and the verdict in one object.
+// A Functions output binding writes it with the app's managed identity, so this package needs no Azure SDK.
+const auditTrail = output.storageBlob({
+  path: "migratie-rapport/{rand-guid}.json",
+  connection: "AzureWebJobsStorage",
+});
 
 // POST /api/migratie/controle — body: the CSV export of open customer entries.
-// Stores the export and the report (audit trail of every rehearsal and of the cutover) and returns the report.
 app.http("migratieControle", {
   route: "migratie/controle",
   methods: ["POST"],
   authLevel: "function",
+  extraOutputs: [auditTrail],
   handler: async (request, context) => {
     const csv = await request.text();
     const report = migrationControl(csv);
-    const stamp = new Date().toISOString().replace(/[:.]/g, "-");
-    if (process.env.AzureWebJobsStorage__accountName) {
-      const service = blobs();
-      await service.getContainerClient("migratie-in").getBlockBlobClient(`${stamp}.csv`).upload(csv, Buffer.byteLength(csv));
-      const body = JSON.stringify(report, null, 1);
-      await service.getContainerClient("migratie-rapport").getBlockBlobClient(`${stamp}.json`).upload(body, Buffer.byteLength(body));
-    }
+    context.extraOutputs.set(auditTrail, JSON.stringify({ receivedAt: new Date().toISOString(), report, csv }, null, 1));
     context.log(`migration control: ${report.rows} rows, ok=${report.ok}, difference=${report.difference}`);
     return { status: report.ok ? 200 : 422, jsonBody: report };
   },

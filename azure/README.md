@@ -12,6 +12,10 @@
 
 **Waarom Germany West Central en niet West Europe?** Het ontwikkelabonnement wordt door Azure niet toegelaten in West Europe ("the selected region is currently not accepting new customers"). Germany West Central houdt de data in de EU en ondersteunt Flex Consumption. Zo'n regiokeuze is een echte beperking in projecten: je kiest de dichtstbijzijnde regio die je abonnement én je dienst aankan.
 
+### Nul afhankelijkheden buiten Functions zelf
+
+Het auditspoor wordt weggeschreven met een **output-binding** van Azure Functions, met de managed identity van de app. Daardoor heeft dit pakket geen Azure-SDK's nodig: één dependency (`@azure/functions`), `npm audit` meldt **0 kwetsbaarheden**, en er staat nergens een sleutel. De storage-account staat op `allowSharedKeyAccess: false`, dus ook de binding kan alleen met een identiteit werken.
+
 ### Verificatie op de echte omgeving
 
 De twee exports uit de case door de **live** functie `POST /api/migratie/controle`:
@@ -21,7 +25,9 @@ De twee exports uit de case door de **live** functie `POST /api/migratie/control
 | `klantposten-export-v1.csv` | de generale repetitie | HTTP 422 · 39 rijen · verschil **<!--n:mig.diff.v1-->€1.586,40<!--/n-->** · *"Niet laden: zoek documenten die na de export geboekt zijn (CN-0412)"* |
 | `klantposten-export-v2.csv` | de cutover | HTTP 200 · <!--n:mig.entries.v2-->40<!--/n--> rijen · verschil **€0,00** · *"Klaar om te laden (MIG-06)"* |
 
-Dezelfde regels als in de workbench en de tests, nu over HTTP in Azure.
+Dezelfde regels als in de workbench en de tests, nu over HTTP in Azure. Elk antwoord laat een rapport achter in de container `migratie-rapport` (export + oordeel + tijdstip), met de managed identity van de functie.
+
+De sandbox `kalvaert-dev` stuurt haar telemetrie naar de Application Insights hierboven. Daar kwam meteen een correctie uit: de event-ID's voor de extensie-lifecycle in [`telemetry/hypercare.kql`](telemetry/hypercare.kql) waren uit de documentatie overgenomen, maar wat echt binnenkwam bij het publiceren van de apps was `LC0200`/`LC0202` (aanvraag per-tenant-extensie) en `LC0204`/`LC0205`/`LC0207` (validatie). De query staat nu op wat de omgeving werkelijk stuurt.
 
 ## Hoe het samenhangt
 
@@ -51,8 +57,8 @@ flowchart LR
 | Onderdeel | Waarom in dit project | Requirement / fase |
 |---|---|---|
 | **Application Insights** | Business Central stuurt telemetrie (foutmeldingen bij gebruikers, trage AL, mislukte jobs, API-oproepen) naar een eigen Application Insights. Zonder dat is hypercare gissen op basis van mails. De extensie logt haar eigen signalen (bijdrageregel toegevoegd, verwijderd omdat de klant niet BINNENL is). | [hypercare](../docs/07-go-live/hypercare.md) |
-| **Functie `migratie/controle`** | Elke export uit het oude pakket gaat eerst door dezelfde controle als in de case: kolommen, dubbels, klantnummers, tekens, en de afstemming met het saldo op de cutoffdag. Export en rapport worden bewaard, zodat elke generale repetitie een spoor heeft. | MIG-06, [afstemming](../docs/06-migratie/afstemming.md) |
-| **Functie `migratie/afstemming-bc`** | Na het laden: openstaande klantposten in BC (API) tegen dezelfde saldi. Dat is go/no-go-criterium "klantvorderingen". | [go-live](../docs/07-go-live/README.md) |
+| **Functie `migratie/controle`** | Elke export uit het oude pakket gaat eerst door dezelfde controle als in de case: kolommen, dubbels, klantnummers, tekens, en de afstemming met het saldo op de cutoffdag. De export én het oordeel worden samen als één JSON bewaard, zodat elke generale repetitie een spoor heeft. | MIG-06, [afstemming](../docs/06-migratie/afstemming.md) |
+| **Functie `migratie/afstemming-bc`** | Na het laden: openstaande klantposten in BC (API) tegen dezelfde saldi, **alleen voor de documenten uit de export** — na go-live komen er nieuwe facturen bij. Dat is go/no-go-criterium "klantvorderingen". | [go-live](../docs/07-go-live/README.md) |
 | **Key Vault** | Het secret van de Entra-app die de BC-API aanspreekt, nooit in app settings, scripts of git. | — |
 | **Budget + daglimiet logs** | Een sandbox die veel logt, mag geen factuur geven. | — |
 

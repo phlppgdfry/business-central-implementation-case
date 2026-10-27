@@ -86,7 +86,7 @@ resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2023-05-01'
   name: 'default'
 }
 
-resource containers 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-05-01' = [for name in ['deployments', 'migratie-in', 'migratie-rapport']: {
+resource containers 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-05-01' = [for name in ['deployments', 'migratie-rapport']: {
   parent: blobService
   name: name
 }]

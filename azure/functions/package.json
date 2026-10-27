@@ -9,10 +9,10 @@
     "start": "func start",
     "test": "node --test ../../tests/azure-functions.test.mjs"
   },
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "dependencies": {
-    "@azure/functions": "4.7.0",
-    "@azure/storage-blob": "12.27.0",
-    "@azure/identity": "4.10.0"
+    "@azure/functions": "4.17.0"
   }
 }
