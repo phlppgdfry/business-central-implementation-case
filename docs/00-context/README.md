@@ -38,7 +38,7 @@ Ik speel de **functional consultant** van de implementatiepartner. Ik leid de an
 - Alle aantallen, bedragen, weken, rekeningnummers en het dagtarief zijn illustratief.
 - Rekeningnummers volgen de logica van het Belgische minimumindelingsschema (MAR), maar het definitieve schema komt van het boekhoudkantoor.
 - Btw-roosters zijn de gangbare roosters van de Belgische periodieke aangifte; in een echt project tekent het boekhoudkantoor de mapping af.
-- De beschrijving van wat Business Central standaard doet, komt uit de Microsoft Learn-documentatie. **Ze is niet in een BC-sandbox geverifieerd voor deze case.**
+- De beschrijving van wat Business Central standaard doet, komt uit de Microsoft Learn-documentatie. De inrichting, de migratie en de testgevallen van VK-10 zijn **wel** in een sandbox uitgevoerd ([verificatie](../../bc/VERIFICATION.md)); de overige requirements zijn ontwerp.
 - "TradeDesk 7" en "Kalvaert" bestaan niet.
 
 ## Data en bronnen
@@ -58,5 +58,5 @@ Ik speel de **functional consultant** van de implementatiepartner. Ik leid de an
 
 - Geen echte klant, workshops of gebruikers: de workshopverslagen en hypercare-meldingen zijn verzonnen maar typisch.
 - Niet in een Business Central-omgeving gebouwd of getest; de workbench simuleert de boekingslogica vereenvoudigd (één regel, geen kortingen).
-- De functional consultant schrijft de spec, de developer bouwt. In deze case staat de extensie toch in AL ([bc/](../../bc/README.md)), om de spec te toetsen; ze compileert, maar is nog niet in een sandbox gedraaid.
+- De functional consultant schrijft de spec, de developer bouwt. In deze case staat de extensie toch in AL ([bc/](../../bc/README.md)), om de spec te toetsen — en ze draait in een sandbox ([verificatie](../../bc/VERIFICATION.md)).
 - Geen productie-ervaring geclaimd: dit toont hoe ik zou werken, niet wat ik bij een klant gedaan heb.

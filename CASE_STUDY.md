@@ -59,9 +59,11 @@ In de hypercare <!--n:hc.total-->8<!--/n--> meldingen, waarvan <!--n:hc.bug-->1<
 
 ## 8b. De spec getoetst door ze te bouwen
 
-Een spec is pas goed als een developer ze kan bouwen zonder te gokken. Dus heb ik de extensie in AL laten bouwen voor Business Central 29.0, met de testgevallen als <!--n:al.tests-->12<!--/n--> AL-tests, en het hele oplossingsontwerp als installeerbare demo-inrichting die uit dezelfde data komt als de documenten. De bouw vond vier dingen die in de spec ontbraken. Het belangrijkste: bij een deellevering zou de bijdrage voor alle boilers meegaan met de eerste levering (U9). Alles compileert tegen de echte Business Central-symbolen zonder één waarschuwing; in een sandbox gedraaid is het nog niet. → [spec §5](docs/05-specs/uc-vk-10-verwijderingsbijdrage.md#5-gebouwd-in-al), [bc/](bc/README.md)
+Een spec is pas goed als een developer ze kan bouwen zonder te gokken. Dus heb ik de extensie in AL laten bouwen voor Business Central 29.0, met de testgevallen als <!--n:al.tests-->12<!--/n--> AL-tests, en het hele oplossingsontwerp als installeerbare demo-inrichting die uit dezelfde data komt als de documenten. De bouw vond vier dingen die in de spec ontbraken, zoals de deellevering (U9).
 
-Naast Business Central staat een kleine Azure-omgeving als code: dezelfde migratiecontrole als functie, een afstemming tegen de BC-API, en telemetrie-queries voor de hypercare. ±€1 per maand, met budget. Niet gedeployed. → [azure/](azure/README.md), [ADR-008](docs/adr/adr-008-azure-voor-hypercare-en-migratiecontrole.md)
+En toen heb ik het **laten draaien** in een echte Business Central-sandbox. Dat vond twee fouten die geen compiler ziet. De ergste: `Validate(Type)` op een verkoopregel roept intern `Init()` aan en wist óók de eigen velden van de extensie, waardoor de bijdrageregel zijn markering verloor — zodra iemand de hoeveelheid aanpaste, stond de bijdrage dubbel op de factuur. Precies de fout die een UAT met één nette order niet vindt. Daarna: de inrichting toegepast, de migratie geboekt en afgestemd (verschil €0,00), en acht testgevallen uit de spec uitgevoerd via de standaard verkooporder-API — de geboekte factuur komt rekening per rekening overeen met de boekingsmatrix. → [spec §5](docs/05-specs/uc-vk-10-verwijderingsbijdrage.md#5-gebouwd-in-al), [bc/](bc/README.md)
+
+Naast Business Central staat een kleine Azure-omgeving: dezelfde migratiecontrole als functie, en telemetrie voor de hypercare. ±€1 per maand, met budget. Ze is uitgerold: de functie gaf op de echte export uit de generale repetitie keurig "niet laden, €1.586,40 verschil", en de sandbox stuurt haar telemetrie naar die Application Insights. → [azure/](azure/README.md), [ADR-008](docs/adr/adr-008-azure-voor-hypercare-en-migratiecontrole.md)
 
 ## 9. Wat dit over mijn manier van werken zegt
 
@@ -72,4 +74,4 @@ Naast Business Central staat een kleine Azure-omgeving als code: dezelfde migrat
 
 ## 10. Wat deze case niet is
 
-Fictief, geen klantervaring. De AL-code compileert maar is nog niet in een Business Central-sandbox gedraaid; de Azure-omgeving is niet gedeployed. De workbench vereenvoudigt de boekingslogica. → [beperkingen](README.md#beperkingen-en-aannames)
+Fictief, geen klantervaring. Het draait in een sandbox en een ontwikkelabonnement, niet in productie bij een klant. De workbench vereenvoudigt de boekingslogica. → [beperkingen](README.md#beperkingen-en-aannames)

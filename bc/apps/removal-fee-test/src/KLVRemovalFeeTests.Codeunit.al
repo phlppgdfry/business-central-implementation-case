@@ -296,7 +296,7 @@ codeunit 50150 "KLV Removal Fee Tests"
     begin
         FeeLine.SetRange("Document Type", ItemLine."Document Type");
         FeeLine.SetRange("Document No.", ItemLine."Document No.");
-        FeeLine.SetRange("Attached to Line No.", ItemLine."Line No.");
+        FeeLine.SetRange("KLV Attached to Line No.", ItemLine."Line No.");
         FeeLine.SetRange("KLV Removal Fee Line", true);
         Assert.RecordCount(FeeLine, 1);
         FeeLine.FindFirst();

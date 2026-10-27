@@ -3,6 +3,7 @@ namespace Kalvaert.DemoSetup;
 using Kalvaert.RemovalFee;
 using Microsoft.Bank.BankAccount;
 using Microsoft.Finance.Dimension;
+using Microsoft.Foundation.Company;
 using Microsoft.Finance.GeneralLedger.Account;
 using Microsoft.Finance.GeneralLedger.Journal;
 using Microsoft.Finance.GeneralLedger.Setup;
@@ -30,6 +31,22 @@ codeunit 50201 "KLV Demo Helpers"
     procedure RecordsTouched(): Integer
     begin
         exit(Count);
+    end;
+
+    /// <summary>The company itself: what prints on an invoice. Country stays whatever the environment was created with.</summary>
+    procedure EnsureCompanyInformation(Name: Text[100]; EnterpriseNo: Text[50]; CountryCode: Code[10])
+    var
+        CompanyInformation: Record "Company Information";
+    begin
+        if not CompanyInformation.Get() then begin
+            CompanyInformation.Init();
+            CompanyInformation.Insert();
+        end;
+        CompanyInformation.Name := Name;
+        CompanyInformation."Country/Region Code" := CountryCode;
+        CompanyInformation."Enterprise No." := EnterpriseNo;
+        CompanyInformation.Modify(true);
+        Count += 1;
     end;
 
     procedure EnsureGLAccount(No: Code[20]; Name: Text[100]; IsIncome: Boolean; DirectPosting: Boolean; SalesLineAccount: Boolean; GenProdGroup: Code[20]; VATProdGroup: Code[20])
@@ -400,17 +417,23 @@ codeunit 50201 "KLV Demo Helpers"
             Item.Insert(true);
         end;
         Item.Validate(Description, Description);
-        if IsInventory then
-            Item.Validate(Type, Item.Type::Inventory)
-        else
+        // Business Central refuses to change Type or the base unit once an item has ledger entries,
+        // so only touch them when they actually differ: the setup must stay re-runnable.
+        if IsInventory and (Item.Type <> Item.Type::Inventory) then
+            Item.Validate(Type, Item.Type::Inventory);
+        if (not IsInventory) and (Item.Type <> Item.Type::Service) then
             Item.Validate(Type, Item.Type::Service);
-        Item.Validate("Base Unit of Measure", BaseUnit);
+        if Item."Base Unit of Measure" <> BaseUnit then
+            Item.Validate("Base Unit of Measure", BaseUnit);
         Item.Validate("Gen. Prod. Posting Group", GenProdGroup);
         Item.Validate("VAT Prod. Posting Group", VATProdGroup);
-        if IsInventory then
+        if IsInventory and (Item."Inventory Posting Group" <> InventoryPostingGroup) then
             Item.Validate("Inventory Posting Group", InventoryPostingGroup);
-        Item.Validate("Unit Price", UnitPrice);
-        Item.Validate("Unit Cost", UnitCost);
+        if Item."Unit Price" <> UnitPrice then
+            Item.Validate("Unit Price", UnitPrice);
+        // locked by Business Central once the item has ledger entries, so only touch it when it differs
+        if Item."Unit Cost" <> UnitCost then
+            Item.Validate("Unit Cost", UnitCost);
         // assigned, not validated: the setup runs as a technical user, not as purchasing
         Item."KLV Removal Fee" := RemovalFee;
         Item.Modify(true);

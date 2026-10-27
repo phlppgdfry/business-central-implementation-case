@@ -6,9 +6,15 @@
 
 | | |
 |---|---|
-| Gebouwd | 3 AL-apps voor **Business Central 29.0 (2026 release wave 2), Belgische lokalisatie**, runtime 18.0, per-tenant extensions (`target: Cloud`) |
+| Gebouwd | 3 AL-apps voor **Business Central 29.0, Belgische lokalisatie**, runtime 18.0, per-tenant extensions (`target: Cloud`) |
 | Gecontroleerd | compileert tegen de echte symbolen van Microsoft, met CodeCop, UICop en PerTenantExtensionCop: **0 fouten, 0 waarschuwingen** (lokaal en in [CI](../.github/workflows/ci.yml), job `al`) · Nederlandse vertaling (nl-BE) volledig · structuurtests in [`tests/al.test.mjs`](../tests/al.test.mjs) |
-| **Nog niet** | **gepubliceerd in en gedraaid tegen een sandbox.** De AL-tests en de verificatie via de API wachten op een omgeving ([hieronder](#in-een-sandbox-zetten)). Tot dan is "werkt" een verwachting: de compiler controleert namen, types en events, niet het gedrag. |
+| **Gedraaid** | **ja** — gepubliceerd in de sandbox `kalvaert-dev` (BE, 29.0), het oplossingsontwerp toegepast, de migratie geboekt en afgestemd, en de testgevallen uit de spec via de standaard verkooporder-API uitgevoerd. Resultaten: [VERIFICATION.md](VERIFICATION.md). |
+| Nog niet | de AL-testcodeunit zelf (`al runtests`) — die vraagt eerst een interactieve aanmelding (`al auth login`), oefening O10 in het leerboek. De live verificatie dekt dezelfde testgevallen via de API. |
+
+**Wat het draaien opleverde:** twee fouten die de compiler én een UAT met één order niet zien. Beide staan nu in de spec ([§5](../docs/05-specs/uc-vk-10-verwijderingsbijdrage.md#5-gebouwd-in-al)):
+
+1. `Validate(Type)` op een verkoopregel roept intern `Init()` aan en wist **ook de eigen velden van de extensie**. De bijdrageregel verloor zijn markering, dus bij elke hoeveelheidswijziging kwam er een regel bij — en op de factuur stond de bijdrage dubbel.
+2. Het standaardveld *Gekoppeld aan regelnr.* markeert een regel als uitgebreide-tekstregel; Business Central weigert dan het regeltype te zetten. De extensie houdt nu haar eigen koppelveld bij.
 
 ## De drie apps
 
@@ -46,25 +52,30 @@ In VS Code: open [`bc/kalvaert.code-workspace`](kalvaert.code-workspace) met de 
 
 Wat nodig is, eenmalig:
 
-1. **Een Business Central-omgeving.** Een [gratis proefversie](https://learn.microsoft.com/dynamics365/business-central/trial-signup) op een eigen Microsoft 365-tenant, of een sandbox bij een partner. In het beheercentrum: een sandbox `kalvaert-dev` (land BE, versie 29.x).
-2. **Een leeg bedrijf `KALVAERT`**: in Business Central *Nieuw bedrijf maken* → *Productie - alleen setupgegevens* (dan bestaan nummerreeksen en landcodes, maar geen Cronus-rekeningen).
-3. **Aanmelden**: `az login` met een gebruiker van die tenant (of een Entra-app in BC onder *Microsoft Entra-toepassingen*, met `BC_CLIENT_ID` en `BC_CLIENT_SECRET`), en voor de AL-tests `al auth login`.
+1. **Een Business Central-tenant met een licentie of proefversie.** Het script maakt de sandbox zelf aan.
+2. **Aanmelden:** `az login` met een gebruiker van die tenant (of een Entra-app in BC onder *Microsoft Entra-toepassingen*, met `BC_CLIENT_ID` en `BC_CLIENT_SECRET`). Voor de AL-tests daarnaast `al auth login`.
 
 Daarna één commando:
 
 ```sh
-BC_TENANT=<tenant> node bc/scripts/sandbox.mjs all
+BC_TENANT=<tenant> BC_COMPANY="My Company" node bc/scripts/sandbox.mjs all
 ```
 
 | Stap | Wat er gebeurt | Wat moet kloppen |
 |---|---|---|
-| `publish` | de drie `.app`-bestanden via de automation-API | deployment *Completed* |
+| `envs` | toont de omgevingen op de tenant | — |
+| `create` | maakt de Belgische sandbox `kalvaert-dev` (of meldt dat ze al actief is) | status *Active*, land BE |
+| `company` | zoekt het bedrijf uit `BC_COMPANY` | zie de noot hieronder |
+| `telemetry` | koppelt de omgeving aan de Application Insights uit [`azure/`](../azure/README.md) | gebeurtenissen komen binnen |
+| `publish` | de drie `.app`-bestanden via de automation-API, in volgorde van afhankelijkheid | deployment *Completed* per app |
 | `setup` | API-actie `applySetup` van de demo-inrichting | aantal instellingsrecords > 0, dataversie = `case.json` |
 | `migrate` | migratiedagboek klaarzetten en boeken, dan per document afstemmen | 400000 = €170.703,53 · 400100 = €29.910,71 · verschil €0,00 |
-| `verify` | order K10023 met 2 boilers via de **standaard** API → bijdrageregel? → verzenden en factureren → grootboekposten | één bijdrageregel 2 × €3,50 · elke rekening = de [boekingsmatrix](../docs/04-oplossingsontwerp/boekingsmatrix.md) |
-| `tests` | `al runtests 50150` | 12/12 geslaagd |
+| `verify` | T1–T5, T7, T8 en T9 uit de spec via de **standaard** verkooporder-API | één bijdrageregel onder het artikel, en elke rekening = de [boekingsmatrix](../docs/04-oplossingsontwerp/boekingsmatrix.md) |
+| `tests` | `al runtests 50150` | 12/12 geslaagd (na `al auth login`) |
 
-Resultaat: `bc/VERIFICATION.md`, met datum, omgeving en elk getal. Pas daarna mag in de README "gedraaid in Business Central" staan.
+Resultaat: [`bc/VERIFICATION.md`](VERIFICATION.md), met datum, omgeving en elk getal.
+
+> **Over het bedrijf.** De README van een echt project zegt: maak een bedrijf `KALVAERT` via *Nieuw bedrijf maken → Productie - alleen setupgegevens*. Dat is een handeling in de client: een bedrijf aanmaken kan **niet** via de API ("Adding a company is not supported by Business Central OData web services"). Een nieuwe sandbox heeft al zo'n bedrijf — `My Company`, met het Belgische standaardrekeningschema en zonder klanten of artikels — en daar is Kalvaert in gebouwd. De demo-inrichting zet de bedrijfsgegevens (naam, ondernemingsnummer), zodat documenten *Kalvaert Technische Groothandel NV* tonen.
 
 ## Bestanden
 

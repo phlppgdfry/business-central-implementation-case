@@ -13,5 +13,12 @@ tableextension 50103 "KLV Sales Invoice Line" extends "Sales Invoice Line"
             DataClassification = SystemMetadata;
             Editable = false;
         }
+        field(50101; "KLV Attached to Line No."; Integer)
+        {
+            Caption = 'Fee For Line No.';
+            ToolTip = 'Specifies the item line this removal fee belonged to.';
+            DataClassification = SystemMetadata;
+            Editable = false;
+        }
     }
 }

@@ -32,7 +32,7 @@
     <section class="hero wrap">
       <p class="eyebrow">Onafhankelijke portfoliocase · fictieve organisatie · Philippe Godfroy</p>
       <h1>Kalvaert naar Business Central — van workshop tot hypercare</h1>
-      <p class="lede">Hoe een functional consultant een groothandel met <!--n:req.total-->25<!--/n--> wensen naar Business Central brengt: standaard waar het kan, één extensie waar het moet, en een go-live die pas groen wordt als de cijfers kloppen. Die ene extensie staat ook in AL, met tests, en met een Azure-ontwikkelomgeving ernaast.</p>
+      <p class="lede">Hoe een functional consultant een groothandel met <!--n:req.total-->25<!--/n--> wensen naar Business Central brengt: standaard waar het kan, één extensie waar het moet, en een go-live die pas groen wordt als de cijfers kloppen. Die ene extensie staat ook in AL — en draait, met de hele inrichting en de migratie, in een echte Business Central-sandbox met een Azure-omgeving ernaast.</p>
       <div class="cta-row">
         <a class="btn primary" href="workbench/?tour">Workbench met rondleiding (2 min)</a>
         <a class="btn" href="#voor-na">Vandaag en straks</a>
@@ -193,10 +193,12 @@ flowchart LR
       <div class="card" style="margin-top:20px">
         <h3>Status — eerlijk</h3>
         <div class="status">
-          <div><span class="badge ok">✓ CI</span><span>Compileert tegen de Belgische symbolen van Business Central 29.0 (Microsofts publieke feed), met CodeCop, UICop en PerTenantExtensionCop: 0 fouten, 0 waarschuwingen.</span></div>
-          <div><span class="badge ok">✓ CI</span><span>Nederlandse vertaling (nl-BE) volledig; object-ID's, afhankelijkheden en de koppeling spec ↔ test automatisch gecontroleerd.</span></div>
-          <div><span class="badge todo">nog niet</span><span>Gepubliceerd en gedraaid in een sandbox. Het script staat klaar (<code>bc/scripts/sandbox.mjs all</code>: publiceren, inrichten, migreren, order via de API boeken en vergelijken met de boekingsmatrix, AL-tests draaien). Tot dan is "werkt" een verwachting.</span></div>
+          <div><span class="badge ok">✓ gedraaid</span><span>Gepubliceerd in een echte Business Central-sandbox (29.0, Belgisch). Het hele oplossingsontwerp is er toegepast en de migratie is geboekt: <strong>400000 €170.703,53 en 400100 €29.910,71, verschil €0,00</strong>.</span></div>
+          <div><span class="badge ok">✓ gedraaid</span><span>De testgevallen T1–T5, T7, T8 en T9 uit de spec, uitgevoerd via de <strong>standaard</strong> verkooporder-API. De geboekte factuur komt rekening per rekening overeen met de boekingsmatrix, inclusief €7,00 bijdrage op 700900.</span></div>
+          <div><span class="badge ok">✓ CI</span><span>Compileert tegen de Belgische symbolen van Business Central 29.0, met CodeCop, UICop en PerTenantExtensionCop: 0 fouten, 0 waarschuwingen.</span></div>
+          <div><span class="badge todo">nog niet</span><span>De AL-testcodeunit zelf (<code>al runtests</code>) vraagt eerst een interactieve aanmelding. De live verificatie dekt dezelfde testgevallen via de API.</span></div>
         </div>
+        <p class="note" style="margin-top:14px"><strong>Wat het draaien opleverde:</strong> twee fouten die de compiler niet ziet. <code>Validate(Type)</code> op een verkoopregel roept intern <code>Init()</code> aan en wist óók de eigen velden van de extensie — de bijdrage stond dan dubbel op de factuur. En het standaardveld <em>Gekoppeld aan regelnr.</em> maakt van een regel een uitgebreide-tekstregel, waarna Business Central het regeltype weigert. Beide staan nu in de spec. <a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/bc/VERIFICATION.md">Volledig verificatierapport</a>.</p>
       </div>
     </section>
 
@@ -221,7 +223,7 @@ flowchart TB
             <li><b>Telemetrie voor hypercare</b>: foutmeldingen per pagina, trage AL, mislukte jobs, en de eigen signalen van de extensie, in KQL.</li>
             <li><b>Kostenrem</b>: daglimiet op logs, budgetmelding, geen secrets buiten Key Vault, geen gedeelde sleutels.</li>
           </ul>
-          <p class="note">Gebouwd en gevalideerd (Bicep build + lint in CI, functielogica getest zonder Azure). Nog niet gedeployed: dat kost geld en gebeurt alleen na akkoord. <a href="https://github.com/phlppgdfry/business-central-implementation-case/tree/main/azure">azure/</a></p>
+          <p class="note"><strong>Uitgerold</strong> in een eigen ontwikkelabonnement (Germany West Central, ±€1 per maand met budgetbewaking). De migratiecontrole is live getest met beide exports uit de case, en de Business Central-sandbox stuurt haar telemetrie naar deze Application Insights. <a href="https://github.com/phlppgdfry/business-central-implementation-case/tree/main/azure">azure/</a></p>
         </div>
       </div>
     </section>
@@ -275,7 +277,7 @@ flowchart TB
       <h2>Beperkingen</h2>
       <ul>
         <li>Fictieve klant, fictief oud pakket, fictieve workshops; alle cijfers illustratief.</li>
-        <li>De AL-code compileert tegen Business Central 29.0, maar is nog niet in een sandbox gepubliceerd en gedraaid. De Azure-omgeving is als code klaar, niet gedeployed.</li>
+        <li>De AL-code draait in een <strong>sandbox</strong> met fictieve data, niet in productie bij een klant. De AL-testcodeunit zelf is nog niet gedraaid (vraagt een interactieve aanmelding); de spec is wel via de standaard API getoetst.</li>
         <li>De workbench simuleert de boekingslogica vereenvoudigd (één regel, geen kortingen, geen afrondingsregels).</li>
         <li>Geen klantervaring geclaimd: dit toont hoe ik als functional consultant zou werken. De AL-code is wat een developer zou bouwen; ze staat hier om de spec te toetsen.</li>
         <li>Elk getal op deze site komt uit één bron (<code>data/case.json</code>) en wordt bij elke wijziging automatisch gecontroleerd.</li>

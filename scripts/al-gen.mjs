@@ -57,6 +57,9 @@ export function generateDemoData(caseData, migrationCsv, sources) {
   line();
   line("    procedure ApplySetup(var H: Codeunit \"KLV Demo Helpers\")");
   line("    begin");
+  line("        // the company itself (what prints on an invoice)");
+  call("EnsureCompanyInformation", q(caseData.org.name), q(enterpriseNo(caseData.org.name)), q("BE"));
+  line();
   line("        // VAT and general posting groups (SET-GENPOST, SET-GENPROD, SET-BTW)");
   for (const g of s.vatBusPostingGroups) call("EnsureVATBusGroup", q(g.code), q(g.description));
   for (const g of s.vatProdPostingGroups) call("EnsureVATProdGroup", q(g.code), q(g.description));

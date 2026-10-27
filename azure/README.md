@@ -7,8 +7,21 @@
 | | |
 |---|---|
 | Gebouwd | [`main.bicep`](main.bicep) (resourcegroep, ±€0–5 per maand), [twee functies](functions/src/functions/migration.mjs) met dezelfde logica als de workbench, [8 hypercare-queries](telemetry/hypercare.kql) in KQL |
-| Gecontroleerd | Bicep build + lint zonder waarschuwingen (CI, job `azure`) · de functielogica met tests zonder Azure ([`tests/azure-functions.test.mjs`](../tests/azure-functions.test.mjs)): migratiecontrole stopt export v1 met €1.586,40 verschil, laat v2 door, en de afstemming tegen BC volgt de API-paginering |
-| **Nog niet** | **gedeployed.** Een deployment kost (weinig) geld en gebeurt alleen na akkoord: `azure/scripts/deploy.sh` toont eerst een *what-if* en vraagt bevestiging. De KQL-queries zijn geschreven op de gedocumenteerde telemetrievelden, nog niet gedraaid op echte telemetrie. |
+| Gecontroleerd | Bicep build + lint zonder waarschuwingen (CI, job `azure`) · de functielogica met tests zonder Azure ([`tests/azure-functions.test.mjs`](../tests/azure-functions.test.mjs)) |
+| **Gedeployed** | **ja, 2026-10-26** in een eigen ontwikkelabonnement: 8 resources + budget in resourcegroep `rg-kalvaert-bc-dev`, regio **Germany West Central**. Beide functies draaien en zijn getest met de echte exports uit de case (zie [verificatie](#verificatie-op-de-echte-omgeving)). De Business Central-sandbox stuurt haar telemetrie naar deze Application Insights. |
+
+**Waarom Germany West Central en niet West Europe?** Het ontwikkelabonnement wordt door Azure niet toegelaten in West Europe ("the selected region is currently not accepting new customers"). Germany West Central houdt de data in de EU en ondersteunt Flex Consumption. Zo'n regiokeuze is een echte beperking in projecten: je kiest de dichtstbijzijnde regio die je abonnement én je dienst aankan.
+
+### Verificatie op de echte omgeving
+
+De twee exports uit de case door de **live** functie `POST /api/migratie/controle`:
+
+| Export | Wat het is | Antwoord van de functie |
+|---|---|---|
+| `klantposten-export-v1.csv` | de generale repetitie | HTTP 422 · 39 rijen · verschil **<!--n:mig.diff.v1-->€1.586,40<!--/n-->** · *"Niet laden: zoek documenten die na de export geboekt zijn (CN-0412)"* |
+| `klantposten-export-v2.csv` | de cutover | HTTP 200 · <!--n:mig.entries.v2-->40<!--/n--> rijen · verschil **€0,00** · *"Klaar om te laden (MIG-06)"* |
+
+Dezelfde regels als in de workbench en de tests, nu over HTTP in Azure.
 
 ## Hoe het samenhangt
 

@@ -36,7 +36,7 @@
  "al.tests": "12",
  "al.subscribers": "14",
  "al.customers": "28",
- "al.setup.calls": "167",
+ "al.setup.calls": "168",
  "al.mig.lines": "40",
  "bpmn.o2c_asis.tasks": "7",
  "bpmn.o2c_asis.auto": "0",

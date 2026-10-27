@@ -98,7 +98,7 @@ codeunit 50100 "KLV Removal Fee Mgt."
             until ItemLine.Next() = 0;
 
         CustomDimensions.Add('DocumentType', Format(SalesHeader."Document Type"));
-        Session.LogMessage('KLV0003', DocumentSyncedTxt, Verbosity::Normal, DataClassification::SystemMetadata, TelemetryScope::ExtensionPublisher, CustomDimensions);
+        Session.LogMessage('KLV0003', DocumentSyncedTxt, Verbosity::Normal, DataClassification::SystemMetadata, TelemetryScope::All, CustomDimensions);
     end;
 
     /// <summary>U2: an item line is deleted, its fee line goes with it.</summary>
@@ -170,9 +170,9 @@ codeunit 50100 "KLV Removal Fee Mgt."
 
     local procedure IsValidParent(FeeLine: Record "Sales Line"; var ParentLine: Record "Sales Line"): Boolean
     begin
-        if FeeLine."Attached to Line No." = 0 then
+        if FeeLine."KLV Attached to Line No." = 0 then
             exit(false);
-        if not ParentLine.Get(FeeLine."Document Type", FeeLine."Document No.", FeeLine."Attached to Line No.") then
+        if not ParentLine.Get(FeeLine."Document Type", FeeLine."Document No.", FeeLine."KLV Attached to Line No.") then
             exit(false);
         exit((ParentLine.Type = ParentLine.Type::Item) and not ParentLine."KLV Removal Fee Line");
     end;
@@ -181,7 +181,7 @@ codeunit 50100 "KLV Removal Fee Mgt."
     begin
         FeeLine.SetRange("Document Type", ItemLine."Document Type");
         FeeLine.SetRange("Document No.", ItemLine."Document No.");
-        FeeLine.SetRange("Attached to Line No.", ItemLine."Line No.");
+        FeeLine.SetRange("KLV Attached to Line No.", ItemLine."Line No.");
         FeeLine.SetRange("KLV Removal Fee Line", true);
     end;
 
@@ -196,7 +196,6 @@ codeunit 50100 "KLV Removal Fee Mgt."
         FeeLine.Validate("Document No.", ItemLine."Document No.");
         FeeLine."Line No." := FindLineNoBelow(ItemLine);
         FeeLine."KLV Removal Fee Line" := true;
-        FeeLine."Attached to Line No." := ItemLine."Line No.";
         FeeLine.Insert(true);
 
         FeeLine.Validate(Type, FeeLine.Type::"G/L Account");
@@ -217,14 +216,17 @@ codeunit 50100 "KLV Removal Fee Mgt."
         FeeLine."Shortcut Dimension 1 Code" := ItemLine."Shortcut Dimension 1 Code";
         FeeLine."Shortcut Dimension 2 Code" := ItemLine."Shortcut Dimension 2 Code";
         FeeLine."Dimension Set ID" := ItemLine."Dimension Set ID";
-        FeeLine."Attached to Line No." := ItemLine."Line No.";
+        // Standard Validate(Type) and Validate("No.") call Init() on the sales line, which clears the
+        // extension's own fields as well. They have to be set again after the standard validations.
+        FeeLine."KLV Removal Fee Line" := true;
+        FeeLine."KLV Attached to Line No." := ItemLine."Line No.";
         FeeLine.Modify(true);
 
         CustomDimensions.Add('DocumentType', Format(ItemLine."Document Type"));
         CustomDimensions.Add('ItemNo', ItemLine."No.");
         CustomDimensions.Add('Quantity', Format(ItemLine.Quantity, 0, 9));
         CustomDimensions.Add('FeePerUnit', Format(Item."KLV Removal Fee", 0, 9));
-        Session.LogMessage('KLV0001', FeeAddedTxt, Verbosity::Normal, DataClassification::SystemMetadata, TelemetryScope::ExtensionPublisher, CustomDimensions);
+        Session.LogMessage('KLV0001', FeeAddedTxt, Verbosity::Normal, DataClassification::SystemMetadata, TelemetryScope::All, CustomDimensions);
     end;
 
     local procedure UpdateFeeLine(var FeeLine: Record "Sales Line"; ItemLine: Record "Sales Line")
@@ -305,7 +307,7 @@ codeunit 50100 "KLV Removal Fee Mgt."
     begin
         CustomDimensions.Add('DocumentType', Format(ItemLine."Document Type"));
         CustomDimensions.Add('GenBusPostingGroup', ItemLine."Gen. Bus. Posting Group");
-        Session.LogMessage('KLV0002', FeeRemovedTxt, Verbosity::Normal, DataClassification::SystemMetadata, TelemetryScope::ExtensionPublisher, CustomDimensions);
+        Session.LogMessage('KLV0002', FeeRemovedTxt, Verbosity::Normal, DataClassification::SystemMetadata, TelemetryScope::All, CustomDimensions);
         if not GuiAllowed() then
             exit;
         RemovedNotification.Id := RemovedNotificationIdTxt;

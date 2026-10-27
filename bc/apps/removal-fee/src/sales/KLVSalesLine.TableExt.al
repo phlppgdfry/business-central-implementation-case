@@ -14,10 +14,18 @@ tableextension 50102 "KLV Sales Line" extends "Sales Line"
             DataClassification = SystemMetadata;
             Editable = false;
         }
+
+        field(50101; "KLV Attached to Line No."; Integer)
+        {
+            Caption = 'Fee For Line No.';
+            ToolTip = 'Specifies the item line this removal fee belongs to. The extension keeps its own link: the standard field "Attached to Line No." marks a line as extended text, and Business Central then refuses to set the line type.';
+            DataClassification = SystemMetadata;
+            Editable = false;
+        }
     }
 
     keys
     {
-        key(KLVFeeLines; "Document Type", "Document No.", "Attached to Line No.", "KLV Removal Fee Line") { }
+        key(KLVFeeLines; "Document Type", "Document No.", "KLV Attached to Line No.", "KLV Removal Fee Line") { }
     }
 }

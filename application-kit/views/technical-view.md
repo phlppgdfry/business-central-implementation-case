@@ -1,6 +1,6 @@
 # Voor de senior consultant (vakspecialist, 30 minuten)
 
-> De plekken waar je de grens van de Business Central-kennis kan aftasten. Onafhankelijke portfoliocase over een fictieve organisatie; ontworpen op basis van de Microsoft-documentatie; de extensie en de inrichting staan als AL-code die tegen BC 29.0 compileert, nog niet in een sandbox gedraaid.
+> De plekken waar je de grens van de Business Central-kennis kan aftasten. Onafhankelijke portfoliocase over een fictieve organisatie; ontworpen op basis van de Microsoft-documentatie; de extensie en de inrichting draaien in een Business Central-sandbox (29.0, Belgisch); zie het [verificatierapport](../../bc/VERIFICATION.md).
 
 | Onderwerp | Waar | Wat je kan vragen |
 |---|---|---|
@@ -15,3 +15,4 @@
 | AL-extensie | [bc/apps/removal-fee](../../bc/apps/removal-fee/) | "Waarom de koppeling via 'Gekoppeld aan regelnr.'? Wat gebeurt er bij Sales-Get Shipment? Waarom geen eigen tabel?" |
 | Demo-inrichting | [ADR-007](../../docs/adr/adr-007-inrichting-als-code-voor-de-sandbox.md), [al-gen.mjs](../../scripts/al-gen.mjs) | "Waarom geen RapidStart voor de sandbox? Wat als de klant al globale dimensies heeft?" |
 | Azure | [azure/](../../azure/README.md), [hypercare.kql](../../azure/telemetry/hypercare.kql) | "Welke telemetrie-events lees je in week 1? Waar staat het secret?" |
+| Wat het draaien opleverde | [spec §5](../../docs/05-specs/uc-vk-10-verwijderingsbijdrage.md#5-gebouwd-in-al), [VERIFICATION.md](../../bc/VERIFICATION.md) | "Waarom wist `Validate(Type)` je eigen velden? Hoe zou je dit in een UAT-scenario vangen?" |

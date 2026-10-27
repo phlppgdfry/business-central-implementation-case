@@ -26,4 +26,4 @@
 | Nazorg | hypercare-log |
 | Schakel klant – PM – developer | RACI, CR-01 |
 
-**Niet geclaimd:** klantervaring als functional consultant, een draaiende BC-omgeving (de AL-code compileert, maar is nog niet in een sandbox gedraaid), AL-ontwikkeling als beroep.
+**Niet geclaimd:** klantervaring als functional consultant, productiegebruik (het draait in een sandbox), AL-ontwikkeling als beroep.

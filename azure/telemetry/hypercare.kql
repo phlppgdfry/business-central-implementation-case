@@ -45,12 +45,16 @@ traces
 | summarize failures = count(), last = max(timestamp) by job
 | order by last desc;
 
-// 6. Extension lifecycle: did the Kalvaert apps install and upgrade cleanly after the update weekend?
+// 6. Extension lifecycle: wat gebeurde er met de Kalvaert-apps bij publiceren en na het updateweekend?
+//    De event-ID's hieronder zijn niet uit de documentatie overgenomen maar waargenomen op de eigen
+//    sandbox tijdens het publiceren van versie 1.0.2.0: LC0200/LC0202 (aanvraag per-tenant-extensie),
+//    LC0204/LC0205 (validatie gestart/geslaagd), LC0207 (validatie van een vorige versie).
 traces
 | where timestamp > ago(30d)
-| where customDimensions.eventId in ("LC0010", "LC0011", "LC0020", "LC0021", "LC0022", "LC0023")
-| where tostring(customDimensions.extensionPublisher) == "Kalvaert Portfolio Case"
-| project timestamp, event = tostring(customDimensions.eventId), extension = tostring(customDimensions.extensionName), version = tostring(customDimensions.extensionVersion), message
+| where tostring(customDimensions.eventId) startswith "LC02"
+| extend extension = tostring(customDimensions.extensionName), version = tostring(customDimensions.extensionVersion)
+| where extension startswith "Kalvaert" or isempty(extension)
+| project timestamp, event = tostring(customDimensions.eventId), extension, version, message
 | order by timestamp desc;
 
 // 7. The removal fee extension's own signals (Session.LogMessage in KLVRemovalFeeMgt.Codeunit.al):

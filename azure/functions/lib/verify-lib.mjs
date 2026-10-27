@@ -17,11 +17,16 @@ export function compareLedger(preview, glEntries) {
   return { rows, ok: rows.every((r) => r.ok) };
 }
 
-/** Open customer entries in BC (per posting group) vs the legacy control totals (per receivables account). */
-export function reconcileOpenEntries(entries, legacy, customerPostingGroups) {
+/**
+ * Open customer entries in BC (per posting group) vs the legacy control totals (per receivables account).
+ * `documentNumbers` limits it to the migrated documents: after go-live new invoices arrive, and a cutover
+ * reconciliation that counts those too looks wrong while nothing is wrong.
+ */
+export function reconcileOpenEntries(entries, legacy, customerPostingGroups, documentNumbers = null) {
   const accountOf = Object.fromEntries(customerPostingGroups.map((g) => [g.code, g.receivables]));
+  const migratedOnly = documentNumbers ? entries.filter((e) => documentNumbers.has(e.documentNo) || documentNumbers.has(e.externalDocumentNo)) : entries;
   return Object.keys(legacy).map((account) => {
-    const migrated = round2(entries.filter((e) => accountOf[e.customerPostingGroup] === account).reduce((s, e) => s + Number(e.remainingAmountLCY), 0));
+    const migrated = round2(migratedOnly.filter((e) => accountOf[e.customerPostingGroup] === account).reduce((s, e) => s + Number(e.remainingAmountLCY), 0));
     return { account, legacy: legacy[account], migrated, difference: round2(migrated - legacy[account]), ok: round2(migrated - legacy[account]) === 0 };
   });
 }

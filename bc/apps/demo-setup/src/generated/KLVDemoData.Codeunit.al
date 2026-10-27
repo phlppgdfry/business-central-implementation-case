@@ -14,6 +14,9 @@ codeunit 50204 "KLV Demo Data"
 
     procedure ApplySetup(var H: Codeunit "KLV Demo Helpers")
     begin
+        // the company itself (what prints on an invoice)
+        H.EnsureCompanyInformation('Kalvaert Technische Groothandel NV', '0419.933.586', 'BE');
+
         // VAT and general posting groups (SET-GENPOST, SET-GENPROD, SET-BTW)
         H.EnsureVATBusGroup('BINNENL', 'Belgische btw');
         H.EnsureVATBusGroup('EU', 'Intracommunautair');

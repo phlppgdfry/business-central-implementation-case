@@ -11,7 +11,7 @@ targetScope = 'resourceGroup'
 @maxLength(10)
 param prefix string = 'kalvaert'
 
-@description('Azure region. West Europe keeps the data in the EU, next to a Belgian BC environment.')
+@description('Azure region. Germany West Central keeps the data in the EU, next to a Belgian BC environment, and supports Flex Consumption.')
 param location string = resourceGroup().location
 
 @description('E-mail for the budget and the hypercare alert.')

@@ -2,7 +2,7 @@
   "id": "9d3c2b81-6f4e-4a17-b0c5-7e2a1d8f6c95",
   "name": "Kalvaert Demo Setup",
   "publisher": "Kalvaert Portfolio Case",
-  "version": "1.0.0.0",
+  "version": "1.0.5.0",
   "brief": "Development and test tooling: puts the Kalvaert solution design into an empty Business Central company and prepares the opening entries.",
   "description": "Not a customer deliverable. In the real project key users fill configuration packages (RapidStart); for a repeatable sandbox the same design is applied from code, like Microsoft's own demo-data apps. All data is generated from data/case.json by scripts/build.mjs.",
   "privacyStatement": "https://github.com/phlppgdfry/business-central-implementation-case",
@@ -11,7 +11,7 @@
   "url": "https://github.com/phlppgdfry/business-central-implementation-case",
   "logo": "",
   "dependencies": [
-    { "id": "5b0e7f3a-2c41-4d8e-9a6b-1f7c3e9d2a40", "name": "Kalvaert Removal Fee", "publisher": "Kalvaert Portfolio Case", "version": "1.0.0.0" }
+    { "id": "5b0e7f3a-2c41-4d8e-9a6b-1f7c3e9d2a40", "name": "Kalvaert Removal Fee", "publisher": "Kalvaert Portfolio Case", "version": "1.0.5.0" }
   ],
   "screenshots": [],
   "platform": "29.0.0.0",

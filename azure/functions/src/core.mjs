@@ -42,13 +42,13 @@ export function migrationControl(csvText, legacy = controls.legacy) {
 }
 
 /** After loading: open customer entries in BC against the same legacy balances. fetchJson is injected (tests mock it). */
-export async function bcReconciliation(fetchJson, legacy = controls.legacy, groups = controls.customerPostingGroups) {
+export async function bcReconciliation(fetchJson, legacy = controls.legacy, groups = controls.customerPostingGroups, documentNumbers = null) {
   const entries = [];
   for (let url = "openCustomerEntries"; url; ) {
     const page = await fetchJson(url);
     entries.push(...page.value);
     url = page["@odata.nextLink"] ?? null;
   }
-  const reconciliation = reconcileOpenEntries(entries, legacy, groups);
+  const reconciliation = reconcileOpenEntries(entries, legacy, groups, documentNumbers);
   return { ok: reconciliation.every((r) => r.ok), entries: entries.length, reconciliation };
 }
