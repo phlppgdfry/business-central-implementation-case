@@ -56,7 +56,7 @@ Kalvaert (62 medewerkers, 1.480 installateurs als klant) werkt met TradeDesk, ee
 | | Wat | Status |
 |---|---|---|
 | [**`bc/apps/removal-fee`**](bc/apps/removal-fee/) | de enige extensie (VK-10): <!--n:al.fee.objects-->25<!--/n--> AL-objecten, <!--n:al.subscribers-->14<!--/n--> subscribers op standaard events, nl-BE-vertaling, telemetrie | ✓ compileert zonder waarschuwingen ([CI](.github/workflows/ci.yml)) · ✓ **draait in de sandbox `kalvaert-dev`** (BC 29.0 BE) |
-| [**`bc/apps/removal-fee-test`**](bc/apps/removal-fee-test/) | <!--n:al.tests-->12<!--/n--> AL-tests: T1–T9 uit de spec plus U4, U5, U7 | ✓ compileert en is gepubliceerd · ✗ `al runtests` vraagt eerst een interactieve aanmelding |
+| [**`bc/apps/removal-fee-test`**](bc/apps/removal-fee-test/) | <!--n:al.tests-->12<!--/n--> AL-tests: T1–T9 uit de spec plus U4, U5, U7, plus een API die Business Centrals testrunner start | ✓ **12/12 geslaagd in de sandbox** |
 | [**`bc/apps/demo-setup`**](bc/apps/demo-setup/) | het oplossingsontwerp als installeerbare inrichting, **gegenereerd uit `data/case.json`**: <!--n:al.customers-->28<!--/n--> klanten, <!--n:al.mig.lines-->40<!--/n--> openstaande posten tegen 499000, API om het zonder klikken te doen ([ADR-007](docs/adr/adr-007-inrichting-als-code-voor-de-sandbox.md)) | ✓ **toegepast in de sandbox**: de inrichting staat in Business Central en de migratie is geboekt |
 | [**`bc/scripts/sandbox.mjs`**](bc/scripts/sandbox.mjs) | sandbox maken, publiceren, inrichten, migreren en afstemmen, de testgevallen uit de spec via de standaard API draaien → [`bc/VERIFICATION.md`](bc/VERIFICATION.md) | ✓ **gedraaid**: 8 van 8 testgevallen geslaagd, afstemming €0,00 |
 | [**`azure/`**](azure/README.md) | Bicep: Application Insights met daglimiet, functies voor migratiecontrole en afstemming, Key Vault, budget, alert · 8 hypercare-queries in KQL | ✓ **uitgerold** (Germany West Central, ±€1/maand): functie live getest met beide exports, sandbox stuurt telemetrie hierheen |
@@ -129,7 +129,7 @@ Code (scripts, tests, site-JS/CSS, workflows): [MIT](LICENSE). Documentatie, dia
 ## Beperkingen en aannames
 
 - **Fictief:** Kalvaert, TradeDesk, de workshops, de klanten en alle cijfers zijn verzonnen maar typisch voor een Vlaamse groothandel.
-- **Sandbox, geen productie:** de AL-apps draaien in een Business Central-sandbox met fictieve data. De AL-testcodeunit zelf is nog niet gedraaid (`al runtests` vraagt een interactieve aanmelding); dezelfde testgevallen zijn wel via de standaard API uitgevoerd ([VERIFICATION.md](bc/VERIFICATION.md)).
+- **Sandbox, geen productie:** de AL-apps draaien in een Business Central-sandbox met fictieve data, niet bij een klant ([VERIFICATION.md](bc/VERIFICATION.md)).
 - **Azure in een ontwikkelabonnement:** uitgerold in Germany West Central (West Europe liet dit abonnement niet toe), met een budget van €5 per maand. De functie die tegen de BC-API afstemt is bewust niet gekoppeld: dat vraagt een app-registratie met een secret.
 - **Vereenvoudigd:** de workbench simuleert één verkoopregel, zonder kortingen of afrondingsregels.
 - **Geen klantervaring geclaimd:** dit toont hoe ik als functional consultant zou werken, niet wat ik bij een klant gedaan heb. De AL-code is wat een developer zou bouwen; ze staat hier om de spec te toetsen.

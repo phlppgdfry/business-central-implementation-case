@@ -68,7 +68,7 @@ async function call(method, url, body, headers = {}, attempt = 1) {
     await new Promise((r) => setTimeout(r, 15000));
     return call(method, url, body, headers, attempt + 1);
   }
-  if (!res.ok) throw new Error(`${method} ${url.replace(API, "")}: HTTP ${res.status} ${text.slice(0, 300)}`);
+  if (!res.ok) throw new Error(`${method} ${url.replace(API, "")}: HTTP ${res.status} ${text.slice(0, 600)}`);
   return text ? JSON.parse(text) : {};
 }
 async function all(url) {
@@ -242,6 +242,13 @@ async function diagfee() {
   try { await call("DELETE", await std(`salesOrders(${order.id})`)); } catch { /* leave it */ }
 }
 
+/** The automation API's view of recent app deployments: what publish is waiting on. */
+async function deployments() {
+  const list = await all(await automation("extensionDeploymentStatus"));
+  const recent = list.slice(0, 6).map((d) => `${d.name} ${d.appVersion ?? ""} → ${d.status}${d.operationType ? ` (${d.operationType})` : ""}`);
+  record("deployments", true, recent.join(" | ") || "none");
+}
+
 async function status() {
   const id = await company();
   const apps = await all(await automation("extensions?$filter=publisher eq 'Kalvaert Portfolio Case'"));
@@ -392,27 +399,31 @@ async function verify() {
   return out;
 }
 
-function tests() {
+/**
+ * Runs the AL test codeunit. Business Central's own test runner is started through the API that the test
+ * app exposes, so this works with the same credentials as the rest of the run; `al runtests` would need an
+ * interactive sign-in. Falls back to the CLI when the API is not available.
+ */
+async function tests() {
+  try {
+    const suites = await all(await klv("testSuites"));
+    const suite = suites[0];
+    if (!suite) throw new Error("no test suite; is the test app installed?");
+    await call("POST", await klv(`testSuites(${suite.id})/Microsoft.NAV.runTests`));
+    const lines = await all(await klv(`testResults?$filter=testSuite eq '${suite.name}'`));
+    const methods = lines.filter((l) => l.lineType === "Function");
+    const failed = methods.filter((l) => l.result !== "Success");
+    const detail = failed.length
+      ? `${methods.length - failed.length}/${methods.length} passed; failing: ${failed.map((f) => `${f.function} (${f.errorMessage ?? f.result})`).join("; ").slice(0, 400)}`
+      : `${methods.length}/${methods.length} passed: ${methods.map((m) => m.function).join(", ")}`;
+    record("AL tests (codeunit 50150)", methods.length > 0 && failed.length === 0, detail);
+    return;
+  } catch (e) {
+    record("AL tests via API", false, e.message.slice(0, 500));
+  }
   const cli = process.env.AL_CLI ?? "al";
-  const args = ["runtests", "50150", "--environmentname", cfg.environment, "--environmenttype", "Sandbox", "--tenant", cfg.tenant, "--company", cfg.company];
-  // without a cached token the CLI would wait for a browser login, so never block the run on it
-  const res = spawnSync(cli, args, { encoding: "utf8", timeout: 180000, stdio: ["ignore", "pipe", "pipe"] });
-  if (res.error) {
-    record("AL tests (codeunit 50150)", false, `AL CLI not available (${res.error.code}); install it, then run: ${cli} auth login --tenant ${cfg.tenant}`);
-    return;
-  }
-  let parsed;
-  try { parsed = JSON.parse(res.stdout); } catch { parsed = null; }
-  const methods = parsed ? JSON.stringify(parsed).match(/"(?:result|outcome)":"(\w+)"/gi) ?? [] : [];
-  const passed = methods.filter((m) => /pass|success/i.test(m)).length;
-  if (res.status === 0 && methods.length) {
-    record("AL tests (codeunit 50150)", passed === methods.length, `${passed}/${methods.length} passed`);
-    return;
-  }
-  const why = `${res.stdout}\n${res.stderr}`.toLowerCase().includes("login") || res.signal === "SIGTERM"
-    ? `needs an interactive sign-in first: ${cli} auth login --tenant ${cfg.tenant} (exercise O10)`
-    : `${res.stdout || res.stderr}`.trim().slice(0, 300);
-  record("AL tests (codeunit 50150)", false, why);
+  const res = spawnSync(cli, ["runtests", "50150", "--environmentname", cfg.environment, "--environmenttype", "Sandbox", "--tenant", cfg.tenant, "--company", cfg.company], { encoding: "utf8", timeout: 120000, stdio: ["ignore", "pipe", "pipe"] });
+  record("AL tests (AL CLI)", res.status === 0, res.error ? `AL CLI not available (${res.error.code})` : `needs an interactive sign-in first: ${cli} auth login --tenant ${cfg.tenant}`);
 }
 
 function writeReport(extra) {
@@ -430,11 +441,11 @@ ${extra?.ledger ? `\n## Boeking van ${extra.invoice} (order ${extra.order}) tege
 }
 
 const cmd = process.argv[2] ?? "status";
-const steps = { envs, ops, create, company: company_, inspect, telemetry, diagfee, status, publish, setup, migrate, verify, tests };
+const steps = { envs, ops, create, company: company_, inspect, telemetry, diagfee, deployments, status, publish, setup, migrate, verify, tests };
 try {
   if (cmd === "all") {
     await envs(); await create(); await company_(); await status(); await publish(); await setup(); await migrate();
-    const extra = await verify(); tests(); writeReport(extra);
+    const extra = await verify(); await tests(); writeReport(extra);
   } else if (steps[cmd]) await steps[cmd]();
   else { console.error(`unknown command ${cmd}`); process.exit(2); }
 } catch (e) {

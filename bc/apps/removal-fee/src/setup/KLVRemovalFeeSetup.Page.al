@@ -26,6 +26,7 @@ page 50100 "KLV Removal Fee Setup"
                 field("Fee G/L Account No."; Rec."Fee G/L Account No.") { }
                 field("Gen. Prod. Posting Group"; Rec."Gen. Prod. Posting Group") { }
                 field("Description Template"; Rec."Description Template") { }
+                field("Show Notifications"; Rec."Show Notifications") { }
             }
         }
     }

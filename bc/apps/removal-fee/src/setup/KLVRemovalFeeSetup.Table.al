@@ -44,6 +44,12 @@ table 50100 "KLV Removal Fee Setup"
             ToolTip = 'Specifies the general product posting group of the fee line, so the fee is reported apart from the goods.';
             TableRelation = "Gen. Product Posting Group";
         }
+        field(7; "Show Notifications"; Boolean)
+        {
+            Caption = 'Show Notifications';
+            ToolTip = 'Specifies whether users get a notification when fee lines disappear because the customer is not domestic. Turn it off for unattended runs, such as an automated test or an integration.';
+            InitValue = true;
+        }
         field(6; "Description Template"; Text[80])
         {
             Caption = 'Description Template';

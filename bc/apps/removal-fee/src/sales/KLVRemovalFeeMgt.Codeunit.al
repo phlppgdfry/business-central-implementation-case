@@ -308,6 +308,8 @@ codeunit 50100 "KLV Removal Fee Mgt."
         CustomDimensions.Add('DocumentType', Format(ItemLine."Document Type"));
         CustomDimensions.Add('GenBusPostingGroup', ItemLine."Gen. Bus. Posting Group");
         Session.LogMessage('KLV0002', FeeRemovedTxt, Verbosity::Normal, DataClassification::SystemMetadata, TelemetryScope::All, CustomDimensions);
+        if not Setup."Show Notifications" then
+            exit;
         if not GuiAllowed() then
             exit;
         RemovedNotification.Id := RemovedNotificationIdTxt;

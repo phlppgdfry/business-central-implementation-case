@@ -27,5 +27,7 @@
   "You are not allowed to change the removal fee. Ask purchasing, or ask an administrator to turn on %1 for you in User Setup.": "U mag de verwijderingsbijdrage niet wijzigen. Vraag het aan aankoop, of vraag een beheerder om %1 voor u aan te zetten in de gebruikersinstellingen.",
   "Fee For Line No.": "Bijdrage voor regelnr.",
   "Specifies the item line this removal fee belongs to. The extension keeps its own link: the standard field \"Attached to Line No.\" marks a line as extended text, and Business Central then refuses to set the line type.": "Geeft de artikelregel op waar deze verwijderingsbijdrage bij hoort. De extensie houdt een eigen koppeling bij: het standaardveld \"Gekoppeld aan regelnr.\" maakt van een regel een uitgebreide-tekstregel, en Business Central weigert dan het regeltype te zetten.",
-  "Specifies the item line this removal fee belonged to.": "Geeft de artikelregel op waar deze verwijderingsbijdrage bij hoorde."
+  "Specifies the item line this removal fee belonged to.": "Geeft de artikelregel op waar deze verwijderingsbijdrage bij hoorde.",
+  "Show Notifications": "Meldingen tonen",
+  "Specifies whether users get a notification when fee lines disappear because the customer is not domestic. Turn it off for unattended runs, such as an automated test or an integration.": "Geeft aan of gebruikers een melding krijgen wanneer bijdrageregels verdwijnen omdat de klant niet in België levert. Zet dit uit voor onbewaakte uitvoeringen, zoals een automatische test of een integratie."
 }

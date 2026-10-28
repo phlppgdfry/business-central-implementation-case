@@ -75,6 +75,18 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Field Primary Key - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 2075434594 - Field 1339356039 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies whether users get a notification when fee lines disappear because the customer is not domestic. Turn it off for unattended runs, such as an automated test or an integration.</source>
+          <target state="translated">Geeft aan of gebruikers een melding krijgen wanneer bijdrageregels verdwijnen omdat de klant niet in België levert. Zet dit uit voor onbewaakte uitvoeringen, zoals een automatische test of een integratie.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Field Show Notifications - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2075434594 - Field 1339356039 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Show Notifications</source>
+          <target state="translated">Meldingen tonen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table KLV Removal Fee Setup - Field Show Notifications - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Codeunit 2559949379 - NamedType 1260440724" size-unit="char" translate="yes" xml:space="preserve">
           <source>This removal fee line is managed automatically. Change or delete the item line above it instead.</source>
           <target state="translated">Deze bijdrageregel wordt automatisch beheerd. Wijzig of verwijder de artikelregel erboven.</target>

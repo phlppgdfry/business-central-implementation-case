@@ -203,7 +203,6 @@ codeunit 50150 "KLV Removal Fee Tests"
     end;
 
     [Test]
-    [HandlerFunctions('ConfirmYes,FeeRemovedNotification')]
     procedure U4_CustomerChangedToEURemovesFeeLines()
     var
         SalesHeader: Record "Sales Header";
@@ -214,6 +213,11 @@ codeunit 50150 "KLV Removal Fee Tests"
         Initialize();
         CreateOrder(SalesHeader, ItemLine, DomesticCustomerTxt, FeeItemTxt, 2);
 
+        // Both dialogs of this step only exist in a session with a client: the confirm for recreating the
+        // lines, and the notification that the fee was dropped. Switching them off keeps the test identical
+        // whether it runs from the Test Tool or from a pipeline; what is asserted is the data.
+        SilenceNotifications();
+        SalesHeader.SetHideValidationDialog(true);
         SalesHeader.Validate("Sell-to Customer No.", EUCustomerTxt);
         SalesHeader.Modify(true);
 
@@ -266,6 +270,16 @@ codeunit 50150 "KLV Removal Fee Tests"
         Assert.AreEqual(4, FeeLine."Unit Price", 'new line gets the new fee');
     end;
 
+    local procedure SilenceNotifications()
+    var
+        RemovalFeeSetup: Record "KLV Removal Fee Setup";
+    begin
+        RemovalFeeSetup.Get();
+        RemovalFeeSetup."Show Notifications" := false;
+        RemovalFeeSetup.Modify();
+        Commit();
+    end;
+
     local procedure Initialize()
     var
         DemoSetupRun: Record "KLV Demo Setup Run";
@@ -306,11 +320,5 @@ codeunit 50150 "KLV Removal Fee Tests"
     procedure ConfirmYes(Question: Text[1024]; var Reply: Boolean)
     begin
         Reply := true;
-    end;
-
-    [SendNotificationHandler]
-    procedure FeeRemovedNotification(var Notification: Notification): Boolean
-    begin
-        exit(true);
     end;
 }

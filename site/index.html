@@ -43,7 +43,7 @@
       <ul class="stats" aria-label="De case in cijfers">
         <li><b><!--n:cls.stdconf-->16<!--/n--> van <!--n:req.total-->25<!--/n--></b><span>wensen met standaard of configuratie</span></li>
         <li><b><!--n:cls.extensie-->1<!--/n--> extensie</b><span>gespecificeerd, gebouwd in AL én gedraaid</span></li>
-        <li><b>8 van 8</b><span>testgevallen geslaagd in een echte BC-sandbox</span></li>
+        <li><b>12 van 12</b><span>AL-tests geslaagd in een echte BC-sandbox</span></li>
         <li><b><!--n:decided.days-->29,0<!--/n--> dagen</b><span>in plaats van <!--n:max.days-->40,5<!--/n--> bij overal maatwerk</span></li>
         <li><b>€0,00</b><span>verschil na de migratie (eerst <!--n:mig.diff.v1-->€1.586,40<!--/n-->)</span></li>
       </ul>
@@ -196,7 +196,7 @@ flowchart LR
           <div><span class="badge ok">✓ gedraaid</span><span>Gepubliceerd in een echte Business Central-sandbox (29.0, Belgisch). Het hele oplossingsontwerp is er toegepast en de migratie is geboekt: <strong>400000 €170.703,53 en 400100 €29.910,71, verschil €0,00</strong>.</span></div>
           <div><span class="badge ok">✓ gedraaid</span><span>De testgevallen T1–T5, T7, T8 en T9 uit de spec, uitgevoerd via de <strong>standaard</strong> verkooporder-API. De geboekte factuur komt rekening per rekening overeen met de boekingsmatrix, inclusief €7,00 bijdrage op 700900.</span></div>
           <div><span class="badge ok">✓ CI</span><span>Compileert tegen de Belgische symbolen van Business Central 29.0, met CodeCop, UICop en PerTenantExtensionCop: 0 fouten, 0 waarschuwingen.</span></div>
-          <div><span class="badge todo">nog niet</span><span>De AL-testcodeunit zelf (<code>al runtests</code>) vraagt eerst een interactieve aanmelding. De live verificatie dekt dezelfde testgevallen via de API.</span></div>
+          <div><span class="badge ok">✓ gedraaid</span><span><strong>12 van de 12 AL-tests</strong> geslaagd in de sandbox, inclusief het kopiëren van een document — dat kan de standaard API niet. Ze starten via Business Centrals eigen testrunner, zodat ze ook in een pipeline kunnen draaien.</span></div>
         </div>
         <p class="note" style="margin-top:14px"><strong>Wat het draaien opleverde:</strong> twee fouten die de compiler niet ziet. <code>Validate(Type)</code> op een verkoopregel roept intern <code>Init()</code> aan en wist óók de eigen velden van de extensie — de bijdrage stond dan dubbel op de factuur. En het standaardveld <em>Gekoppeld aan regelnr.</em> maakt van een regel een uitgebreide-tekstregel, waarna Business Central het regeltype weigert. Beide staan nu in de spec. <a href="https://github.com/phlppgdfry/business-central-implementation-case/blob/main/bc/VERIFICATION.md">Volledig verificatierapport</a>.</p>
       </div>
@@ -277,7 +277,7 @@ flowchart TB
       <h2>Beperkingen</h2>
       <ul>
         <li>Fictieve klant, fictief oud pakket, fictieve workshops; alle cijfers illustratief.</li>
-        <li>De AL-code draait in een <strong>sandbox</strong> met fictieve data, niet in productie bij een klant. De AL-testcodeunit zelf is nog niet gedraaid (vraagt een interactieve aanmelding); de spec is wel via de standaard API getoetst.</li>
+        <li>De AL-code draait in een <strong>sandbox</strong> met fictieve data, niet in productie bij een klant.</li>
         <li>De workbench simuleert de boekingslogica vereenvoudigd (één regel, geen kortingen, geen afrondingsregels).</li>
         <li>Geen klantervaring geclaimd: dit toont hoe ik als functional consultant zou werken. De AL-code is wat een developer zou bouwen; ze staat hier om de spec te toetsen.</li>
         <li>Elk getal op deze site komt uit één bron (<code>data/case.json</code>) en wordt bij elke wijziging automatisch gecontroleerd.</li>

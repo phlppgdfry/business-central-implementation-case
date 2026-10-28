@@ -2,7 +2,7 @@
   "id": "5b0e7f3a-2c41-4d8e-9a6b-1f7c3e9d2a40",
   "name": "Kalvaert Removal Fee",
   "publisher": "Kalvaert Portfolio Case",
-  "version": "1.0.5.0",
+  "version": "1.0.7.0",
   "brief": "Adds the Belgian removal fee (verwijderingsbijdrage) as a managed line under electrical items on sales documents.",
   "description": "Per-tenant extension for the fictional Kalvaert case (UC-VK-10). An item carries a removal fee; on sales quotes, orders, invoices, credit memos and return orders for domestic customers a fee line is kept directly under the item line: quantity follows the item line, the line disappears with the item line or when the customer is not domestic, and users cannot edit it by hand.",
   "privacyStatement": "https://github.com/phlppgdfry/business-central-implementation-case",
@@ -14,10 +14,26 @@
   "screenshots": [],
   "platform": "29.0.0.0",
   "application": "29.0.0.0",
-  "idRanges": [{ "from": 50100, "to": 50149 }],
-  "resourceExposurePolicy": { "allowDebugging": true, "allowDownloadingSource": true, "includeSourceInSymbolFile": true },
+  "idRanges": [
+    {
+      "from": 50100,
+      "to": 50149
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
   "runtime": "18.0",
   "target": "Cloud",
-  "features": ["NoImplicitWith", "TranslationFile", "GenerateCaptions"],
-  "supportedLocales": ["nl-BE", "en-US"]
+  "features": [
+    "NoImplicitWith",
+    "TranslationFile",
+    "GenerateCaptions"
+  ],
+  "supportedLocales": [
+    "nl-BE",
+    "en-US"
+  ]
 }

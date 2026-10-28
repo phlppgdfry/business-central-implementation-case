@@ -24,5 +24,5 @@
 
 - Ervaring als functional consultant bij betalende klanten.
 - Een **productie**-omgeving: alles draait in een sandbox en een ontwikkelabonnement, met fictieve data. Geen gebouwde Peppol-koppeling.
-- De AL-testcodeunit zelf is nog niet gedraaid (`al runtests` vraagt een interactieve aanmelding); dezelfde testgevallen zijn wel via de standaard API uitgevoerd.
+- Productiegebruik: alles draait in een sandbox met fictieve data.
 - Groepsworkshops of trainingen die ik effectief gegeven heb.

@@ -22,6 +22,7 @@ codeunit 50103 "KLV Removal Fee Install"
         Setup."Fee G/L Account No." := '700900';
         Setup."Gen. Prod. Posting Group" := 'BIJDRAGE';
         Setup."Description Template" := DescriptionTxt;
+        Setup."Show Notifications" := true;
         Setup.Insert();
     end;
 }

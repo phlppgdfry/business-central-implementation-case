@@ -2,7 +2,7 @@
   "id": "e4a91c27-58d3-4b6f-a0e2-3c7d9f1b8a64",
   "name": "Kalvaert Removal Fee Tests",
   "publisher": "Kalvaert Portfolio Case",
-  "version": "1.0.5.0",
+  "version": "1.0.9.0",
   "brief": "Automated version of test cases T1–T9 from UC-VK-10.",
   "description": "Test codeunit for the removal fee extension. Runs in a company where the Kalvaert demo setup has been applied (it applies it itself if needed). Each test is named after the test case in docs/05-specs/uc-vk-10-verwijderingsbijdrage.md.",
   "privacyStatement": "https://github.com/phlppgdfry/business-central-implementation-case",
@@ -11,17 +11,54 @@
   "url": "https://github.com/phlppgdfry/business-central-implementation-case",
   "logo": "",
   "dependencies": [
-    { "id": "5b0e7f3a-2c41-4d8e-9a6b-1f7c3e9d2a40", "name": "Kalvaert Removal Fee", "publisher": "Kalvaert Portfolio Case", "version": "1.0.5.0" },
-    { "id": "9d3c2b81-6f4e-4a17-b0c5-7e2a1d8f6c95", "name": "Kalvaert Demo Setup", "publisher": "Kalvaert Portfolio Case", "version": "1.0.5.0" },
-    { "id": "dd0be2ea-f733-4d65-bb34-a28f4624fb14", "name": "Library Assert", "publisher": "Microsoft", "version": "29.0.0.0" },
-    { "id": "d852d5d2-a39d-4179-baeb-f99a19e32510", "name": "Application Test Library", "publisher": "Microsoft", "version": "29.0.0.0" }
+    {
+      "id": "5b0e7f3a-2c41-4d8e-9a6b-1f7c3e9d2a40",
+      "name": "Kalvaert Removal Fee",
+      "publisher": "Kalvaert Portfolio Case",
+      "version": "1.0.6.0"
+    },
+    {
+      "id": "9d3c2b81-6f4e-4a17-b0c5-7e2a1d8f6c95",
+      "name": "Kalvaert Demo Setup",
+      "publisher": "Kalvaert Portfolio Case",
+      "version": "1.0.5.0"
+    },
+    {
+      "id": "dd0be2ea-f733-4d65-bb34-a28f4624fb14",
+      "name": "Library Assert",
+      "publisher": "Microsoft",
+      "version": "29.0.0.0"
+    },
+    {
+      "id": "d852d5d2-a39d-4179-baeb-f99a19e32510",
+      "name": "Application Test Library",
+      "publisher": "Microsoft",
+      "version": "29.0.0.0"
+    },
+    {
+      "id": "23de40a6-dfe8-4f80-80db-d70f83ce8caf",
+      "name": "Test Runner",
+      "publisher": "Microsoft",
+      "version": "29.0.0.0"
+    }
   ],
   "screenshots": [],
   "platform": "29.0.0.0",
   "application": "29.0.0.0",
-  "idRanges": [{ "from": 50150, "to": 50179 }],
-  "resourceExposurePolicy": { "allowDebugging": true, "allowDownloadingSource": true, "includeSourceInSymbolFile": true },
+  "idRanges": [
+    {
+      "from": 50150,
+      "to": 50179
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
   "runtime": "18.0",
   "target": "Cloud",
-  "features": ["NoImplicitWith"]
+  "features": [
+    "NoImplicitWith"
+  ]
 }

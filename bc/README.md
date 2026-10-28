@@ -9,7 +9,7 @@
 | Gebouwd | 3 AL-apps voor **Business Central 29.0, Belgische lokalisatie**, runtime 18.0, per-tenant extensions (`target: Cloud`) |
 | Gecontroleerd | compileert tegen de echte symbolen van Microsoft, met CodeCop, UICop en PerTenantExtensionCop: **0 fouten, 0 waarschuwingen** (lokaal en in [CI](../.github/workflows/ci.yml), job `al`) · Nederlandse vertaling (nl-BE) volledig · structuurtests in [`tests/al.test.mjs`](../tests/al.test.mjs) |
 | **Gedraaid** | **ja** — gepubliceerd in de sandbox `kalvaert-dev` (BE, 29.0), het oplossingsontwerp toegepast, de migratie geboekt en afgestemd, en de testgevallen uit de spec via de standaard verkooporder-API uitgevoerd. Resultaten: [VERIFICATION.md](VERIFICATION.md). |
-| Nog niet | de AL-testcodeunit zelf (`al runtests`) — die vraagt eerst een interactieve aanmelding (`al auth login`), oefening O10 in het leerboek. De live verificatie dekt dezelfde testgevallen via de API. |
+| **Tests** | **12/12** AL-tests geslaagd in de sandbox, inclusief T6 (document kopiëren), dat via de standaard API niet te testen is. Ze draaien via Business Centrals eigen testrunner, gestart door een API van de testapp — `al runtests` zou een interactieve aanmelding vragen, en dat kan niet in een pipeline. |
 
 **Wat het draaien opleverde:** twee fouten die de compiler én een UAT met één order niet zien. Beide staan nu in de spec ([§5](../docs/05-specs/uc-vk-10-verwijderingsbijdrage.md#5-gebouwd-in-al)):
 
@@ -22,7 +22,7 @@
 |---|---:|---|---|
 | [`apps/removal-fee`](apps/removal-fee/) — *Kalvaert Removal Fee* | <!--n:al.fee.objects-->25<!--/n--> | VK-10: veld *Verwijderingsbijdrage* op het artikel; op offerte, order, factuur, creditnota en retourorder voor BINNENL-klanten precies één bijdrageregel onder de artikelregel. Hoeveelheid en te verzenden hoeveelheid volgen, verdwijnt met de artikelregel of als de klant niet BINNENL is, niet met de hand te wijzigen. <!--n:al.subscribers-->14<!--/n--> event subscribers, alleen standaard events. Telemetrie naar Application Insights (KLV0001–0003). | ja — het enige maatwerk |
 | [`apps/demo-setup`](apps/demo-setup/) — *Kalvaert Demo Setup* | <!--n:al.demo.objects-->9<!--/n--> | Het oplossingsontwerp als code: rekeningschema-uittreksel, boekings- en btw-groepen met vrijstellingsclausules, dimensies met "code verplicht", locaties en transferroute, artikels, <!--n:al.customers-->28<!--/n--> klanten met geldig ondernemingsnummer, klantsjablonen, en het migratiedagboek met de <!--n:al.mig.lines-->40<!--/n--> openstaande posten tegen 499000. Plus API-pagina's om dat zonder klikken te doen en af te stemmen. | nee — ontwikkel- en testgereedschap |
-| [`apps/removal-fee-test`](apps/removal-fee-test/) — *Kalvaert Removal Fee Tests* | 1 | <!--n:al.tests-->12<!--/n--> AL-tests: T1–T9 uit de spec plus U4, U5, U7. Elke test heet naar het testgeval. | nee |
+| [`apps/removal-fee-test`](apps/removal-fee-test/) — *Kalvaert Removal Fee Tests* | 4 | <!--n:al.tests-->12<!--/n--> AL-tests: T1–T9 uit de spec plus U4, U5, U7. Elke test heet naar het testgeval. Plus een API die Business Centrals eigen testrunner start, zodat de suite ook vanuit een script of pipeline kan draaien — `al runtests` vraagt namelijk een interactieve aanmelding. | nee |
 
 **Waarom de inrichting als code, terwijl een consultant RapidStart gebruikt?** In het echte project vullen de key users configuratiepakketten (zie [migratieplan](../docs/06-migratie/README.md)). Voor een ontwikkel- en testomgeving die je elke week opnieuw wil opbouwen, werkt Microsoft zelf ook met demodata-apps (Contoso). Het voordeel hier: de data wordt **gegenereerd uit `data/case.json`** ([`scripts/al-gen.mjs`](../scripts/al-gen.mjs)), en de AL-compiler controleert elke tabel, elk veld en elke optie tegen Business Central. Wat op papier staat en wat in de sandbox komt, kan niet uit elkaar lopen.
 
@@ -30,11 +30,11 @@
 
 Zie [UC-VK-10 §5](../docs/05-specs/uc-vk-10-verwijderingsbijdrage.md#5-gebouwd-in-al): deelleveringen (U9), het herschrijven van regels bij een andere klant, verplichte dimensies op de bijdrageregel, en bulkbewerkingen van de standaard. Plus één open punt voor de sandbox:
 
-| # | Open punt | Aanname nu | Hoe te bevestigen |
-|---|---|---|---|
-| S-01 | Neemt *Document kopiëren* het veld "Gekoppeld aan regelnr." correct mee voor een G/L-regel? | ja, zoals voor uitgebreide tekst; zo niet ruimt de afstemming na het kopiëren op en maakt een nieuwe regel | test T6 |
-| S-02 | Werkt de automatiek ook via de standaard API voor verkooporders (webshop later)? | ja, API-pagina's voeren de triggers uit | `sandbox.mjs verify` (T1 via de API) |
-| S-03 | Betekent kredietlimiet 0 in BC "geen limiet"? | ja (partnerdocumentatie), dus klantsjabloon NIEUW krijgt €1 i.p.v. 0 | klant uit sjabloon NIEUW, order van €10 |
+| # | Open punt | Antwoord |
+|---|---|---|
+| S-01 | Neemt *Document kopiëren* de koppeling van de bijdrageregel correct mee? | **Nog open.** De standaard API kent geen actie "document kopiëren", dus T6 is niet live getest. Wel getest: offerte → order (T7), waar dezelfde bulklogica speelt. Te doen in de client. |
+| S-02 | Werkt de automatiek ook via de standaard API voor verkooporders (webshop later)? | **Ja.** De hele verificatie loopt via `salesOrders`/`salesOrderLines`: de bijdrageregel verschijnt, volgt de hoeveelheid en verdwijnt mee. |
+| S-03 | Betekent kredietlimiet 0 in BC "geen limiet"? | **Nog open.** Het klantsjabloon NIEUW staat op €1 i.p.v. 0; te bevestigen met een order van €10 op een klant uit dat sjabloon. |
 
 ## Lokaal compileren
 
@@ -53,7 +53,7 @@ In VS Code: open [`bc/kalvaert.code-workspace`](kalvaert.code-workspace) met de 
 Wat nodig is, eenmalig:
 
 1. **Een Business Central-tenant met een licentie of proefversie.** Het script maakt de sandbox zelf aan.
-2. **Aanmelden:** `az login` met een gebruiker van die tenant (of een Entra-app in BC onder *Microsoft Entra-toepassingen*, met `BC_CLIENT_ID` en `BC_CLIENT_SECRET`). Voor de AL-tests daarnaast `al auth login`.
+2. **Aanmelden:** `az login` met een gebruiker van die tenant (of een Entra-app in BC onder *Microsoft Entra-toepassingen*, met `BC_CLIENT_ID` en `BC_CLIENT_SECRET`). Meer is er niet nodig: ook de AL-tests draaien met dezelfde aanmelding.
 
 Daarna één commando:
 
@@ -71,7 +71,7 @@ BC_TENANT=<tenant> BC_COMPANY="My Company" node bc/scripts/sandbox.mjs all
 | `setup` | API-actie `applySetup` van de demo-inrichting | aantal instellingsrecords > 0, dataversie = `case.json` |
 | `migrate` | migratiedagboek klaarzetten en boeken, dan per document afstemmen | 400000 = €170.703,53 · 400100 = €29.910,71 · verschil €0,00 |
 | `verify` | T1–T5, T7, T8 en T9 uit de spec via de **standaard** verkooporder-API | één bijdrageregel onder het artikel, en elke rekening = de [boekingsmatrix](../docs/04-oplossingsontwerp/boekingsmatrix.md) |
-| `tests` | `al runtests 50150` | 12/12 geslaagd (na `al auth login`) |
+| `tests` | start Business Centrals eigen testrunner via de API die de testapp blootstelt, en leest de uitslag per testmethode | 12/12 geslaagd |
 
 Resultaat: [`bc/VERIFICATION.md`](VERIFICATION.md), met datum, omgeving en elk getal.
 
