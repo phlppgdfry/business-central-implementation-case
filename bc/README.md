@@ -11,6 +11,8 @@
 | **Gedraaid** | **ja** — gepubliceerd in de sandbox `kalvaert-dev` (BE, 29.0), het oplossingsontwerp toegepast, de migratie geboekt en afgestemd, en de testgevallen uit de spec via de standaard verkooporder-API uitgevoerd. Resultaten: [VERIFICATION.md](VERIFICATION.md). |
 | **Tests** | **12/12** AL-tests geslaagd in de sandbox, inclusief T6 (document kopiëren), dat via de standaard API niet te testen is. Ze draaien via Business Centrals eigen testrunner, gestart door een API van de testapp — `al runtests` zou een interactieve aanmelding vragen, en dat kan niet in een pipeline. |
 
+> **Over de houdbaarheid.** `kalvaert-dev` is een **proefomgeving**. Business Central ruimt die na verloop van tijd op: de vorige sandbox van dit project stond na ongeveer tweeënhalve maand op *SoftDeleted* en was niet meer te herstellen. Dit rapport is daarom het blijvende bewijs, niet de omgeving zelf. Opnieuw opbouwen kost één commando (`node bc/scripts/sandbox.mjs all`) plus de tijd die Business Central nodig heeft om de apps te installeren — in de praktijk een halfuur.
+
 **Wat het draaien opleverde:** twee fouten die de compiler én een UAT met één order niet zien. Beide staan nu in de spec ([§5](../docs/05-specs/uc-vk-10-verwijderingsbijdrage.md#5-gebouwd-in-al)):
 
 1. `Validate(Type)` op een verkoopregel roept intern `Init()` aan en wist **ook de eigen velden van de extensie**. De bijdrageregel verloor zijn markering, dus bij elke hoeveelheidswijziging kwam er een regel bij — en op de factuur stond de bijdrage dubbel.
